@@ -79,7 +79,7 @@ class Product_model extends CI_Model {
 		->order_by('round_round',"DESC")
 		->get('dmn_round')
 		->result_array();
-	 	return $query[0]['round_round'];
+	 	return @$query[0]['round_round'];
 	}
 
 	public function import_round($round)

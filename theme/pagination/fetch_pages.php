@@ -31,12 +31,12 @@ if(isset($_POST) && isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SER
 
 	//ตั้งลิ้งสด 555
 	//Localhost
- //$BASE_IMG = "http://localhost/diamondnumber/images/actipromo/";
-	// $SITE_URL = "http://localhost/diamondnumber/news/detail/";
+ 	$BASE_IMG = "http://localhost/number-energy/images/actipromo/";
+	$SITE_URL = "http://localhost/number-energy/news/detail/";
 
 	//OnWeb
-	$BASE_IMG = "http://www.number-energy.com/images/actipromo/";
-	$SITE_URL = "http://www.number-energy.com/news/detail/";
+	// $BASE_IMG = "http://www.number-energy.com/images/actipromo/";
+	// $SITE_URL = "http://www.number-energy.com/news/detail/";
 
  	//ส่วนของ Views
 	while($results->fetch()){

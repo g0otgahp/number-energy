@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2017 at 09:58 AM
+-- Generation Time: May 24, 2017 at 05:01 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -278,6 +278,40 @@ INSERT INTO `dmn_general_config` (`general_config_id`, `general_config_txt_top`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dmn_import_tmp`
+--
+
+CREATE TABLE `dmn_import_tmp` (
+  `import_id` int(11) NOT NULL,
+  `import_round` int(11) NOT NULL,
+  `import_network_id` int(11) NOT NULL,
+  `import_number` varchar(20) NOT NULL,
+  `import_cost` int(11) NOT NULL,
+  `import_price` int(11) NOT NULL,
+  `import_agent_id` int(11) NOT NULL,
+  `import_product_type` int(11) NOT NULL,
+  `import_product_subtype` int(11) NOT NULL,
+  `import_status` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `dmn_import_tmp`
+--
+
+INSERT INTO `dmn_import_tmp` (`import_id`, `import_round`, `import_network_id`, `import_number`, `import_cost`, `import_price`, `import_agent_id`, `import_product_type`, `import_product_subtype`, `import_status`) VALUES
+(101, 2, 1, '0823738192', 200, 1500, 1, 1, 2, 0),
+(102, 2, 2, '0829191919', 200, 1500, 1, 1, 2, 0),
+(103, 2, 1, '0928391929', 200, 1500, 1, 1, 2, 0),
+(104, 2, 2, '0928484919', 200, 1500, 1, 1, 2, 0),
+(105, 2, 2, '0804947182', 200, 1500, 1, 1, 2, 0),
+(106, 2, 1, '0802221828', 200, 1500, 1, 1, 2, 0),
+(107, 2, 1, '0803882719', 200, 1500, 1, 1, 2, 0),
+(108, 2, 3, '0804885031', 200, 1500, 1, 1, 2, 0),
+(109, 2, 3, '0804482918', 200, 1500, 1, 1, 2, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `dmn_level`
 --
 
@@ -314,7 +348,7 @@ CREATE TABLE `dmn_mobile_network` (
 INSERT INTO `dmn_mobile_network` (`mobile_network_id`, `mobile_network_code`, `mobile_network_name`, `mobile_network_pic`) VALUES
 (1, '001', 'AIS', '20170512092821.jpg'),
 (2, '002', 'Dtac', '20170512092825.jpg'),
-(5, '003', 'TRUE', '20170512092828.jpg');
+(3, '003', 'TRUE', '20170512092828.jpg');
 
 -- --------------------------------------------------------
 
@@ -334,6 +368,7 @@ CREATE TABLE `dmn_product` (
   `product_date` date NOT NULL,
   `product_time` time NOT NULL,
   `product_type` int(11) NOT NULL,
+  `product_subtype` int(11) NOT NULL,
   `product_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -341,12 +376,12 @@ CREATE TABLE `dmn_product` (
 -- Dumping data for table `dmn_product`
 --
 
-INSERT INTO `dmn_product` (`product_id`, `product_round`, `product_mobile_network`, `product_number`, `product_expired`, `product_cost`, `product_sale`, `product_agent`, `product_date`, `product_time`, `product_type`, `product_status`) VALUES
-(1, 3, 5, '0856113616', '0000-00-00', 900, 2000, 1, '2017-04-17', '09:49:39', 1, 1),
-(2, 3, 5, '0856199616', '0000-00-00', 300, 500, 1, '2017-04-17', '09:54:44', 2, 1),
-(3, 0, 1, '0900009987', '0000-00-00', 290, 4000, 1, '2017-04-18', '00:00:00', 1, 1),
-(4, 0, 1, '0889215611', '0000-00-00', 200, 1200, 1, '2017-05-04', '20:31:23', 3, 1),
-(5, 0, 2, '0889551235', '0000-00-00', 400, 900, 5, '2017-05-11', '15:22:50', 2, 1);
+INSERT INTO `dmn_product` (`product_id`, `product_round`, `product_mobile_network`, `product_number`, `product_expired`, `product_cost`, `product_sale`, `product_agent`, `product_date`, `product_time`, `product_type`, `product_subtype`, `product_status`) VALUES
+(1, 3, 3, '0856113616', '0000-00-00', 900, 2000, 1, '2017-04-17', '09:49:39', 1, 2, 1),
+(2, 3, 3, '0856199616', '0000-00-00', 300, 500, 1, '2017-04-17', '09:54:44', 2, 1, 1),
+(3, 0, 1, '0900009987', '0000-00-00', 290, 4000, 1, '2017-04-18', '00:00:00', 1, 2, 1),
+(4, 0, 1, '0889215611', '0000-00-00', 200, 1200, 1, '2017-05-04', '20:31:23', 3, 2, 1),
+(5, 0, 2, '0889551235', '0000-00-00', 400, 900, 5, '2017-05-11', '15:22:50', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -406,7 +441,8 @@ CREATE TABLE `dmn_round` (
 --
 
 INSERT INTO `dmn_round` (`round_id`, `round_round`, `round_datetime`) VALUES
-(1, 0, '0000-00-00 00:00:00');
+(1, 1, '0000-00-00 00:00:00'),
+(12, 2, '2017-05-24 21:33:27');
 
 -- --------------------------------------------------------
 
@@ -531,6 +567,12 @@ ALTER TABLE `dmn_general_config`
   ADD PRIMARY KEY (`general_config_id`);
 
 --
+-- Indexes for table `dmn_import_tmp`
+--
+ALTER TABLE `dmn_import_tmp`
+  ADD PRIMARY KEY (`import_id`);
+
+--
 -- Indexes for table `dmn_level`
 --
 ALTER TABLE `dmn_level`
@@ -638,6 +680,11 @@ ALTER TABLE `dmn_employees`
 ALTER TABLE `dmn_general_config`
   MODIFY `general_config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `dmn_import_tmp`
+--
+ALTER TABLE `dmn_import_tmp`
+  MODIFY `import_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+--
 -- AUTO_INCREMENT for table `dmn_level`
 --
 ALTER TABLE `dmn_level`
@@ -646,7 +693,7 @@ ALTER TABLE `dmn_level`
 -- AUTO_INCREMENT for table `dmn_mobile_network`
 --
 ALTER TABLE `dmn_mobile_network`
-  MODIFY `mobile_network_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `mobile_network_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `dmn_product`
 --
@@ -666,7 +713,7 @@ ALTER TABLE `dmn_relate`
 -- AUTO_INCREMENT for table `dmn_round`
 --
 ALTER TABLE `dmn_round`
-  MODIFY `round_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `round_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `dmn_story`
 --

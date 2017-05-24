@@ -26,6 +26,7 @@
                 </tr>
               </thead>
               <tbody>
+                <?php echo form_open('Product_process/remove_import_by_id/'.$import_round[0]['round_round']) ?>
                 <?php $i = 1 ?>
                 <?php foreach($Import as $row){ ?>
                 <tr>
@@ -34,11 +35,11 @@
                   <td align="right"><?php echo $row['mobile_network_name']?></td>
                   <td align="right"><?php echo $row['import_number']?></td>
                   <td align="right">[<?php echo $row['Count_number']?>]</td>
-                  <td align="right"><?php echo $row['import_cost']?></td>
-                  <td align="right"><?php echo $row['import_price']?></td>
+                  <td align="right"><?php echo number_format($row['import_cost'])?></td>
+                  <td align="right"><?php echo number_format($row['import_price'])?></td>
                   <td align="right"><?php echo $row['agent_name']?></td>
-                  <td align="right"><?php echo $row['product_type_name']?></td>
-                  <td align="right"><?php echo $row['import_product_subtype_name']?></td>
+                  <td align="right"><span style="color:blue;"><b><?php echo $row['product_type_name']?></b></span></td>
+                  <td align="right"><span style="color:blue;"><?php echo $row['import_product_subtype_name']?></span></td>
                 </tr>
                 <?php $i++ ?>
                 <?php } ?>
