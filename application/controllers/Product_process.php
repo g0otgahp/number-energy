@@ -54,17 +54,197 @@ class Product_process extends CI_Controller {
 	public function product_insert()
 	{
 		date_default_timezone_set('Asia/Bangkok');
+		//กรอกประเภทของเบอร์
+		$tmoney = "";
+		$twork = "";
+		$tcharm = "";
+		$tluck = "";
+		$twisdom = "";
+
+			$money = array(
+				'0' => 19, '1' => 91, '2' => 15, '3' => 51,
+				'4' => 22,'5' => 23, '6' => 32, '7' => 24,
+				'8' => 42, '9' => 26, '10' => 62, '11' => 28,
+				'12' => 82, '13' => 29, '14' => 92, '15' => 36,
+				'16' => 63, '17' => 46, '18' => 64, '19' => 65,
+				'20' => 66, '21' => 69, '22' => 96, '23' => 78,
+				'24' => 87, '25' => 35, '26' => 53, '27' => 16,
+				'28' => 61, '29' => 47, '30' => 74,'31' => 89,
+				'32' => 98, '33' => 19,'34' => 91,
+			);
+
+				$number = substr($this->input->post('product_number'),3);
+
+				foreach ($money as $chk => $value) {
+					if (preg_match("/($value)/", $number, $matches)) {
+							$tmoney = "การเงิน ";
+					}
+				}
+
+				$work = array(
+					'0' => 35, '1' => 53, '2' => 16, '3' => 61,
+					'4' => 47,'5' => 74, '6' => 36, '7' => 63,
+					'8' => 89, '9' => 98, '10' => 19, '11' => 91,
+				);
+
+					$number = substr($this->input->post('product_number'),3);
+
+					foreach ($work as $chk => $value) {
+						if (preg_match("/($value)/", $number, $matches)) {
+								$twork = "การงาน ";
+						}
+					}
+
+					$luck = array(
+						'0' => 19, '1' => 91, '2' => 29, '3' => 92,
+						'4' => 39,'5' => 93, '6' => 49, '7' => 94,
+						'8' => 59, '9' => 95, '10' => 69, '11' => 96,
+						'12' => 89, '13' => 98, '14' => 78, '15' => 87,
+						'16' => 99,
+					);
+
+						$number = substr($this->input->post('product_number'),3);
+
+						foreach ($luck as $chk => $value) {
+							if (preg_match("/($value)/", $number, $matches)) {
+									$tluck = "โชคลาภ ";
+							}
+						}
+
+						$charm = array(
+							'0' => 19, '1' => 91, '2' => 15, '3' => 51,
+							'4' => 22,'5' => 23, '6' => 32, '7' => 24,
+							'8' => 42, '9' => 26, '10' => 62, '11' => 28,
+							'12' => 82, '13' => 29, '14' => 92, '15' => 36,
+							'16' => 63, '17' => 46, '18' => 64, '19' => 65,
+							'20' => 66, '21' => 69, '22' => 96, '23' => 78,
+							'23' => 87,
+						);
+
+							$number = substr($this->input->post('product_number'),3);
+
+							foreach ($charm as $chk => $value) {
+								if (preg_match("/($value)/", $number, $matches)) {
+										$tcharm = "เสน่ห์ ";
+								}
+							}
+
+							$wisdom = array(
+								'0' => 15, '1' => 51, '2' => 35, '3' => 53,
+								'4' => 45,'5' => 54, '6' => 55, '7' => 56,
+								'8' => 65, '9' => 59, '10' => 95, '11' => 14,
+								'12' => 41, '13' => 16, '14' => 61, '15' => 78,
+								'16' => 87,
+							);
+
+								$number = substr($this->input->post('product_number'),3);
+
+								foreach ($wisdom as $chk => $value) {
+									if (preg_match("/($value)/", $number, $matches)) {
+											$twisdom = "ปัญญา";
+									}
+								}
+
+		// คำนวณราคาขายจากต้นทุน
+
+		if ($this->input->post('product_cost') >= 0 && $this->input->post('product_cost') <= 1000) {
+			$i = $this->input->post('product_cost')+1300;
+			$price = $this->OOO($i);
+		} elseif ($this->input->post('product_cost') >=1001 && $this->input->post('product_cost') <=1500 ) {
+			$i = $this->input->post('product_cost')+1700;
+			$price = $this->OOO($i);
+		} elseif ($this->input->post('product_cost') >=1501 && $this->input->post('product_cost') <=2000 ) {
+			$i = $this->input->post('product_cost')+1900;
+			$price = $this->OOO($i);
+		} elseif ($this->input->post('product_cost') >=2001 && $this->input->post('product_cost') <=2500 ) {
+			$i = $this->input->post('product_cost')+2200;
+			$price = $this->OOO($i);
+		} elseif ($this->input->post('product_cost') >=2501 && $this->input->post('product_cost') <=3000 ) {
+			$i = $this->input->post('product_cost')+2600;
+			$price = $this->OOO($i);
+		} elseif ($this->input->post('product_cost') >=3001 && $this->input->post('product_cost') <=4000 ) {
+			$i = $this->input->post('product_cost')+3100;
+			$price = $this->OOO($i);
+		} elseif ($this->input->post('product_cost') >=4001 && $this->input->post('product_cost') <=5000 ) {
+			$i = $this->input->post('product_cost')+3900;
+			$price = $this->OOO($i);
+		} elseif ($this->input->post('product_cost') >=5001 && $this->input->post('product_cost') <=6000 ) {
+			$ii = $this->input->post('product_cost')+4600;
+			$price = $this->OOO($i);
+		} elseif ($this->input->post('product_cost') >=7001 && $this->input->post('product_cost') <=8000 ) {
+			$i = $this->input->post('product_cost')+5500;
+			$price = $this->OOOO($i);
+		} elseif ($this->input->post('product_cost') >=8001 && $this->input->post('product_cost') <=9000 ) {
+			$i = $this->input->post('product_cost')+6000;
+			$price = $this->OOOO($i);
+		} elseif ($this->input->post('product_cost') >=9001 && $this->input->post('product_cost') <=10000 ) {
+			$i = $this->input->post('product_cost')+7500;
+			$price = $this->OOOO($i);
+		} elseif ($this->input->post('product_cost') >=10001 && $this->input->post('product_cost') <=15000 ) {
+			$i = $this->input->post('product_cost')+9000;
+			$price = $this->OOOO($i);
+		} elseif ($this->input->post('product_cost') >=15001 && $this->input->post('product_cost') <=20000 ) {
+			$i = $this->input->post('product_cost')+10500;
+			$price = $this->OOOO($i);
+		} elseif ($this->input->post('product_cost') >=20001 && $this->input->post('product_cost') <=25000 ) {
+			$i = $this->input->post('product_cost')+12000;
+			$price = $this->OOOO($i);
+		} elseif ($this->input->post('product_cost') >=25001 && $this->input->post('product_cost') <=30000 ) {
+			$i = $this->input->post('product_cost')+14000;
+			$price = $this->OOOO($i);
+		} elseif ($this->input->post('product_cost') >=30001 && $this->input->post('product_cost') <=35000 ) {
+			$i = $this->input->post('product_cost')+16000;
+			$price = $this->OOOO($i);
+		} elseif ($this->input->post('product_cost') >=35001 && $this->input->post('product_cost') <=40000 ) {
+			$i = $this->input->post('product_cost')+18000;
+			$price = $this->OOOO($i);
+		} elseif ($this->input->post('product_cost') >=40001 && $this->input->post('product_cost') <=50000 ) {
+			$i = $this->input->post('product_cost')+20000;
+			$price = $this->OOOO($i);
+		} elseif ($this->input->post('product_cost') >=50001 && $this->input->post('product_cost') <=100000 ) {
+			$i = $this->input->post('product_cost')+30000;
+			if ($i <100000) {
+				$price = $this->OOOO($i);
+			} else {
+				$price = $this->OOOOO($i);
+			}
+		} elseif ($this->input->post('product_cost') >100000) {
+			$i = $this->input->post('product_cost')+40000;
+			if ($i <1000000) {
+				$price = $this->OOOOO($i);
+			} else {
+				$price = $this->OOOOOO($i);
+			}
+		}
 
 		$input = array(
 			'product_mobile_network' => $this->input->post('product_mobile_network'),
 			'product_number' => $this->input->post('product_number'),
 			'product_cost' => $this->input->post('product_cost'),
-			'product_sale' => $this->input->post('product_sale'),
+			'product_sale' => $price,
 			'product_agent' => $this->input->post('product_agent'),
-			'product_type' => $this->input->post('product_type'),
+			'product_type' => $tmoney.$twork.$tcharm.$tluck.$twisdom,
 			'product_date' => date('Y-m-d'),
 			'product_time' => date('H:i:s'),
 		);
+
+		$TrashNumber = array(
+			'0' => 19, '1' => 91, '2' => 15, '3' => 51,
+			'4' => 22,'5' => 23, '6' => 32, '7' => 24,
+			'8' => 42, '9' => 26, '10' => 62, '11' => 28,
+			'12' => 82, '13' => 29, '14' => 92, '15' => 36,
+			'16' => 63, '17' => 46, '18' => 64, '19' => 65,
+			'20' => 66, '21' => 69, '22' => 96, '23' => 78,
+			'23' => 87,
+		);
+
+			$number = substr($input['product_number'],3);
+
+			foreach ($TrashNumber as $chk => $value) {
+				if (preg_match("/($value)/", $number, $matches)) {
+						$input['product_status'] = 2;
+				}
+			}
 
 		$this->Product_model->product_insert($input);
 		redirect('Admin/product_list');
@@ -76,12 +256,13 @@ class Product_process extends CI_Controller {
 			'product_id' => $this->input->post('product_id'),
 			'product_mobile_network' => $this->input->post('product_mobile_network'),
 			'product_number' => $this->input->post('product_number'),
-			'product_cost' => $this->input->post('product_cost'),
-			'product_sale' => $this->input->post('product_sale'),
+			// 'product_cost' => $this->input->post('product_cost'),
+			// 'product_sale' => $this->input->post('product_sale'),
 			'product_agent' => $this->input->post('product_agent'),
-			'product_type' => $this->input->post('product_type'),
+			// 'product_type' => $this->input->post('product_type'),
 			'product_date' => date('Y-m-d'),
 			'product_time' => date('H:i:s'),
+			'product_status' => $this->input->post('product_status'),
 		);
 		$this->Product_model->product_update($input);
 		redirect('Admin/product_list');
@@ -100,12 +281,167 @@ class Product_process extends CI_Controller {
 			$objArr = (fgetcsv($file));
 
 			//กรอกประเภทของเบอร์
-			$type = 1;
-			$subtype	= 2;
+			$tmoney = "";
+			$twork = "";
+			$tcharm = "";
+			$tluck = "";
+			$twisdom = "";
 
+				$money = array(
+					'0' => 19, '1' => 91, '2' => 15, '3' => 51,
+					'4' => 22,'5' => 23, '6' => 32, '7' => 24,
+					'8' => 42, '9' => 26, '10' => 62, '11' => 28,
+					'12' => 82, '13' => 29, '14' => 92, '15' => 36,
+					'16' => 63, '17' => 46, '18' => 64, '19' => 65,
+					'20' => 66, '21' => 69, '22' => 96, '23' => 78,
+					'24' => 87, '25' => 35, '26' => 53, '27' => 16,
+					'28' => 61, '29' => 47, '30' => 74,'31' => 89,
+					'32' => 98, '33' => 19,'34' => 91,
+				);
 
+					$number = substr($this->input->post('product_number'),3);
 
+					foreach ($money as $chk => $value) {
+						if (preg_match("/($value)/", $number, $matches)) {
+								$tmoney = "การเงิน ";
+						}
+					}
 
+					$work = array(
+						'0' => 35, '1' => 53, '2' => 16, '3' => 61,
+						'4' => 47,'5' => 74, '6' => 36, '7' => 63,
+						'8' => 89, '9' => 98, '10' => 19, '11' => 91,
+					);
+
+						$number = substr($this->input->post('product_number'),3);
+
+						foreach ($work as $chk => $value) {
+							if (preg_match("/($value)/", $number, $matches)) {
+									$twork = "การงาน ";
+							}
+						}
+
+						$luck = array(
+							'0' => 19, '1' => 91, '2' => 29, '3' => 92,
+							'4' => 39,'5' => 93, '6' => 49, '7' => 94,
+							'8' => 59, '9' => 95, '10' => 69, '11' => 96,
+							'12' => 89, '13' => 98, '14' => 78, '15' => 87,
+							'16' => 99,
+						);
+
+							$number = substr($this->input->post('product_number'),3);
+
+							foreach ($luck as $chk => $value) {
+								if (preg_match("/($value)/", $number, $matches)) {
+										$tluck = "โชคลาภ ";
+								}
+							}
+
+							$charm = array(
+								'0' => 19, '1' => 91, '2' => 15, '3' => 51,
+								'4' => 22,'5' => 23, '6' => 32, '7' => 24,
+								'8' => 42, '9' => 26, '10' => 62, '11' => 28,
+								'12' => 82, '13' => 29, '14' => 92, '15' => 36,
+								'16' => 63, '17' => 46, '18' => 64, '19' => 65,
+								'20' => 66, '21' => 69, '22' => 96, '23' => 78,
+								'23' => 87,
+							);
+
+								$number = substr($this->input->post('product_number'),3);
+
+								foreach ($charm as $chk => $value) {
+									if (preg_match("/($value)/", $number, $matches)) {
+											$tcharm = "เสน่ห์ ";
+									}
+								}
+
+								$wisdom = array(
+									'0' => 15, '1' => 51, '2' => 35, '3' => 53,
+									'4' => 45,'5' => 54, '6' => 55, '7' => 56,
+									'8' => 65, '9' => 59, '10' => 95, '11' => 14,
+									'12' => 41, '13' => 16, '14' => 61, '15' => 78,
+									'16' => 87,
+								);
+
+									$number = substr($this->input->post('product_number'),3);
+
+									foreach ($wisdom as $chk => $value) {
+										if (preg_match("/($value)/", $number, $matches)) {
+												$twisdom = "ปัญญา";
+										}
+									}
+
+			// คำนวณราคาขายจากต้นทุน
+
+			if ($objArr[2] >= 0 && $objArr[2] <= 1000) {
+				$i = $objArr[2]+1300;
+				$price = $this->OOO($i);
+			} elseif ($objArr[2] >=1001 && $objArr[2] <=1500 ) {
+				$i = $objArr[2]+1700;
+				$price = $this->OOO($i);
+			} elseif ($objArr[2] >=1501 && $objArr[2] <=2000 ) {
+				$i = $objArr[2]+1900;
+				$price = $this->OOO($i);
+			} elseif ($objArr[2] >=2001 && $objArr[2] <=2500 ) {
+				$i = $objArr[2]+2200;
+				$price = $this->OOO($i);
+			} elseif ($objArr[2] >=2501 && $objArr[2] <=3000 ) {
+				$i = $objArr[2]+2600;
+				$price = $this->OOO($i);
+			} elseif ($objArr[2] >=3001 && $objArr[2] <=4000 ) {
+				$i = $objArr[2]+3100;
+				$price = $this->OOO($i);
+			} elseif ($objArr[2] >=4001 && $objArr[2] <=5000 ) {
+				$i = $objArr[2]+3900;
+				$price = $this->OOO($i);
+			} elseif ($objArr[2] >=5001 && $objArr[2] <=6000 ) {
+				$ii = $objArr[2]+4600;
+				$price = $this->OOO($i);
+			} elseif ($objArr[2] >=7001 && $objArr[2] <=8000 ) {
+				$i = $objArr[2]+5500;
+				$price = $this->OOOO($i);
+			} elseif ($objArr[2] >=8001 && $objArr[2] <=9000 ) {
+				$i = $objArr[2]+6000;
+				$price = $this->OOOO($i);
+			} elseif ($objArr[2] >=9001 && $objArr[2] <=10000 ) {
+				$i = $objArr[2]+7500;
+				$price = $this->OOOO($i);
+			} elseif ($objArr[2] >=10001 && $objArr[2] <=15000 ) {
+				$i = $objArr[2]+9000;
+				$price = $this->OOOO($i);
+			} elseif ($objArr[2] >=15001 && $objArr[2] <=20000 ) {
+				$i = $objArr[2]+10500;
+				$price = $this->OOOO($i);
+			} elseif ($objArr[2] >=20001 && $objArr[2] <=25000 ) {
+				$i = $objArr[2]+12000;
+				$price = $this->OOOO($i);
+			} elseif ($objArr[2] >=25001 && $objArr[2] <=30000 ) {
+				$i = $objArr[2]+14000;
+				$price = $this->OOOO($i);
+			} elseif ($objArr[2] >=30001 && $objArr[2] <=35000 ) {
+				$i = $objArr[2]+16000;
+				$price = $this->OOOO($i);
+			} elseif ($objArr[2] >=35001 && $objArr[2] <=40000 ) {
+				$i = $objArr[2]+18000;
+				$price = $this->OOOO($i);
+			} elseif ($objArr[2] >=40001 && $objArr[2] <=50000 ) {
+				$i = $objArr[2]+20000;
+				$price = $this->OOOO($i);
+			} elseif ($objArr[2] >=50001 && $objArr[2] <=100000 ) {
+				$i = $objArr[2]+30000;
+				if ($i <100000) {
+					$price = $this->OOOO($i);
+				} else {
+					$price = $this->OOOOO($i);
+				}
+			} elseif ($objArr[2] >100000) {
+				$i = $objArr[2]+40000;
+				if ($i <1000000) {
+					$price = $this->OOOOO($i);
+				} else {
+					$price = $this->OOOOOO($i);
+				}
+			}
 
 			//เพิ่ม Import
 			$input = array(
@@ -113,48 +449,119 @@ class Product_process extends CI_Controller {
 				'import_network_id' => $objArr[0],
 				'import_number' => $objArr[1],
 				'import_cost' => $objArr[2],
-				'import_price' => $objArr[3],
-				'import_agent_id' => $objArr[4],
-				'import_product_type' => $type,
-				'import_product_subtype' => $subtype,
+				'import_price' => $price,
+				'import_agent_id' => $objArr[3],
+				'import_product_type' => $tmoney.$twork.$tcharm.$tluck.$twisdom,
 			);
-			if ($input['import_network_id'] !='') {
+
+			if ($input['import_number'] !='') {
 				$this->Product_model->import_insert($input);
 			}
   	}
 
 		fclose($file);
 
-		date_default_timezone_set('Asia/Bangkok');
+		//บันทึกรอบ
 		$import_round = array(
 			'round_round' => $this->input->post('product_round'),
 			'round_datetime' => date('Y-m-d H:i:s'),
 		);
 		$this->Product_model->round_insert($import_round);
 
-		// unset($input[$i-1]);
-		// echo "<pre>";
-		// print_r($input);
-		// exit();
-		// move_uploaded_file($_FILES["product_data_upload"]["tmp_name"],"file/csv/".$_FILES["product_data_upload"]["name"]); // Copy/Upload CSV
-		//
-		// //$objConnect = mysql_connect("localhost","root","root") or die("Error Connect to Database"); // Conect to MySQL
-		// //$objDB = mysql_select_db("mydatabase");
-		//
-		// $objCSV = fopen($_FILES["product_data_upload"]["name"],"r");
-		// while(($objArr = fgetcsv($objCSV,20,","))!==FALSE){
-		// 	// $strSQL = "INSERT INTO customer ";
-		// 	// $strSQL .="(CustomerID,Name,Email,CountryCode,Budget,Used) ";
-		// 	// $strSQL .="VALUES ";
-		// 	// $strSQL .="('".$objArr[0]."','".$objArr[1]."','".$objArr[2]."' ";
-		// 	// $strSQL .=",'".$objArr[3]."','".$objArr[4]."','".$objArr[5]."') ";
-		// 	// $objQuery = mysql_query($strSQL);
-		// 	echo $objArr[0];
-		// }
-		// fclose($objCSV);
-		//
-		// echo "Upload & Import Done.";
 		redirect('Admin/product_import');
+	}
+
+	//1,000 ตัดเศษ 100
+	public function OOO($data)
+	{
+		if (substr($data,2) == 0) {
+			$n = $data;
+		} else {
+			$i = substr($data,0,2)+1;
+			$n = $i."00";
+		}
+		return $n;
+	}
+	//10,000 ตัดเศษ 1,000
+	public function OOOO($data)
+	{
+		if (substr($data,2) == 0) {
+			$n = $data;
+		} else {
+			$i = substr($data,0,2)+1;
+			$n = $i."000";
+		}
+		return $n;
+	}
+	//100,000 ตัดเศษ 10,000
+	public function OOOOO($data)
+	{
+		if (substr($data,3) == 0) {
+			$n = $data;
+		} else {
+			$i = substr($data,0,3)+1;
+			$n = $i."000";
+		}
+		return $n;
+	}
+	//1,000,000 ตัดเศษ 10,000
+	public function OOOOOO($data)
+	{
+		if (substr($data,3) == 0) {
+			$n = $data;
+		} else {
+			$i = substr($data,0,3)+1;
+			$n = $i."0000";
+		}
+		return $n;
+	}
+
+	public function import_accept()
+	{
+		date_default_timezone_set('Asia/Bangkok');
+		$import = $this->db
+		->where('import_status',0)
+		->get('dmn_import_tmp')
+		->result_array();
+
+		foreach ($import as $row) {
+
+			$input = array(
+				'product_round' => $row['import_round'],
+				'product_mobile_network' => $row['import_network_id'],
+				'product_number' => $row['import_number'],
+				'product_cost' => $row['import_cost'],
+				'product_sale' => $row['import_price'],
+				'product_agent' => $row['import_agent_id'],
+				'product_date' => date('Y-m-d'),
+				'product_time' => date('H:i:s'),
+				'product_type' => $row['import_product_type'],
+			 );
+
+			 $TrashNumber = array(
+				 '0' => 19, '1' => 91, '2' => 15, '3' => 51,
+				 '4' => 22,'5' => 23, '6' => 32, '7' => 24,
+				 '8' => 42, '9' => 26, '10' => 62, '11' => 28,
+				 '12' => 82, '13' => 29, '14' => 92, '15' => 36,
+				 '16' => 63, '17' => 46, '18' => 64, '19' => 65,
+				 '20' => 66, '21' => 69, '22' => 96, '23' => 78,
+				 '23' => 87,
+			 );
+
+				 $number = substr($input['product_number'],3);
+
+				 foreach ($TrashNumber as $chk => $value) {
+					 if (preg_match("/($value)/", $number, $matches)) {
+							 $input['product_status'] = 2;
+					 }
+				 }
+
+			$status['import_status'] = 1;
+			$this->db->insert('dmn_product',$input);
+			$this->db->where('import_id',$row['import_id'])->update('dmn_import_tmp',$status);
+		}
+
+		redirect('Admin/product_list');
 	}
 
 	public function remove_import()

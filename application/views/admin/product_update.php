@@ -8,7 +8,25 @@
           <?php echo form_open('Product_process/product_update','class="form form-horizontal"')?>
   <div class="section">
     <div class="section-body">
+
       <div class="form-group">
+              <div class="col-md-3">
+                <label class="control-label">สถานะ</label>
+              </div>
+              <div class="col-md-3">
+                <select name="product_status" class="form-control" required="required">
+                  <?php if ($product[0]['mobile_network_id'] >0): ?>
+                    <option value="1">กำลังขาย</option>
+                    <option value="0">ขายแล้ว</option>
+                  <?php else: ?>
+                    <option value="0">ขายแล้ว</option>
+                    <option value="1">กำลังขาย</option>
+                  <?php endif; ?>
+                </select>
+              </div>
+            </div>
+
+      <div class="form-group" style="margin-top:15px;">
               <div class="col-md-3">
                 <label class="control-label">เครือข่าย</label>
               </div>
@@ -25,13 +43,8 @@
                     <div class="col-md-3">
                       <label class="control-label">ประเภท</label>
                     </div>
-                    <div class="col-md-3">
-                      <select name="product_type" class="form-control" id="product_mobile_network" required="required">
-                        <option value="<?php echo $product[0]['product_type_id']?>"><?php echo $product[0]['product_type_name']?></option>
-                        <?php foreach($mobile_type as $mobile_type){ ?>
-                        <option value="<?php echo $mobile_type['product_type_id']?>"><?php echo $mobile_type['product_type_name']?></option>
-                        <?php } ?>
-                      </select>
+                    <div class="col-md-4">
+                      <input name="product_type" type="text" class="form-control" required="required" value="<?php echo $product[0]['product_type']?>" readonly="readonly">
                     </div>
                   </div>
             <div class="form-group">
@@ -44,7 +57,7 @@
           <label class="control-label">หมายเลขมือถือ</label>
         </div>
         <div class="col-md-3">
-          <input name="product_number" type="text" class="form-control" id="product_number" placeholder="กรอกหมายเลขมือถือ" required="required" value="<?php echo $product[0]['product_number']?>">
+          <input name="product_number" type="text" class="form-control" id="product_number" placeholder="กรอกหมายเลขมือถือ" required="required" value="<?php echo $product[0]['product_number']?>"  readonly="readonly">
         </div>
       </div>
       <div class="form-group">
@@ -52,7 +65,7 @@
           <label class="control-label">ราคาซื้อ</label>
         </div>
         <div class="col-md-2">
-          <input name="product_cost" type="text" class="form-control" id="product_cost" placeholder="กรอกราคาซื้อ" required="required" value="<?php echo $product[0]['product_cost']?>">
+          <input name="product_cost" type="text" class="form-control" id="product_cost" placeholder="กรอกราคาซื้อ" required="required" value="<?php echo $product[0]['product_cost']?>"  readonly="readonly">
         </div>
       </div>
       <div class="form-group">
@@ -60,7 +73,7 @@
           <label class="control-label">ราคาขาย</label>
         </div>
         <div class="col-md-2">
-          <input name="product_sale" type="text" class="form-control" id="product_sale" placeholder="กรอกราคาขาย" required="required" value="<?php echo $product[0]['product_sale']?>">
+          <input name="product_sale" type="text" class="form-control" id="product_sale" placeholder="กรอกราคาขาย" required="required" value="<?php echo $product[0]['product_sale']?>"  readonly="readonly">
         </div>
       </div>
 

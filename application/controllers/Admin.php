@@ -245,6 +245,7 @@ class Admin extends CI_Controller {
 	public function product_list()
 	{
 		$data['product'] = $this->Product_model->product_list();
+		$data['trash'] = $this->Product_model->product_trash_list();
 		$data['page'] = "admin/product_list";
 		$this->load->view('admin/theme',$data);
 	}

@@ -21,11 +21,9 @@ class Homepage_model extends CI_Model {
 		->order_by('product_date','DESC')
 		->where('product_status',1)
 		->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network')
-		->join('dmn_product_type','dmn_product_type.product_type_id = dmn_product.product_type')
-		->get('dmn_product')->result_array();
+		->get('dmn_product',30)->result_array();
 
-		$true = $this->true_number($data);
-		$info = $this->Count_number($true);
+		$info = $this->Count_number($data);
 		return $info;
 	}
 
@@ -36,25 +34,26 @@ class Homepage_model extends CI_Model {
 		->where('product_status',1)
 		->where('mobile_network_id', $id)
 		->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network')
-		->join('dmn_product_type','dmn_product_type.product_type_id = dmn_product.product_type')
 		->get('dmn_product')->result_array();
-		$true = $this->true_number($data);
-		$info = $this->Count_number($true);
+		$info = $this->Count_number($data);
 		return $info;
 	}
 
 	public function Product_Find($input)
 	{
-		$query = array(
-			'product_mobile_network' => $input['product_mobile_network'],
-			'product_type' => $input['product_type'],
-		);
 
-		foreach ($query as $key => $value) {
-			if ($value != '') {
-				$this->db->where($key,$value);
-			}
+		if ($input['product_mobile_network'] !='') {
+			$this->db->where('product_mobile_network',$input['product_mobile_network']);
 		}
+
+		if ($input['product_type'] !='') {
+			$this->db->where('product_type LIKE',"%".$input['product_type']."%");
+		}
+
+		if ($input['product_requiment'] !='') {
+			$this->db->where('product_number LIKE',"%".$input['product_requiment']."%");
+		}
+
 		if ($input['product_sale'] != '') {
 			if ($input['product_sale'] == 1) {
 				$this->db->where('product_sale <=',1500);
@@ -75,91 +74,89 @@ class Homepage_model extends CI_Model {
 		$this->db->where('product_status',1);
 		$this->db->order_by('product_date','DESC');
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
-		$this->db->join('dmn_product_type','dmn_product_type.product_type_id = dmn_product.product_type');
 		$data = $this->db->get('dmn_product')->result_array();
 
-		$true = $this->true_number($data);
-		$info = $this->Count_number($true);
+		$info = $this->Count_number($data);
 		return $info;
 	}
 
 
-	public function true_number($data)
-	{
-		$Ignore_number = array(
-			'0' => 0, '1' => 11, '2' => 12, '3' => 21,
-			'4' => 13,'5' => 31, '6' => 17, '7' => 71,
-			'8' => 18, '9' => 81, '10' => 25, '11' => 52,
-			'12' => 27, '13' => 72, '14' => 33, '15' => 34,
-			'16' => 43, '17' => 37, '18' => 73, '19' => 38,
-			'20' => 83, '21' => 48, '22' => 84, '23' => 57,
-			'24' => 75, '25' => 58, '26' => 85, '27' => 67,
-			'28' => 76, '29' => 68, '30' => 86,'31' => 88,
-		);
-		$i = 0;
-		$n = 0;
-		foreach ($data as $row) {
-			$number = substr($row['product_number'],3);
-
-			foreach ($Ignore_number as $chk => $value) {
-				if (preg_match("/($value)/", $number, $matches)) {
-					unset($data[$i]);
-				}
-				$n++;
-			} //inforeach
-			$i++;
-		} //outforeach
-
-		//เรียงอาร์เรย์ใหม่
-		$result = array();
-		$r = 0;
-		foreach ($data as $row => $value) {
-			$result[$r] = $value;
-			$r++;
-		}
-
-		return $result;
-	}
-
-	public function trash_number($data)
-	{
-		$Ignore_number = array(
-			'0' => 0, '1' => 11, '2' => 12, '3' => 21,
-			'4' => 13,'5' => 31, '6' => 17, '7' => 71,
-			'8' => 18, '9' => 81, '10' => 25, '11' => 52,
-			'12' => 27, '13' => 72, '14' => 33, '15' => 34,
-			'16' => 43, '17' => 37, '18' => 73, '19' => 38,
-			'20' => 83, '21' => 48, '22' => 84, '23' => 57,
-			'24' => 75, '25' => 58, '26' => 85, '27' => 67,
-			'28' => 76, '29' => 68, '30' => 86,'31' => 88,
-		);
-		$data = $this->db->get('dmn_product')->result_array();
-		$i = 0;
-		$n = 0;
-		foreach ($data as $row) {
-			$number = substr($row['product_number'],3);
-
-			foreach ($Ignore_number as $chk => $value) {
-				if (preg_match("/($value)/", $number, $matches)) {
-						if ($matches =='') {
-							unset($data[$i]);
-						}
-				}
-				$n++;
-			} //inforeach
-			$i++;
-		} //outforeach
-
-		//เรียงอาร์เรย์ใหม่
-		$result = array();
-		$r = 0;
-		foreach ($data as $row => $value) {
-			$result[$r] = $value;
-			$r++;
-		}
-
-		return $result;
-	}
+	// public function true_number($data)
+	// {
+	// 	$Ignore_number = array(
+	// 		'0' => 0, '1' => 11, '2' => 12, '3' => 21,
+	// 		'4' => 13,'5' => 31, '6' => 17, '7' => 71,
+	// 		'8' => 18, '9' => 81, '10' => 25, '11' => 52,
+	// 		'12' => 27, '13' => 72, '14' => 33, '15' => 34,
+	// 		'16' => 43, '17' => 37, '18' => 73, '19' => 38,
+	// 		'20' => 83, '21' => 48, '22' => 84, '23' => 57,
+	// 		'24' => 75, '25' => 58, '26' => 85, '27' => 67,
+	// 		'28' => 76, '29' => 68, '30' => 86,'31' => 88,
+	// 	);
+	// 	$i = 0;
+	// 	$n = 0;
+	// 	foreach ($data as $row) {
+	// 		$number = substr($row['product_number'],3);
+	//
+	// 		foreach ($Ignore_number as $chk => $value) {
+	// 			if (preg_match("/($value)/", $number, $matches)) {
+	// 				unset($data[$i]);
+	// 			}
+	// 			$n++;
+	// 		} //inforeach
+	// 		$i++;
+	// 	} //outforeach
+	//
+	// 	//เรียงอาร์เรย์ใหม่
+	// 	$result = array();
+	// 	$r = 0;
+	// 	foreach ($data as $row => $value) {
+	// 		$result[$r] = $value;
+	// 		$r++;
+	// 	}
+	//
+	// 	return $result;
+	// }
+	//
+	// public function trash_number($data)
+	// {
+	// 	$Ignore_number = array(
+	// 		'0' => 0, '1' => 11, '2' => 12, '3' => 21,
+	// 		'4' => 13,'5' => 31, '6' => 17, '7' => 71,
+	// 		'8' => 18, '9' => 81, '10' => 25, '11' => 52,
+	// 		'12' => 27, '13' => 72, '14' => 33, '15' => 34,
+	// 		'16' => 43, '17' => 37, '18' => 73, '19' => 38,
+	// 		'20' => 83, '21' => 48, '22' => 84, '23' => 57,
+	// 		'24' => 75, '25' => 58, '26' => 85, '27' => 67,
+	// 		'28' => 76, '29' => 68, '30' => 86,'31' => 88,
+	// 	);
+	// 	$data = $this->db->get('dmn_product')->result_array();
+	// 	$i = 0;
+	// 	$n = 0;
+	// 	foreach ($data as $row) {
+	// 		$number = substr($row['product_number'],3);
+	//
+	// 		foreach ($Ignore_number as $chk => $value) {
+	// 			if (preg_match("/($value)/", $number, $matches)) {
+	// 					if ($matches =='') {
+	// 						unset($data[$i]);
+	// 					}
+	// 			}
+	// 			$n++;
+	// 		} //inforeach
+	// 		$i++;
+	// 	} //outforeach
+	//
+	// 	//เรียงอาร์เรย์ใหม่
+	// 	$result = array();
+	// 	$r = 0;
+	// 	foreach ($data as $row => $value) {
+	// 		$result[$r] = $value;
+	// 		$r++;
+	// 	}
+	//
+	// 	return $result;
+	// }
 
 	public function Count_number($data)
 	{
@@ -301,9 +298,10 @@ class Homepage_model extends CI_Model {
 	{
 		$data = array();
 		$data['product_mobile_network'] = $this->db->where('mobile_network_id',$input['product_mobile_network'])->get('dmn_mobile_network')->result_array();
-		$data['product_type'] = $this->db->where('product_type_id',$input['product_type'])->get('dmn_product_type')->result_array();
-		$data['product_sale'] = $input['product_sale'];
 
+		$data['product_type'] = $this->db->where('dmn_product_type.product_type_name LIKE',"%".$input['product_type']."%")->get('dmn_product_type')->result_array();
+		$data['product_sale'] = $input['product_sale'];
+		$data['product_requiment'] = $input['product_requiment'];
 		return $data;
 	}
 }

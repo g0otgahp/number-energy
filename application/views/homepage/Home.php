@@ -36,12 +36,25 @@
           <option value="5" > มากกว่า 10,000</option>
 
         </select>
-        <select id="property-status" name="product_type">
+        <select name="product_type">
           <option value="">--- เลือกด้านที่ส่งเสริม ---</option>
           <?php foreach ($Product_Type as $row): ?>
-              <option value="<?php echo $row['product_type_id']?>"><?php echo $row['product_type_name']?></option>
+              <option value="<?php echo $row['product_type_name']?>"><?php echo $row['product_type_name']?></option>
           <?php endforeach; ?>
         </select>
+
+        <select name="product_requiment">
+          <option value="">-- เลขแนะนำ --</option>
+          <option value="789" >789</option>
+          <option value="289" >289</option>
+          <option value="456" >456</option>
+          <option value="879" >879</option>
+          <option value="365" >365</option>
+          <option value="99" >99</option>
+          <option value="56" >56</option>
+          <option value="65" >65</option>
+        </select>
+
         <!--<select id="property-type" name="type" >
           <option value="">All Types</option>
           <option value="apartment"> Apartment</option>
@@ -147,7 +160,13 @@
       <?php foreach ($Product_List as $row): ?>
       <div class="col-lg-4 col-sm-6 layout-item-wrap">
         <article class="property layout-item clearfix">
-          <figure class="feature-image"> <a class="clearfix zoom" href="#"><h3 align="center"><?php echo $row['product_number']?></h3></a> <!--<span class="btn btn-warning btn-sale">for sale</span>--></figure>
+          <figure class="feature-image"> <a class="clearfix zoom" href="#"><h3 align="center"><?php echo $row['product_number']?>
+            <?php
+             date_default_timezone_set('Asia/Bangkok');
+             if (date('Y-m-d') == $row['product_date']): ?>
+            <img src="<?php echo BASE_URL('images/new.gif')?>" style="width:40px">
+            <?php endif; ?>
+          </h3></a></figure>
           <div class="property-contents clearfix">
             <header class="property-header clearfix">
               <div class="pull-left">
@@ -155,8 +174,8 @@
                   <img src="<?php echo BASE_URL('images/networklogo/'.$row['mobile_network_pic'])?>" style="height:30px;">
 
                 </h6>
-                <span class="property-location"><i class="fa fa-star" aria-hidden="true"></i> ส่งเสริมด้าน : <?php echo $row['product_type_name']?></span> </div>
-              <button class="btn btn-default btn-price pull-right btn-3d" data-hover="฿<?php echo $row['product_sale']?>"><strong>฿<?php echo $row['product_sale']?></strong></button>
+                <span class="property-location"><i class="fa fa-star" aria-hidden="true"></i> ส่งเสริมด้าน <br><?php echo $row['product_type']?></span> </div>
+              <button class="btn btn-default btn-price pull-right btn-3d" data-hover="฿<?php echo number_format($row['product_sale'])?>"><strong>฿<?php echo number_format($row['product_sale'])?></strong></button>
             </header>
             <div class="property-meta clearfix"> <span><i class="fa fa-calculator"></i> ผลรวมของเบอร์ (<?php echo $row['Count_number']?>)</span> <span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> อัพเดทวันที่ <?php echo $row['product_date']?></span> <!--<span><i class="fa fa-bathtub"></i> 3 Baths</span> <span><i class="fa fa-cab"></i> Yes</span>--> </div>
             <!-- <div class="contents clearfix">

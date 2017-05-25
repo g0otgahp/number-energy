@@ -21,19 +21,6 @@
                 </select>
               </div>
             </div>
-            <div class="form-group" style="margin-top:15px;">
-                    <div class="col-md-3">
-                      <label class="control-label">ประเภท</label>
-                    </div>
-                    <div class="col-md-3">
-                      <select name="product_type" class="form-control" id="product_mobile_network" required="required">
-                        <option value="">--- เลือกประเภท ---</option>
-                        <?php foreach($mobile_type as $mobile_type){ ?>
-                        <option value="<?php echo $mobile_type['product_type_id']?>"><?php echo $mobile_type['product_type_name']?></option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                  </div>
             <div class="form-group">
               <div class="col-md-3">
                 <p></p>
@@ -49,18 +36,10 @@
       </div>
       <div class="form-group">
         <div class="col-md-3">
-          <label class="control-label">ราคาซื้อ</label>
+          <label class="control-label">ต้นทุน</label>
         </div>
         <div class="col-md-2">
           <input name="product_cost" type="text" class="form-control" id="product_cost" placeholder="กรอกราคาซื้อ" required="required">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-md-3">
-          <label class="control-label">ราคาขาย</label>
-        </div>
-        <div class="col-md-2">
-          <input name="product_sale" type="text" class="form-control" id="product_sale" placeholder="กรอกราคาขาย" required="required">
         </div>
       </div>
 

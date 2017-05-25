@@ -15,14 +15,13 @@
                 <tr>
                   <th width="5%"><div align="center" style="font-size:11px;">ยกเลิก</div></th>
                   <th width="5%"><div align="center" style="font-size:11px;">ลำดับ</div></th>
-                  <th><div align="right" style="font-size:11px;">เครือข่าย</div></th>
+                  <th width="10%"><div align="right" style="font-size:11px;">เครือข่าย</div></th>
                   <th><div align="right" style="font-size:11px;">หมายเลข</div></th>
                   <th><div align="right" style="font-size:11px;">รวมเบอร์</div></th>
                   <th><div align="right" style="font-size:11px;">ต้นทุน</div></th>
                   <th><div align="right" style="font-size:11px;">ราคาขาย</div></th>
-                  <th><div align="right" style="font-size:11px;">ตัวแทนขาย</div></th>
-                  <th><div align="right" style="font-size:11px;">ด้านหลัก</div></th>
-                  <th><div align="right" style="font-size:11px;">ด้านรอง</div></th>
+                  <th width="10%"><div align="right" style="font-size:9px;">ตัวแทนขาย</div></th>
+                  <th><div align="center" style="font-size:11px;">ส่งเสริม</div></th>
                 </tr>
               </thead>
               <tbody>
@@ -36,10 +35,9 @@
                   <td align="right"><?php echo $row['import_number']?></td>
                   <td align="right">[<?php echo $row['Count_number']?>]</td>
                   <td align="right"><?php echo number_format($row['import_cost'])?></td>
-                  <td align="right"><?php echo number_format($row['import_price'])?></td>
-                  <td align="right"><?php echo $row['agent_name']?></td>
-                  <td align="right"><span style="color:blue;"><b><?php echo $row['product_type_name']?></b></span></td>
-                  <td align="right"><span style="color:blue;"><?php echo $row['import_product_subtype_name']?></span></td>
+                  <td align="right"><span style="color:blue;"><?php echo number_format($row['import_price'])?></span></td>
+                  <td align="right"><span style="font-size:11px;"><?php echo $row['agent_name']?></span></td>
+                  <td align="right"><span style="font-size:11px; color:blue;"><?php echo $row['import_product_type']?></span></td>
                 </tr>
                 <?php $i++ ?>
                 <?php } ?>
@@ -64,7 +62,7 @@
                   Import รอบที่ <span style="color:red;"><?php echo $import_round[0]['round_round'] ?></span>
                   ณ วันที่/เวลา <span style="color:red;"><?php echo $import_round[0]['round_datetime']  ?></span>
                 </div>
-                <a href="<?php echo SITE_URL('') ?>" class="btn btn-success"> ยืนยันรายการรอบนี้ </a>
+                <a href="<?php echo SITE_URL('Product_process/import_accept') ?>" class="btn btn-success"> ยืนยันรายการรอบนี้ </a>
                 <a href="<?php echo SITE_URL('Product_process/remove_import/'.$import_round[0]['round_round']) ?>" class="btn btn-danger" onClick="javascript:return confirm('คุณต้องการยกเลิกรายการทั้งหมดนี้ใช่หรือไม่');"> ยกเลิกทั้งหมด </a>
             </div>
           </div>

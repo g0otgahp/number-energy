@@ -20,15 +20,21 @@
             <?php foreach ($Product_List as $row): ?>
             <div class="col-lg-4 col-sm-6 layout-item-wrap">
               <article class="property layout-item clearfix">
-                <figure class="feature-image"> <a class="clearfix zoom" href="#"><h3 align="center"><?php echo $row['product_number']?></h3></a></figure>
+                <figure class="feature-image"> <a class="clearfix zoom" href="#"><h3 align="center"><?php echo $row['product_number']?>
+                  <?php
+                   date_default_timezone_set('Asia/Bangkok');
+                   if (date('Y-m-d') == $row['product_date']): ?>
+                  <img src="<?php echo BASE_URL('images/new.gif')?>" style="width:40px">
+                  <?php endif; ?>
+                </h3></a></figure>
                 <div class="property-contents clearfix">
                   <header class="property-header clearfix">
                     <div class="pull-left">
                       <h6 class="entry-title">เครือข่าย
                           <img src="<?php echo BASE_URL('images/networklogo/'.$row['mobile_network_pic'])?>" style="height:30px;">
                       </h6>
-                      <span class="property-location"><i class="fa fa-star" aria-hidden="true"></i> ส่งเสริมด้าน : <?php echo $row['product_type_name']?></span> </div>
-                    <button class="btn btn-default btn-price pull-right btn-3d" data-hover="฿<?php echo $row['product_sale']?>"><strong>฿<?php echo $row['product_sale']?></strong></button>
+                      <span class="property-location"><i class="fa fa-star" aria-hidden="true"></i> ส่งเสริมด้าน <br><?php echo $row['product_type']?></span> </div>
+                    <button class="btn btn-default btn-price pull-right btn-3d" data-hover="฿<?php echo number_format($row['product_sale'])?>"><strong>฿<?php echo number_format($row['product_sale'])?></strong></button>
                   </header>
                   <div class="property-meta clearfix"> <span><i class="fa fa-calculator"></i> ผลรวมของเบอร์ (<?php echo $row['Count_number']?>)</span> <span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> อัพเดทวันที่ <?php echo $row['product_date']?></span>
                    </div>

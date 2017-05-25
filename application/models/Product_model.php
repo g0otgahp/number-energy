@@ -43,9 +43,22 @@ class Product_model extends CI_Model {
 	public function product_list()
 	{
 		$this->db->order_by('dmn_product.product_id','DESC');
+		$this->db->where('product_status',1);
+		$this->db->or_where('product_status',0);
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
-		$query = $this->db->get('dmn_product')->result_array();
+		$query = $this->db->get('dmn_product',300)->result_array();
+		$info = $this->Homepage_model->Count_number($query);
+		return $info;
+	}
+
+	public function product_trash_list()
+	{
+		$this->db->order_by('dmn_product.product_id','DESC');
+		$this->db->where('product_status',2);
+		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
+		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
+		$query = $this->db->get('dmn_product',300)->result_array();
 		$info = $this->Homepage_model->Count_number($query);
 		return $info;
 	}
@@ -56,12 +69,11 @@ class Product_model extends CI_Model {
 	public function product_detail($product_id)
 	{
 		$this->db->where('dmn_product.product_id',$product_id);
-		$this->db->order_by('dmn_product.product_mobile_network','asc');
-		$this->db->join('dmn_product_type','dmn_product_type.product_type_id = dmn_product.product_type');
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
-		$query = $this->db->get('dmn_product');
-		return $query->result_array();
+		$query = $this->db->get('dmn_product')->result_array();
+		$info = $this->Homepage_model->Count_number($query);
+		return $info;
 	}
 	public function product_update($input)
 	{
@@ -141,13 +153,11 @@ class Product_model extends CI_Model {
 	{
 		$this->db->order_by('dmn_import_tmp.import_id','asc');
 		$this->db->where('import_status', 0);
-		$this->db->join('dmn_product_type','dmn_product_type.product_type_id = dmn_import_tmp.import_product_type');
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_import_tmp.import_network_id');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_import_tmp.import_agent_id');
 		$query = $this->db->get('dmn_import_tmp')->result_array();
 
-		$data = $this->Sub_Type_Number($query);
-		$info = $this->Count_number_import($data);
+		$info = $this->Count_number_import($query);
 		return $info;
 	}
 
@@ -162,18 +172,6 @@ class Product_model extends CI_Model {
 			}
 			$data[$i]['Count_number'] = $count_number;
 			$count_number = 0;
-			$i++;
-		}
-		return $data;
-	}
-
-	public function Sub_Type_Number($data)
-	{
-		$i=0;
-		foreach ($data as $row) {
-			$this->db->where('product_type_id',$row['import_product_subtype']);
-			$query = $this->db->get('dmn_product_type')->result_array();
-			$data[$i]['import_product_subtype_name'] = $query[0]['product_type_name'];
 			$i++;
 		}
 		return $data;
