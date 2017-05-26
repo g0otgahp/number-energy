@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2017 at 05:01 PM
+-- Generation Time: May 26, 2017 at 02:05 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -289,8 +289,7 @@ CREATE TABLE `dmn_import_tmp` (
   `import_cost` int(11) NOT NULL,
   `import_price` int(11) NOT NULL,
   `import_agent_id` int(11) NOT NULL,
-  `import_product_type` int(11) NOT NULL,
-  `import_product_subtype` int(11) NOT NULL,
+  `import_product_type` varchar(100) NOT NULL,
   `import_status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
@@ -298,16 +297,13 @@ CREATE TABLE `dmn_import_tmp` (
 -- Dumping data for table `dmn_import_tmp`
 --
 
-INSERT INTO `dmn_import_tmp` (`import_id`, `import_round`, `import_network_id`, `import_number`, `import_cost`, `import_price`, `import_agent_id`, `import_product_type`, `import_product_subtype`, `import_status`) VALUES
-(101, 2, 1, '0823738192', 200, 1500, 1, 1, 2, 0),
-(102, 2, 2, '0829191919', 200, 1500, 1, 1, 2, 0),
-(103, 2, 1, '0928391929', 200, 1500, 1, 1, 2, 0),
-(104, 2, 2, '0928484919', 200, 1500, 1, 1, 2, 0),
-(105, 2, 2, '0804947182', 200, 1500, 1, 1, 2, 0),
-(106, 2, 1, '0802221828', 200, 1500, 1, 1, 2, 0),
-(107, 2, 1, '0803882719', 200, 1500, 1, 1, 2, 0),
-(108, 2, 3, '0804885031', 200, 1500, 1, 1, 2, 0),
-(109, 2, 3, '0804482918', 200, 1500, 1, 1, 2, 0);
+INSERT INTO `dmn_import_tmp` (`import_id`, `import_round`, `import_network_id`, `import_number`, `import_cost`, `import_price`, `import_agent_id`, `import_product_type`, `import_status`) VALUES
+(1, 1, 1, '0823738122', 500, 1800, 1, 'การเงิน เสน่ห์ ', 1),
+(2, 1, 2, '0829191919', 550, 1900, 1, 'การเงิน การงาน เสน่ห์ โชคลาภ ', 1),
+(3, 1, 1, '0928321229', 1200, 2900, 1, 'การเงิน เสน่ห์ โชคลาภ ', 1),
+(4, 1, 2, '0804805243', 1250, 3000, 1, 'การเงิน เสน่ห์ ', 1),
+(5, 1, 3, '0821551290', 11000, 20000, 1, 'การเงิน เสน่ห์ โชคลาภ ปัญญา', 1),
+(6, 1, 2, '0801551289', 11500, 21000, 1, 'การเงิน การงาน เสน่ห์ โชคลาภ ปัญญา', 1);
 
 -- --------------------------------------------------------
 
@@ -358,7 +354,7 @@ INSERT INTO `dmn_mobile_network` (`mobile_network_id`, `mobile_network_code`, `m
 
 CREATE TABLE `dmn_product` (
   `product_id` int(11) NOT NULL,
-  `product_round` int(11) NOT NULL,
+  `product_round` int(11) NOT NULL DEFAULT '0',
   `product_mobile_network` int(11) NOT NULL,
   `product_number` varchar(20) NOT NULL,
   `product_expired` date NOT NULL,
@@ -367,8 +363,8 @@ CREATE TABLE `dmn_product` (
   `product_agent` int(11) NOT NULL,
   `product_date` date NOT NULL,
   `product_time` time NOT NULL,
-  `product_type` int(11) NOT NULL,
-  `product_subtype` int(11) NOT NULL,
+  `product_date_sale` date NOT NULL,
+  `product_type` varchar(100) NOT NULL,
   `product_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -376,12 +372,14 @@ CREATE TABLE `dmn_product` (
 -- Dumping data for table `dmn_product`
 --
 
-INSERT INTO `dmn_product` (`product_id`, `product_round`, `product_mobile_network`, `product_number`, `product_expired`, `product_cost`, `product_sale`, `product_agent`, `product_date`, `product_time`, `product_type`, `product_subtype`, `product_status`) VALUES
-(1, 3, 3, '0856113616', '0000-00-00', 900, 2000, 1, '2017-04-17', '09:49:39', 1, 2, 1),
-(2, 3, 3, '0856199616', '0000-00-00', 300, 500, 1, '2017-04-17', '09:54:44', 2, 1, 1),
-(3, 0, 1, '0900009987', '0000-00-00', 290, 4000, 1, '2017-04-18', '00:00:00', 1, 2, 1),
-(4, 0, 1, '0889215611', '0000-00-00', 200, 1200, 1, '2017-05-04', '20:31:23', 3, 2, 1),
-(5, 0, 2, '0889551235', '0000-00-00', 400, 900, 5, '2017-05-11', '15:22:50', 2, 1, 1);
+INSERT INTO `dmn_product` (`product_id`, `product_round`, `product_mobile_network`, `product_number`, `product_expired`, `product_cost`, `product_sale`, `product_agent`, `product_date`, `product_time`, `product_date_sale`, `product_type`, `product_status`) VALUES
+(1, 1, 1, '0823738122', '0000-00-00', 500, 1800, 1, '2017-05-25', '05:48:49', '0000-00-00', 'การเงิน เสน่ห์ ', 2),
+(2, 1, 2, '0829191919', '0000-00-00', 550, 1900, 1, '2017-05-26', '05:48:49', '0000-00-00', 'การเงิน การงาน เสน่ห์ โชคลาภ ', 2),
+(3, 1, 1, '0928321229', '0000-00-00', 1200, 2900, 1, '2017-05-26', '05:48:49', '0000-00-00', 'การเงิน เสน่ห์ โชคลาภ ', 2),
+(4, 1, 2, '0804805243', '0000-00-00', 1250, 3000, 1, '2017-05-26', '18:39:19', '0000-00-00', 'การเงิน เสน่ห์ ', 0),
+(5, 1, 3, '0821551290', '0000-00-00', 11000, 20000, 1, '2017-05-26', '18:42:16', '0000-00-00', 'การเงิน เสน่ห์ โชคลาภ ปัญญา', 0),
+(6, 1, 2, '0801551289', '0000-00-00', 11500, 21000, 1, '2017-05-26', '05:48:49', '2017-05-26', 'การเงิน การงาน เสน่ห์ โชคลาภ ปัญญา', 0),
+(7, 0, 1, '0811919191', '0000-00-00', 500, 1800, 1, '2017-05-26', '05:59:41', '0000-00-00', 'การเงิน การงาน เสน่ห์ โชคลาภ ', 2);
 
 -- --------------------------------------------------------
 
@@ -399,9 +397,11 @@ CREATE TABLE `dmn_product_type` (
 --
 
 INSERT INTO `dmn_product_type` (`product_type_id`, `product_type_name`) VALUES
-(1, 'ด้านการเงิน'),
-(2, 'ด้านการงาน'),
-(3, 'ด้านความรัก');
+(1, 'การเงิน'),
+(2, 'การงาน'),
+(3, 'เสน่ห์'),
+(4, 'โชคลาภ'),
+(5, 'ปัญญา');
 
 -- --------------------------------------------------------
 
@@ -441,8 +441,7 @@ CREATE TABLE `dmn_round` (
 --
 
 INSERT INTO `dmn_round` (`round_id`, `round_round`, `round_datetime`) VALUES
-(1, 1, '0000-00-00 00:00:00'),
-(12, 2, '2017-05-24 21:33:27');
+(2, 1, '2017-05-26 05:48:44');
 
 -- --------------------------------------------------------
 
@@ -683,7 +682,7 @@ ALTER TABLE `dmn_general_config`
 -- AUTO_INCREMENT for table `dmn_import_tmp`
 --
 ALTER TABLE `dmn_import_tmp`
-  MODIFY `import_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `import_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `dmn_level`
 --
@@ -698,12 +697,12 @@ ALTER TABLE `dmn_mobile_network`
 -- AUTO_INCREMENT for table `dmn_product`
 --
 ALTER TABLE `dmn_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `dmn_product_type`
 --
 ALTER TABLE `dmn_product_type`
-  MODIFY `product_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `dmn_relate`
 --
@@ -713,7 +712,7 @@ ALTER TABLE `dmn_relate`
 -- AUTO_INCREMENT for table `dmn_round`
 --
 ALTER TABLE `dmn_round`
-  MODIFY `round_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `round_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `dmn_story`
 --

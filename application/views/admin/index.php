@@ -1,5 +1,5 @@
 
-  <div class="col-xs-12">
+  <!-- <div class="col-xs-12">
     <div class="card card-banner card-chart card-green no-br">
       <div class="card-header">
         <div class="card-title">
@@ -17,7 +17,7 @@
         <div class="ct-chart-sale"></div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 <?php foreach ($mobile_network as $row): ?>
 
@@ -27,11 +27,11 @@
     <img class="icon" src="<?php echo BASE_URL('images/networklogo/'.$row['mobile_network_pic'])?>"style="width:175px; height:50px;">
     <!-- <i class="icon fa fa-shopping-basket fa-4x"></i> -->
     <div class="content">
-      <div class="title">จำนวนเบอร์ <?php echo $row['mobile_network_name'] ?></div>
-      <div class="value" style="font-size:40px;">
+      <div class="title">จำนวนเบอร์ <?php echo $row['mobile_network_name'] ?> ในระบบ</div>
+      <div class="value" style="font-size:30px;">
         <?php
         $this->db->where('product_mobile_network',$row['mobile_network_id']);
-        echo $this->db->count_all_results('dmn_product');
+        echo number_format($this->db->count_all_results('dmn_product'));
         ?>
         <span class="sign">เบอร์</span></div>
     </div>
@@ -39,6 +39,50 @@
 </a>
   </div>
 <?php endforeach; ?>
+
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header"> <h3>เบอร์ขายออกล่าสุด</h3> </div>
+    <div class="card-body no-padding">
+      <table class="datatable table table-hover primary" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th><div align="center">เครือข่าย</div></th>
+            <th><div align="center">เบอร์</div></th>
+            <th><div align="center">ต้นทุน</div></th>
+            <th><div align="center">ราคาขาย</div></th>
+            <th><div align="center">กำไร</div></th>
+            <th><div align="center">นำเข้า</div></th>
+            <th><div align="center">วันที่ขาย</div></th>
+            <th><div align="center">สถานะ</div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php date_default_timezone_set('Asia/Bangkok');?>
+          <?php foreach($product as $product){ ?>
+          <tr style="cursor: pointer;" onclick="document.location = '<?php echo site_url('Admin/product_update')?>/<?php echo $product['product_id']?>';">
+            <td align="center"><?php echo $product['mobile_network_name']?></td>
+            <?php if (date('Y-m-d') == $product['product_date']): ?>
+            <td>
+              <?php echo $product['product_number']?>
+              <img src="<?php echo BASE_URL('images/new.gif')?>" width="40px">
+            </td>
+            <?php else: ?>
+            <td><?php echo $product['product_number']?></td>
+            <?php endif; ?>
+            <td align="right"><?php echo number_format($product['product_cost'])?> บาท</td>
+            <td align="right"><?php echo number_format($product['product_sale'])?> บาท</td>
+            <td align="right" style="color:blue;"><?php echo number_format($product['product_sale']-$product['product_cost'])?> บาท</td>
+            <td align="right"><?php echo $product['product_date'] ?></td>
+            <td align="right"><?php echo $product['product_date_sale']?></td>
+            <td style="color:green;">ขายแล้ว</td>
+          </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
   <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
       <a class="card card-banner card-blue-light">

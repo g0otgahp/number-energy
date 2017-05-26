@@ -115,7 +115,7 @@
             <li><a href="<?php echo site_url('Admin/general_config')?>">ตั้งค่าทั่วไป</a></li>
             <li><a href="<?php echo site_url('Admin/abountus_config')?>">ข้อมูลเกี่ยวกับเรา</a></li>
             <li><a href="<?php echo site_url('Admin/contents_list')?>">บทความ</a></li>
-            <li><a href="<?php echo site_url('Admin/mobile_network_list')?>">เครือข่ายมือถือ</a></li>
+            <!-- <li><a href="<?php echo site_url('Admin/mobile_network_list')?>">เครือข่ายมือถือ</a></li> -->
             <!-- <li><a href="<?php echo site_url('Admin/product_type_list')?>">ประเภทเบอร์</a></li> -->
 
             <li><a href="<?php echo site_url('Admin/account_category_list')?>">ประเภทบัญชีรายจ่าย</a></li>

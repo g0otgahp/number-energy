@@ -30,41 +30,6 @@
         <div class="col-md-2">
           <input name="account_date_day" class="form-control btn btn-default" type="text" id="datepicker" readonly/>
         </div>
-        <!-- <div class="col-md-2">
-          <select name="account_date_day" class="form-control" id="account_date_day" required="required">
-            <option value="">--- วัน ---</option>
-                <?php for($a = 1;$a <32;$a++){ ?>
-                <option value="<?php echo $a ?>"><?php echo $a ?></option>
-                 <?php } ?>
-          </select>
-        </div>
-        <div class="col-md-2">
-          <select name="account_date_month" class="form-control" id="account_date_month" required="required">
-          <option value="">--- เดือน ---</option>
-          <option value="01">มกราคม</option>
-                <option value="02">กุมภาพันธุ์</option>
-                <option value="03">มีนาคม</option>
-                <option value="04">เมษายน</option>
-                <option value="05">พฤษภาคม</option>
-                <option value="06">มิถุนายน</option>
-                <option value="07">กรกฎาคม</option>
-                <option value="08">สิงหาคม</option>
-                <option value="09">กันยายน</option>
-                <option value="10">ตุลาคม</option>
-                <option value="11">พฤศจิกายน</option>
-                <option value="12">ธันวาคม</option>
-          </select>
-        </div>
-        <div class="col-md-2">
-          <select name="account_date_year" class="form-control" id="account_date_year" required="required">
-          <option value="">--- ปี ---</option>
-          <?php $i=0?>
-                <?php for($b=0;$b<60;$b++){?>
-                <option value="<?php echo (date('Y'))-$i ?>"><?php echo (date('Y')+543)-$i ?></option>
-                <?php $i++ ?>
-				<?php } ?>
-          </select>
-        </div> -->
       </div>
       <div class="form-group">
             <div class="col-md-3">

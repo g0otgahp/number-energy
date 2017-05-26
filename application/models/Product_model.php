@@ -52,6 +52,17 @@ class Product_model extends CI_Model {
 		return $info;
 	}
 
+	public function product_list_saled()
+	{
+		$this->db->order_by('dmn_product.product_date_sale','DESC');
+		$this->db->where('product_status',0);
+		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
+		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
+		$query = $this->db->get('dmn_product',300)->result_array();
+		$info = $this->Homepage_model->Count_number($query);
+		return $info;
+	}
+
 	public function product_trash_list()
 	{
 		$this->db->order_by('dmn_product.product_id','DESC');

@@ -260,10 +260,13 @@ class Product_process extends CI_Controller {
 			// 'product_sale' => $this->input->post('product_sale'),
 			'product_agent' => $this->input->post('product_agent'),
 			// 'product_type' => $this->input->post('product_type'),
-			'product_date' => date('Y-m-d'),
-			'product_time' => date('H:i:s'),
 			'product_status' => $this->input->post('product_status'),
 		);
+
+		if ($input['product_status'] ==0) {
+			$input['product_date_sale'] = date('Y-m-d');
+		}
+
 		$this->Product_model->product_update($input);
 		redirect('Admin/product_list');
 	}

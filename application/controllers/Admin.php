@@ -20,6 +20,7 @@ class Admin extends CI_Controller {
 		$data['MaxDay'] = $this->Account_model->MaxDay();
 		$data['SaleOrder'] = $this->Account_model->account_count_saleorder();
 		$data['mobile_network'] = $this->Product_model->mobile_network_list();
+		$data['product'] = $this->Product_model->product_list_saled();
 
 		$data['page'] = "admin/index";
 		$this->load->view('admin/theme',$data);
