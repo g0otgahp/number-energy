@@ -90,7 +90,6 @@ class Admin extends CI_Controller {
 	public function agent_list()
 	{
 		$data['agent'] = $this->Agent_model->agent_list();
-
 		$data['page'] = "admin/agent_list";
 		$this->load->view('admin/theme',$data);
 	}

@@ -8,7 +8,7 @@ $db_password 		= ''; //dataabse password
 $db_name 			= 'diamondnumber'; //database name
 $db_host 			= 'localhost'; //hostname or IP
 
-// onweb
+// // onweb
 // $db_username 		= 'admin_dmn'; //database username
 // $db_password 		= '1q2w3e4r5t'; //dataabse password
 // $db_name 			= 'admin_dmn'; //database name
