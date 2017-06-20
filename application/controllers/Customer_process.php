@@ -54,6 +54,25 @@ class Customer_process extends CI_Controller {
 		$this->Customer_model->customer_update($input);
 		redirect('Admin/customer_list');
 	}
+	public function customer_type_insert()
+	{
+
+		$input = array(
+			'customer_type_name' => $this->input->post('customer_type_name'),
+		);
+		$this->Customer_model->customer_type_insert($input);
+		redirect('Admin/customer_type_list');
+	}
+
+	public function customer_type_update()
+	{
+		$input = array(
+			'customer_type_id' => $this->input->post('customer_type_id'),
+			'customer_type_name' => $this->input->post('customer_type_name'),
+		);
+		$this->Customer_model->customer_type_update($input);
+		redirect('Admin/customer_type_list');
+	}
 
 
 

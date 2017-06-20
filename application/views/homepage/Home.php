@@ -55,6 +55,12 @@
           <option value="65" >65</option>
         </select>
 
+        <select name="product_price">
+          <option value="">-- เรียงราคา --</option>
+          <option value="ASC" >ต่ำ - สูง</option>
+          <option value="DESC" >สูง - ต่ำ</option>
+        </select>
+
         <!--<select id="property-type" name="type" >
           <option value="">All Types</option>
           <option value="apartment"> Apartment</option>

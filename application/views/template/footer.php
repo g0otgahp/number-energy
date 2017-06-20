@@ -4,18 +4,20 @@
       <div class="row">
         <div class="col-md-3 col-sm-6">
           <section class="widget twitter-widget clearfix">
-            <h4 class="title">กิจกรรม</h4>
-            <?php foreach ($EventTop as $row): ?>
+            <h4 class="title">เกี่ยวกับเรา</h4>
+            <!-- <?php foreach ($EventTop as $row): ?>
               <div class="clearfix" style="word-wrap:break-word;"><a href="<?php echo SITE_URL('news/detail/'.$row['actipromo_id'])?>" class=""> <?php echo $row['actipromo_name'] ?></a></div>
-            <?php endforeach; ?>
+            <?php endforeach; ?> -->
+            <div class="clearfix" style="word-wrap:break-word;"><?php echo $Abountus[0]['abountus_detail']?></div>
           </section>
         </div>
         <div class="col-md-3 col-sm-6">
           <section class="widget twitter-widget clearfix">
-            <h4 class="title">โปรโมชั่น</h4>
-            <?php foreach ($PromotionTop as $row): ?>
+            <h4 class="title">บริการ</h4>
+            <!-- <?php foreach ($PromotionTop as $row): ?>
               <div class="clearfix" style="word-wrap:break-word;"><a href="<?php echo SITE_URL('news/detail/'.$row['actipromo_id'])?>" class=""> <?php echo $row['actipromo_name'] ?></a></div>
-            <?php endforeach; ?>
+            <?php endforeach; ?> -->
+            <div class="clearfix" style="word-wrap:break-word;"><a href="<?php echo SITE_URL('howtopay')?>">ติดต่อสั่งซื้อเบอร์</a></div>
           </section>
         </div>
         <div class="col-md-3 col-sm-6">

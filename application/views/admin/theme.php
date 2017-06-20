@@ -119,6 +119,7 @@
             <!-- <li><a href="<?php echo site_url('Admin/product_type_list')?>">ประเภทเบอร์</a></li> -->
 
             <li><a href="<?php echo site_url('Admin/account_category_list')?>">ประเภทบัญชีรายจ่าย</a></li>
+            <li><a href="<?php echo site_url('Admin/customer_type_list')?>">ประเภทลูกค้า</a></li>
             <!--<li><a href="<?php echo base_url()?>theme/uikits/card.html">Card</a></li>
             <li><a href="<?php echo base_url()?>theme/uikits/form.html">Form</a></li>
             <li><a href="<?php echo base_url()?>theme/uikits/table.html">Table</a></li>

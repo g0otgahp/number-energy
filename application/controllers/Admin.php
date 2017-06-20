@@ -361,4 +361,32 @@ class Admin extends CI_Controller {
 		echo "<meta http-equiv='refresh' content='0; url=../contents_list' />";
 	}
 
+	#ประเภทของลูกค้า
+	public function customer_type_list()
+	{
+		$data['customer_Type'] = $this->Customer_model->customer_type_list();
+		$data['page'] = "admin/customer_type_list";
+		$this->load->view('admin/theme',$data);
+	}
+	public function customer_type_insert()
+	{
+		$data['page'] = "admin/customer_type_insert";
+		$this->load->view('admin/theme',$data);
+	}
+	public function customer_type_update()
+	{
+		$customer_type_id = $this->uri->segment(3);
+		$data['customer_Type'] = $this->Customer_model->customer_type_detail($customer_type_id);
+
+		$data['page'] = "admin/customer_type_update";
+		$this->load->view('admin/theme',$data);
+	}
+	public function customer_type_delete()
+	{
+		$customer_type_id = $this->uri->segment(3);
+		$this->Customer_model->customer_type_delete($customer_type_id);
+		echo "<script>alert('ทำรายการลบข้อมูลเรียบร้อยแล้ว')</script>";
+		echo "<meta http-equiv='refresh' content='0; url=../customer_type_list' />";
+	}
+
 }

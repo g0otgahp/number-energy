@@ -37,5 +37,31 @@ class Customer_model extends CI_Model {
 		$query = $this->db->get('dmn_relate');
 		return $query->result_array();
 	}
+	public function customer_type_list()
+	{
+		$this->db->order_by('customer_type_id','desc');
+		$query = $this->db->get('dmn_customer_type');
+		return $query->result_array();
+	}
+	public function customer_type_insert($input)
+	{
+		$this->db->insert('dmn_customer_type',$input);
+	}
+	public function customer_type_detail($customer_type_id)
+	{
+		$this->db->where('customer_type_id',$customer_type_id);
+		$query = $this->db->get('dmn_customer_type');
+		return $query->result_array();
+	}
+	public function customer_type_update($input)
+	{
+		$this->db->where('customer_type_id',$input['customer_type_id']);
+		$this->db->update('dmn_customer_type',$input);
+	}
+	public function customer_type_delete($customer_type_id)
+	{
+		$this->db->where('customer_type_id',$customer_type_id);
+		$this->db->delete('dmn_customer_type');
+	}
 
 }

@@ -68,6 +68,23 @@
                 <option value="56" >56</option>
                 <option value="65" >65</option>
               </select>
+
+              <select name="product_price">
+                <?php if (@$filter['product_price'] != ''): ?>
+
+                <?php if ($filter['product_price'] == ASC): ?>
+                  <option value="$filter['product_price']">ต่ำ - สูง</option>
+                <?php elseif($filter['product_price'] == DESC): ?>
+                  <option value="$filter['product_price']">สูง - ต่ำ</option>
+                <?php endif; ?>
+                <option value="">-- เรียงราคา --</option>
+                <?php else: ?>
+                <option value="">-- เรียงราคา --</option>
+                <?php endif; ?>
+                <option value="ASC" >ต่ำ - สูง</option>
+                <option value="DESC" >สูง - ต่ำ</option>
+              </select>
+
               <button type="submit" class="btn btn-default btn-lg text-center">ค้นหา <br class="hidden-sm hidden-xs">
                 เบอร์สวย</button>
               </fieldset>

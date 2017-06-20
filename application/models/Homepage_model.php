@@ -71,8 +71,17 @@ class Homepage_model extends CI_Model {
 			}
 		}
 
+		// if ($input['product_price'] != '') {
+		// 	if ($input['product_price'] == 1) {
+		// 		$this->db->order_by('product_sale','ASC');
+		// 	} elseif ($input['product_price'] == 2) {
+		// 		$this->db->order_by('product_sale','DESC');
+		// 	}
+		// }
+		// $order_by = $input['product_price'];
+
 		$this->db->where('product_status',1);
-		$this->db->order_by('product_date','DESC');
+		$this->db->order_by('product_sale',$input['product_price']);
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$data = $this->db->get('dmn_product')->result_array();
 
@@ -302,6 +311,7 @@ class Homepage_model extends CI_Model {
 		$data['product_type'] = $this->db->where('dmn_product_type.product_type_name LIKE',"%".$input['product_type']."%")->get('dmn_product_type')->result_array();
 		$data['product_sale'] = $input['product_sale'];
 		$data['product_requiment'] = $input['product_requiment'];
+		$data['product_price'] = $input['product_price'];
 		return $data;
 	}
 }
