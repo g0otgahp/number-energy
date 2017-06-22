@@ -15,6 +15,12 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="col-md-3 control-label">ที่อยู่</label>
+        <div class="col-md-9">
+          <input name="" type="text" class="form-control span1" readonly value="<?php echo BASE_URL('/number-energy/news/detail/'.$actipromo[0]['actipromo_id'])?>">
+        </div>
+      </div>
+      <div class="form-group">
         <label class="col-md-3 control-label">ชื่อกิจกรรมและโปรโมชั่น</label>
         <div class="col-md-9">
           <input name="actipromo_name" type="text" class="form-control" id="actipromo_name" placeholder="กรอกชื่อกิจกรรมหรือโปรโมชั่น" required="required" value="<?php echo $actipromo[0]['actipromo_name']?>">
@@ -66,6 +72,7 @@
         <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
             <a href="<?php echo site_url('Admin/actipromo_delete')?>/<?php echo $actipromo[0]['actipromo_id']?>" onclick="return confirm('ต้องการลบข้อมูล?')"><button type="button" class="btn btn-danger">ลบข้อมูล</button></a>
             <a href="<?php echo site_url('Admin/actipromo_list')?>"><button type="button" class="btn btn-default">ยกเลิก</button></a>
+
       </div>
     </div>
   </div>

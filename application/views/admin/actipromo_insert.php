@@ -15,6 +15,13 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="col-md-3 control-label">หัวข้อ (Title)</label>
+        <div class="col-md-9">
+          <input name="actipromo_title" type="text" class="form-control" id="" placeholder="กรอกหัวข้อ" required="required">
+        </div>
+      </div>
+
+      <div class="form-group">
         <label class="col-md-3 control-label">ย่อหน้าแรก (SubTitle)</label>
         <div class="col-md-9">
           <input name="actipromo_subtitle" type="text" class="form-control" id="actipromo_subtitle" placeholder="กรอกย่อหน้าแรก" required="required">
@@ -25,6 +32,18 @@
         <div class="col-md-4">
           <input name="actipromo_image" type="file" class="form-control" id="actipromo_image" required="required" >
         </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">วันที่เริ่มต้น</label>
+        <div class="col-md-4">
+          <input name="actipromo_date" type="text" class="form-control datepicker"  required="required">
+        </div>
+      </div>
+      <div class="form-group">
+            <label class="col-md-3 control-label">วันที่สิ้นสุด</label>
+            <div class="col-md-4">
+              <input name="actipromo_date_end" type="text" class="form-control datepicker"  required="required">
+            </div>
       </div>
       <div class="form-group">
         <label class="col-md-3 control-label">ประเภทกิจกรรมและโปรโมชั่น</label>
@@ -49,7 +68,8 @@
   <div class="form-group">
     <div class="col-md-12">
       <label class="">รายละเอียด</label>
-      <textarea name="actipromo_detail" class="form-control" placeholder="กรอกรายละเอียด" required="required"></textarea>
+      <!-- <input name="actipromo_detail" type="text" class="form-control" id="actipromo_detail" placeholder="กรอกย่อหน้าแรก" required="required"> -->
+      <textarea name="actipromo_detail" class="form-control" required="required">กรอกรายละเอียดที่นี่</textarea>
     </div>
   </div>
   <hr>

@@ -41,9 +41,11 @@ class Actipromo_process extends CI_Controller {
 			'actipromo_type' => $this->input->post('actipromo_type'),
 			'actipromo_image' => $new_file,
 			'actipromo_name' => $this->input->post('actipromo_name'),
+			'actipromo_title' => $this->input->post('actipromo_title'),
 			'actipromo_subtitle' => $this->input->post('actipromo_subtitle'),
 			'actipromo_detail' => $this->input->post('actipromo_detail'),
-			'actipromo_date' => date('Y-m-d'),
+			'actipromo_date' => $this->input->post('actipromo_date'),
+			'actipromo_date_end' => $this->input->post('actipromo_date_end'),
 		);
 
 		$this->Actipromo_model->actipromo_insert($input);

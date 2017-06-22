@@ -41,17 +41,18 @@
 
               </select>
               <select id="property-status" name="product_type">
-                <?php if ($filter['product_type'][0]['product_type_id'] != ''): ?>
+                <?php if ($filter['product_type'][0]['product_type_name'] != ''): ?>
                 <option value="<?php echo $filter['product_type'][0]['product_type_name']?>"><?php echo $filter['product_type'][0]['product_type_name']?></option>
-                <option value="">ทั้งหมด</option>
+                <option value=" ">ทั้งหมด</option>
                 <?php else: ?>
-                  <option value="">ทั้งหมด</option>
+                <option value=" ">ทั้งหมด</option>
                 <?php endif; ?>
 
                 <?php foreach ($Product_Type as $row): ?>
                   <option value="<?php echo $row['product_type_name']?>"><?php echo $row['product_type_name']?></option>
                 <?php endforeach; ?>
               </select>
+
 
               <select name="product_requiment" id="property-sub-location">
                 <?php if ($filter['product_requiment'] !=''): ?>

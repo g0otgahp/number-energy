@@ -408,8 +408,8 @@ $.datepicker.regional['th'] ={
 $.datepicker.setDefaults($.datepicker.regional['th']);
 
 $(function() {
-  $( "#datepicker" ).datepicker( $.datepicker.regional["th"] ); // Set ภาษาที่เรานิยามไว้ด้านบน
-  $( "#datepicker" ).datepicker("setDate", new Date()); //Set ค่าวันปัจจุบัน
+  $( ".datepicker" ).datepicker( $.datepicker.regional["th"] ); // Set ภาษาที่เรานิยามไว้ด้านบน
+  $( ".datepicker" ).datepicker("setDate", new Date()); //Set ค่าวันปัจจุบัน
 });
   </script>
 
