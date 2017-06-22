@@ -20,7 +20,7 @@ class Admin extends CI_Controller {
 		$data['MaxDay'] = $this->Account_model->MaxDay();
 		$data['SaleOrder'] = $this->Account_model->account_count_saleorder();
 		$data['mobile_network'] = $this->Product_model->mobile_network_list();
-		$data['product'] = $this->Product_model->product_list_saled();
+		$data['product'] = $this->Product_model->product_log();
 
 		$data['page'] = "admin/index";
 		$this->load->view('admin/theme',$data);
@@ -263,12 +263,39 @@ class Admin extends CI_Controller {
 		$product_id = $this->uri->segment(3);
 		$data['product'] = $this->Product_model->product_detail($product_id);
 		$data['mobile_network'] = $this->Product_model->mobile_network_list();
-		$data['mobile_type'] = $this->Homepage_model->Product_Type();
-		$data['agent'] = $this->Agent_model->agent_list();
 
 		$data['page'] = "admin/product_update";
-		$this->load->view('admin/theme',$data);
+		$this->load->view('admin/theme_notextarea',$data);
 	}
+	public function product_book()
+	{
+		$product_id = $this->uri->segment(3);
+		$data['product'] = $this->Product_model->product_detail($product_id);
+		$data['customer'] = $this->Customer_model->customer_list();
+		$data['employees'] = $this->Employees_model->employees_list();
+
+		// $this->debuger->prevalue($data);
+		$data['page'] = "admin/product_book";
+		$this->load->view('admin/theme_notextarea',$data);
+	}
+
+	public function product_detail()
+	{
+		$product_id = $this->uri->segment(3);
+		$data['product'] = $this->Product_model->product_book_detail($product_id);
+		// $this->debuger->prevalue($data);
+		$data['page'] = "admin/product_detail";
+		$this->load->view('admin/theme_notextarea',$data);
+	}
+
+	public function product_paper()
+	{
+	$product_id = $this->uri->segment(3);
+	$data['product'] = $this->Product_model->product_book_detail($product_id);
+	// $this->debuger->prevalue($data);
+	$this->load->view('admin/paper',$data);
+	}
+
 	public function product_delete()
 	{
 		$product_id = $this->uri->segment(3);

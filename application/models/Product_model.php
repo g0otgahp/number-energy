@@ -43,7 +43,7 @@ class Product_model extends CI_Model {
 	public function product_list()
 	{
 		$this->db->order_by('dmn_product.product_id','DESC');
-		$this->db->where('product_status',1);
+		$this->db->where('product_status !=',2);
 		$this->db->or_where('product_status',0);
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
@@ -77,6 +77,11 @@ class Product_model extends CI_Model {
 	{
 		$this->db->insert('dmn_product',$input);
 	}
+
+	public function product_book($input)
+	{
+		$this->db->insert('dmn_log',$input);
+	}
 	public function product_detail($product_id)
 	{
 		$this->db->where('dmn_product.product_id',$product_id);
@@ -85,6 +90,33 @@ class Product_model extends CI_Model {
 		$query = $this->db->get('dmn_product')->result_array();
 		$info = $this->Homepage_model->Count_number($query);
 		return $info;
+	}
+	public function product_book_detail($product_id)
+	{
+		$this->db->order_by('log_date','DESC');
+		$this->db->where('log_product_id',$product_id);
+		$this->db->join('dmn_product','dmn_log.log_product_id = dmn_product.product_id');
+		$this->db->join('dmn_customer','dmn_log.log_customer_id = dmn_customer.customer_id');
+		$this->db->join('dmn_employees','dmn_log.log_employee_id = dmn_employees.employees_id');
+		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
+		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
+		$query = $this->db->get('dmn_log')->result_array();
+		$info = $this->Homepage_model->Count_number($query);
+		// $this->debuger->prevalue($info);
+		return $info;
+	}
+
+	public function product_log()
+	{
+		$this->db->order_by('log_date','DESC');
+		$this->db->join('dmn_product','dmn_log.log_product_id = dmn_product.product_id');
+		$this->db->join('dmn_customer','dmn_log.log_customer_id = dmn_customer.customer_id');
+		$this->db->join('dmn_employees','dmn_log.log_employee_id = dmn_employees.employees_id');
+		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
+		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
+		$query = $this->db->get('dmn_log',10)->result_array();
+		// $this->debuger->prevalue($query);
+		return $query;
 	}
 	public function product_update($input)
 	{

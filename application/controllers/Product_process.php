@@ -257,20 +257,107 @@ class Product_process extends CI_Controller {
 			'product_id' => $this->input->post('product_id'),
 			'product_mobile_network' => $this->input->post('product_mobile_network'),
 			'product_number' => $this->input->post('product_number'),
-			// 'product_cost' => $this->input->post('product_cost'),
-			// 'product_sale' => $this->input->post('product_sale'),
-			'product_agent' => $this->input->post('product_agent'),
+			'product_cost' => $this->input->post('product_cost'),
+			'product_sale' => $this->input->post('product_sale'),
+			'product_note' => $this->input->post('product_note'),
 			// 'product_type' => $this->input->post('product_type'),
-			'product_status' => $this->input->post('product_status'),
+			// 'product_status' => $this->input->post('product_status'),
 		);
 
-		if ($input['product_status'] ==0) {
-			$input['product_date_sale'] = date('Y-m-d');
-		}
+		// if ($input['product_status'] ==0) {
+		// 	$input['product_date_sale'] = date('Y-m-d');
+		// }
 
 		$this->Product_model->product_update($input);
 		redirect('Admin/product_list');
 	}
+
+	public function product_detail_update()
+	{
+		date_default_timezone_set('Asia/Bangkok');
+		$input = array(
+			'product_id' => $this->input->post('product_id'),
+			'product_note' => $this->input->post('product_note'),
+		);
+		$this->Product_model->product_update($input);
+		redirect('Admin/product_detail/'.$input['product_id']);
+	}
+
+	public function product_payment()
+	{
+		date_default_timezone_set('Asia/Bangkok');
+		$input = array(
+			'product_id' => $this->input->post('product_id'),
+			'product_status' => 4,
+		);
+		$this->Product_model->product_update($input);
+
+		$input = array(
+			'log_date' => date('Y-m-d H:i:s'),
+			'log_product_id' => $this->input->post('product_id'),
+			'log_customer_id' => $this->input->post('customer_id'),
+			'log_employee_id' => $this->input->post('employee_id'),
+			'log_status' => 4,
+		);
+
+		$this->Product_model->product_book($input);
+
+		$account = array(
+			'account_date' => date('Y-m-d'),
+			'account_type' => 1,
+			'account_category' => 1,
+			'account_detail' => ขายเบอร์มือถือ,
+			'account_quantity' => $this->input->post('product_sale'),
+		);
+
+		$this->Account_model->account_insert($account);
+		redirect('Admin/product_detail/'.$input['log_product_id']);
+	}
+
+	public function product_cancle()
+	{
+		date_default_timezone_set('Asia/Bangkok');
+		$product_id = $this->uri->segment(3);
+		$customer_id = $this->uri->segment(4);;
+		$employee_id = $this->uri->segment(5);;
+		$input = array(
+			'product_id' => $product_id,
+			'product_status' => 1,
+		);
+		$this->Product_model->product_update($input);
+
+		$input = array(
+			'log_date' => date('Y-m-d H:i:s'),
+			'log_product_id' => $product_id,
+			'log_customer_id' => $customer_id,
+			'log_employee_id' => $employee_id,
+			'log_status' => 99,
+		);
+		$this->Product_model->product_book($input);
+		redirect('Admin/product_list/');
+	}
+
+	public function product_book()
+	{
+		$input_status = array(
+			'product_id' => $this->input->post('product_id'),
+			'product_status' => 3,
+		);
+		$this->Product_model->product_update($input_status);
+
+		date_default_timezone_set('Asia/Bangkok');
+		$input = array(
+			'log_date' => date('Y-m-d H:i:s'),
+			'log_product_id' => $this->input->post('product_id'),
+			'log_customer_id' => $this->input->post('customer_id'),
+			'log_employee_id' => $this->input->post('employee_id'),
+			'log_status' => 3,
+		);
+
+		$this->Product_model->product_book($input);
+		redirect('Admin/product_detail/'.$input_status['product_id']);
+	}
+
 	public function product_upload()
 	{
 		date_default_timezone_set('Asia/Bangkok');
@@ -543,13 +630,14 @@ class Product_process extends CI_Controller {
 			 );
 
 			 $TrashNumber = array(
-				 '0' => 19, '1' => 91, '2' => 15, '3' => 51,
-				 '4' => 22,'5' => 23, '6' => 32, '7' => 24,
-				 '8' => 42, '9' => 26, '10' => 62, '11' => 28,
-				 '12' => 82, '13' => 29, '14' => 92, '15' => 36,
-				 '16' => 63, '17' => 46, '18' => 64, '19' => 65,
-				 '20' => 66, '21' => 69, '22' => 96, '23' => 78,
-				 '23' => 87,
+				'0' => 0, '1' => 11, '2' => 12, '3' => 21,
+	 			'4' => 13,'5' => 31, '6' => 17, '7' => 71,
+	 			'8' => 18, '9' => 81, '10' => 25, '11' => 52,
+	 			'12' => 27, '13' => 72, '14' => 33, '15' => 34,
+	 			'16' => 43, '17' => 37, '18' => 73, '19' => 38,
+	 			'20' => 83, '21' => 48, '22' => 84, '23' => 57,
+	 			'24' => 75, '25' => 58, '26' => 85, '27' => 67,
+	 			'28' => 76, '29' => 68, '30' => 86,'31' => 88,
 			 );
 
 				 $number = substr($input['product_number'],3);

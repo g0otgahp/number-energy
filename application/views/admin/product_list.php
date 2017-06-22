@@ -7,9 +7,10 @@
         <thead>
           <tr>
             <th><div align="center">ลำดับ</div></th>
+            <th><div align="center">วันที่เพิ่ม</div></th>
             <th><div align="center">เครือข่าย</div></th>
             <th><div align="center">เบอร์</div></th>
-            <th><div align="center">ผลรวม</div></th>
+            <!-- <th><div align="center">ผลรวม</div></th> -->
             <th><div align="center">ราคาซื้อ</div></th>
             <th><div align="center">ราคาขาย</div></th>
             <th><div align="center">ตัวแทน</div></th>
@@ -19,8 +20,13 @@
         <tbody>
         	<?php $i = 1; date_default_timezone_set('Asia/Bangkok');?>
           <?php foreach($product as $product){ ?>
-          <tr style="cursor: pointer;" onclick="document.location = '<?php echo site_url('Admin/product_update')?>/<?php echo $product['product_id']?>';">
+            <?php if ($product['product_status'] == 1 || $product['product_status'] == 99): ?>
+              <tr style="cursor: pointer;" onclick="document.location = '<?php echo site_url('Admin/product_update')?>/<?php echo $product['product_id']?>';">
+              <?php else: ?>
+              <tr style="cursor: pointer;" onclick="document.location = '<?php echo site_url('Admin/product_detail')?>/<?php echo $product['product_id']?>';">
+            <?php endif; ?>
             <td align="center"><?php echo $i ?></td>
+            <td align="center"><?php echo $product['product_date']?></td>
             <td align="center"><?php echo $product['mobile_network_name']?></td>
             <?php if (date('Y-m-d') == $product['product_date']): ?>
             <td>
@@ -30,14 +36,18 @@
             <?php else: ?>
             <td><?php echo $product['product_number']?></td>
             <?php endif; ?>
-            <td align="center">[<?php echo $product['Count_number']?>]</td>
+            <!-- <td align="center">[<?php echo $product['Count_number']?>]</td> -->
             <td align="right"><?php echo number_format($product['product_cost'],2)?> บาท</td>
             <td align="right"><?php echo number_format($product['product_sale'],2)?> บาท</td>
             <td><?php echo $product['agent_name']?></td>
             <?php if ($product['product_status'] == 1): ?>
               <td style="color:gray;">กำลังขาย</td>
-            <?php else: ?>
+            <?php elseif ($product['product_status'] == 3): ?>
+              <td style="color:orange;">จองแล้ว</td>
+            <?php elseif ($product['product_status'] == 4): ?>
               <td style="color:green;">ขายแล้ว</td>
+            <?php else: ?>
+              <td style="color:red;">ยกเลิก</td>
             <?php endif; ?>
           </tr>
           <?php $i++ ?>
@@ -56,9 +66,10 @@
         <thead>
           <tr>
             <th><div align="center">ลำดับ</div></th>
+            <th><div align="center">วันที่เพิ่ม</div></th>
             <th><div align="center">เครือข่าย</div></th>
             <th><div align="center">เบอร์</div></th>
-            <th><div align="center">ผลรวม</div></th>
+            <!-- <th><div align="center">ผลรวม</div></th> -->
             <th><div align="center">ราคาซื้อ</div></th>
             <th><div align="center">ราคาขาย</div></th>
             <th><div align="center">ตัวแทน</div></th>
@@ -70,6 +81,7 @@
           <?php foreach($trash as $row){ ?>
           <tr style="cursor: pointer;" onclick="document.location = '<?php echo site_url('Admin/product_update')?>/<?php echo $row['product_id']?>';">
             <td align="center"><?php echo $i ?></td>
+            <td align="center"><?php echo $product['product_date']?></td>
             <td align="center"><?php echo $row['mobile_network_name']?></td>
             <?php if (date('Y-m-d') == $row['product_date']): ?>
             <td>
@@ -79,7 +91,7 @@
             <?php else: ?>
             <td><?php echo $row['product_number']?></td>
             <?php endif; ?>
-            <td align="center">[<?php echo $row['Count_number']?>]</td>
+            <!-- <td align="center">[<?php echo $row['Count_number']?>]</td> -->
             <td align="right"><?php echo number_format($row['product_cost'],2)?> บาท</td>
             <td align="right"><?php echo number_format($row['product_sale'],2)?> บาท</td>
             <td><?php echo $row['agent_name']?></td>

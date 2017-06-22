@@ -22,7 +22,7 @@
 <?php foreach ($mobile_network as $row): ?>
 
   <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-      <a class="card card-banner card-green-light">
+      <a class="card card-banner">
   <div class="card-body">
     <img class="icon" src="<?php echo BASE_URL('images/networklogo/'.$row['mobile_network_pic'])?>"style="width:175px; height:50px;">
     <!-- <i class="icon fa fa-shopping-basket fa-4x"></i> -->
@@ -42,26 +42,35 @@
 
 <div class="col-xs-12">
   <div class="card">
-    <div class="card-header"> <h3>เบอร์ขายออกล่าสุด</h3> </div>
+    <div class="card-header"> <h3>บันทึกกิจกรรม</h3> </div>
     <div class="card-body no-padding">
-      <table class="datatable table table-hover primary" cellspacing="0" width="100%">
+      <table class="table table-hover primary" cellspacing="0" width="100%">
         <thead>
           <tr>
-            <th><div align="center">เครือข่าย</div></th>
-            <th><div align="center">เบอร์</div></th>
-            <th><div align="center">ต้นทุน</div></th>
-            <th><div align="center">ราคาขาย</div></th>
-            <th><div align="center">กำไร</div></th>
-            <th><div align="center">นำเข้า</div></th>
-            <th><div align="center">วันที่ขาย</div></th>
+            <th><div align="center">ลำดับ</div></th>
             <th><div align="center">สถานะ</div></th>
+            <th><div align="center">วันที่ - เวลา</div></th>
+            <th><div align="center">เบอร์</div></th>
+            <th><div align="center">ชื่อลูกค้า</div></th>
+            <th><div align="center">พนักงานขาย</div></th>
+            <th><div align="center">ราคา</div></th>
           </tr>
         </thead>
         <tbody>
           <?php date_default_timezone_set('Asia/Bangkok');?>
           <?php foreach($product as $product){ ?>
-          <tr style="cursor: pointer;" onclick="document.location = '<?php echo site_url('Admin/product_update')?>/<?php echo $product['product_id']?>';">
-            <td align="center"><?php echo $product['mobile_network_name']?></td>
+              <tr>
+            <td align="right"><?php echo $product['log_id'] ?></td>
+            <?php if ($product['log_status'] == 1): ?>
+              <td style="color:gray;">กำลังขาย</td>
+            <?php elseif ($product['log_status'] == 3): ?>
+              <td style="color:orange;">จองแล้ว</td>
+            <?php elseif ($product['log_status'] == 4): ?>
+              <td style="color:green;">ขายแล้ว</td>
+            <?php else: ?>
+              <td style="color:red;">ยกเลิก</td>
+            <?php endif; ?>
+            <td align="center"><?php echo $product['log_date']?></td>
             <?php if (date('Y-m-d') == $product['product_date']): ?>
             <td>
               <?php echo $product['product_number']?>
@@ -70,12 +79,9 @@
             <?php else: ?>
             <td><?php echo $product['product_number']?></td>
             <?php endif; ?>
-            <td align="right"><?php echo number_format($product['product_cost'])?> บาท</td>
-            <td align="right"><?php echo number_format($product['product_sale'])?> บาท</td>
-            <td align="right" style="color:blue;"><?php echo number_format($product['product_sale']-$product['product_cost'])?> บาท</td>
-            <td align="right"><?php echo $product['product_date'] ?></td>
-            <td align="right"><?php echo $product['product_date_sale']?></td>
-            <td style="color:green;">ขายแล้ว</td>
+            <td align="right"><?php echo $product['customer_name'] ?></td>
+            <td align="right"><?php echo $product['employees_name'] ?></td>
+            <td align="right"><?php echo number_format($product['product_sale']) ?></td>
           </tr>
           <?php } ?>
         </tbody>
