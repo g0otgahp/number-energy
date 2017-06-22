@@ -450,7 +450,21 @@ $(function() {
   <!-- Chrat-Sale -->
   <script>
 
+function copyToClipboard(field)
+{
+    var content = eval("document."+field)
+    content.focus()
+    content.select()
+    range = content.createTextRange()
+    range.execCommand("Copy")
+    window.status="Contents copied to clipboard"
+    setTimeout("window.status=''",1800)
+}
+
   </script>
+
+
+
 
 </body>
 </html>

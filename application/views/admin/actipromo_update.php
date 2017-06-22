@@ -17,13 +17,19 @@
       <div class="form-group">
         <label class="col-md-3 control-label">ที่อยู่</label>
         <div class="col-md-9">
-          <input name="" type="text" class="form-control span1" readonly value="<?php echo BASE_URL('/number-energy/news/detail/'.$actipromo[0]['actipromo_id'])?>">
+          <input type="text" class="form-control" readonly value="<?php echo BASE_URL('/news/detail/'.$actipromo[0]['actipromo_id'])?>" >
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-3 control-label">ชื่อกิจกรรมและโปรโมชั่น</label>
         <div class="col-md-9">
           <input name="actipromo_name" type="text" class="form-control" id="actipromo_name" placeholder="กรอกชื่อกิจกรรมหรือโปรโมชั่น" required="required" value="<?php echo $actipromo[0]['actipromo_name']?>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">หัวข้อ (Title)</label>
+        <div class="col-md-9">
+          <input name="actipromo_title" type="text" class="form-control" id="" placeholder="กรอกหัวข้อ" required="required"  value="<?php echo $actipromo[0]['actipromo_title']?>">
         </div>
       </div>
       <div class="form-group">
@@ -37,6 +43,18 @@
         <div class="col-md-4">
           <input name="actipromo_image" type="file" class="form-control" id="actipromo_image">
         </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">วันที่เริ่มต้น</label>
+        <div class="col-md-4">
+          <input name="actipromo_date" type="text" class="form-control datepicker"  required="required" value="<?php echo $actipromo[0]['actipromo_date']?>">
+        </div>
+      </div>
+      <div class="form-group">
+            <label class="col-md-3 control-label">วันที่สิ้นสุด</label>
+            <div class="col-md-4">
+              <input name="actipromo_date_end" type="text" class="form-control datepicker"  required="required" value="<?php echo $actipromo[0]['actipromo_date_end']?>">
+            </div>
       </div>
       <div class="form-group">
         <label class="col-md-3 control-label">ประเภทกิจกรรมและโปรโมชั่น</label>
