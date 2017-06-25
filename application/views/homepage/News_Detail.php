@@ -32,22 +32,23 @@
 
       <div class='row'>
         <div class='col-lg-4 col-sm-12 layout-item-wrap'>
-          <div class='col-lg-12 col-sm-12'>
+
+          <!-- <div class='col-lg-12 col-sm-12'>
             <div class='panel'>
               <div class='panel-heading' align='center'><h4>ล่าสุด</h4></div>
               <div style='margin-left:15px; margin-right:15px;'>
                 <h4>โปรโมชั่น</h4>
-                <?php foreach ($PromotionTop as $row): ?>
+                <?php //foreach ($PromotionTop as $row): ?>
                 <div>- <a href='<?php echo SITE_URL('news/detail/'.$row['actipromo_id'])?>' class=''> <?php echo $row['actipromo_name'] ?></a></div>
-                <?php endforeach; ?>
+                <?php //endforeach; ?>
                 <h4>กิจกรรม</h4>
-                <?php foreach ($EventTop as $row): ?>
+                <?php //foreach ($EventTop as $row): ?>
                 <div>- <a href='<?php echo SITE_URL('news/detail/'.$row['actipromo_id'])?>' class=''> <?php echo $row['actipromo_name'] ?></a></div>
-                <?php endforeach; ?>
+                <?php //endforeach; ?>
                 <hr>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class='col-md-12 col-sm-12' align='center'>
             <div class='panel'>

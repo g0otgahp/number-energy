@@ -306,7 +306,7 @@ class Product_process extends CI_Controller {
 			'account_date' => date('Y-m-d'),
 			'account_type' => 1,
 			'account_category' => 1,
-			'account_detail' => ขายเบอร์มือถือ,
+			'account_detail' => "ขายเบอร์มือถือ",
 			'account_quantity' => $this->input->post('product_sale'),
 		);
 
@@ -541,7 +541,7 @@ class Product_process extends CI_Controller {
 				'import_number' => $objArr[1],
 				'import_cost' => $objArr[2],
 				'import_price' => $price,
-				'import_agent_id' => $objArr[3],
+				'import_agent_id' => $this->input->post('agent'),
 				'import_product_type' => $tmoney.$twork.$tcharm.$tluck.$twisdom,
 			);
 
@@ -750,6 +750,18 @@ class Product_process extends CI_Controller {
 		$input = $this->input->post();
 		$this->Product_model->abountus_update($input);
 		redirect('Admin/abountus_config');
+	}
+
+	public function product_requiment()
+	{
+		$product_id = $this->uri->segment(3);
+		$requiment = $this->uri->segment(4);
+		$input = array(
+			'product_id' => $product_id,
+			'product_requiment' => $requiment,
+		);
+		$this->Product_model->product_update($input);
+		redirect('Admin/product_list');
 	}
 
 }

@@ -141,12 +141,12 @@
               <?php endforeach; ?>
             </ul>
           </li>
-          <li> <a href="<?php echo SITE_URL('news')?>">กิจกรรมและโปรโมชั่น</a>
+          <!-- <li> <a href="<?php echo SITE_URL('news')?>">กิจกรรมและโปรโมชั่น</a> -->
             <!-- <ul>
               <li><a href="<?php echo SITE_URL('news/promotion')?>">โปรโมชั่น</a></li>
               <li><a href="<?php echo SITE_URL('news/event')?>">กิจกรรม</a></li>
             </ul> -->
-          </li>
+          <!-- </li> -->
           <li>
             <a href="<?php echo SITE_URL('contents')?>">บทความ</a>
           </li>

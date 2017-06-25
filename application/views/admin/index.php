@@ -42,7 +42,7 @@
 
 <div class="col-xs-12">
   <div class="card">
-    <div class="card-header"> <h3>บันทึกกิจกรรม</h3> </div>
+    <div class="card-header"> <h3>บันทึกกิจการขาย</h3> </div>
     <div class="card-body no-padding">
       <table class="table table-hover primary" cellspacing="0" width="100%">
         <thead>

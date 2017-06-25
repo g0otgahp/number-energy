@@ -16,8 +16,7 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>theme/assets/css/theme/yellow.css">
 
   <!-- DatePicker -->
-  <link rel="stylesheet" href="<?php echo base_url()?>theme/js/jQueryCalendarThai/SpecialDateSheet.css" />
-  <link rel="stylesheet" href="<?php echo base_url()?>theme/js/jQueryCalendarThai/jquery-ui-1.11.4.custom.css" />
+  <link rel="stylesheet" href="<?php echo base_url()?>theme/js/jQueryCalendarThai/jquery.datetimepicker.css" />
 
   <!-- Icon Font -->
   <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
@@ -94,6 +93,7 @@
           <div class="title">ตัวแทน</div>
         </a>
       </li>
+
       <li <?php if($this->uri->segment(2)=="employees_list"||$this->uri->segment(2)=="employees_insert"||$this->uri->segment(2)=="employees_update"){ ?>class="active"<?php } ?>>
         <a href="<?php echo site_url('Admin/employees_list')?>">
           <div class="icon">
@@ -369,50 +369,21 @@
 </footer>
 </div>
   </div>
-
-
-  <script type="text/javascript">
-    var setLabels = <?php echo json_encode($MaxDay); ?>;
-    var setSeries = <?php echo json_encode($SaleOrder); ?>;
-  </script>
   <!-- <script type="text/javascript" src="<?php echo base_url()?>theme/js/jquery.min.js"></script> -->
   <script type="text/javascript" src="<?php echo base_url()?>theme/assets/js/vendor.js"></script>
   <script type="text/javascript" src="<?php echo base_url()?>theme/assets/js/app.js"></script>
 
-  <script type="text/javascript" src="<?php echo base_url()?>theme/js/jQueryCalendarThai/jquery-1.12.3.js"></script>
-  <script type="text/javascript" src="<?php echo base_url()?>theme/js/jQueryCalendarThai/jquery-ui-1.11.4.custom.js"></script>
+  <script type="text/javascript" src="<?php echo base_url()?>theme/js/jQueryCalendarThai/jquery.datetimepicker.js"></script>
 
 
   <!-- DataPicker -->
-  <script>
-$.datepicker.regional['th'] ={
-      changeMonth: true,
-      changeYear: true,
-      //defaultDate: GetFxupdateDate(FxRateDateAndUpdate.d[0].Day),
-      yearOffSet: 0,
-      // showOn: "button",
-      buttonImage: '<?php echo BASE_URL('theme/js/jQueryCalendarThai/images/calendar.gif');?>',
-      buttonImageOnly: false,
-      dateFormat: 'yy-mm-dd',
-      dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
-      dayNamesMin: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'],
-      monthNames: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
-      monthNamesShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
-      constrainInput: true,
-      prevText: 'ก่อนหน้า',
-      nextText: 'ถัดไป',
-      yearRange: '-20:+0',
-      buttonText: 'เลือก',
-
-  };
-$.datepicker.setDefaults($.datepicker.regional['th']);
-
-$(function() {
-  $( ".datepicker" ).datepicker( $.datepicker.regional["th"] ); // Set ภาษาที่เรานิยามไว้ด้านบน
-  $( ".datepicker" ).datepicker("setDate", new Date()); //Set ค่าวันปัจจุบัน
-});
+  <script type="text/javascript">
+    jQuery('.datepicker').datetimepicker({
+    lang:'th',
+    timepicker:true,
+    format:'Y-m-d H:i'
+    });
   </script>
-
 
 
   <!-- TinyMCE -->

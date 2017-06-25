@@ -56,9 +56,31 @@ class Employees_process extends CI_Controller {
 		);
 		$this->Employees_model->employees_update($employees);
 		$this->Employees_model->user_update($user);
-		redirect('Admin/employees_list');
+		redirect('Admin/employees_update/'.$this->input->post('secretcode'));
 	}
 
+	public function employees_la()
+	{
+		$date_start = substr($this->input->post('employees_date_t'),8,-6);
+		$date_end = substr($this->input->post('employees_date_n'),8,-6);
 
+		$time_start = substr($this->input->post('employees_date_t'),10,-3);
+		$time_end = substr($this->input->post('employees_date_n'),10,-3);
+
+		$day = $date_end-$date_start;
+		$time = $time_end-$time_start;
+
+		$input = array(
+			'employees_sc' => $this->input->post('secretcode'),
+			'log_la_date_start' => $this->input->post('employees_date_t'),
+			'log_la_date_end' => $this->input->post('employees_date_n'),
+			'log_la_day' => $day,
+			'log_la_hour' => $time,
+			'log_la_note' => $this->input->post('log_la_note'),
+		);
+		// $this->debuger->prevalue($input);
+		$id = $this->Employees_model->employees_la_insert($input);
+		redirect('admin/employees_la_detail/'.$id);
+	}
 
 }

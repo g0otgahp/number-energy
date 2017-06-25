@@ -52,19 +52,20 @@
       </div>
       <div class="row">
         <div class="col-lg-3 col-sm-12 layout-item-wrap">
-          <div class="col-lg-12 col-sm-12">
+
+          <!-- <div class="col-lg-12 col-sm-12">
             <div class="panel">
               <div class="panel-heading" align="center"><h4>กิจกรรมล่าสุด</h4></div>
               <div style="margin-left:15px; margin-right:15px;">
 
-                <?php foreach ($EventTop as $row): ?>
+                <?php //foreach ($EventTop as $row): ?>
                 <div>- <a href="<?php echo SITE_URL('news/detail/'.$row['actipromo_id'])?>" class=""> <?php echo $row['actipromo_name'] ?></a></div>
-                <?php endforeach; ?>
+                <?php //endforeach; ?>
 
                 <hr>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class="col-lg-12 col-sm-4">
             <div class="panel">

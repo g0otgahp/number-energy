@@ -133,11 +133,81 @@ class Admin extends CI_Controller {
 	{
 		$secretcode = $this->uri->segment(3);
 		$data['employees'] = $this->Employees_model->employees_detail($secretcode);
+		$data['log_la'] = $this->Employees_model->employees_la_by_id($secretcode);
 		$data['level'] = $this->Employees_model->level_list();
 
 		$data['page'] = "admin/employees_update";
 		$this->load->view('admin/theme',$data);
 	}
+	public function employees_la()
+	{
+		$secretcode = $this->uri->segment(3);
+		$data['employees'] = $this->Employees_model->employees_detail($secretcode);
+		$data['level'] = $this->Employees_model->level_list();
+
+		$data['page'] = "admin/employees_la";
+		$this->load->view('admin/theme',$data);
+	}
+
+	public function employees_salary()
+	{
+		$data['secretcode'] = $this->uri->segment(3);
+		$data['page'] = "admin/employees_salary_select";
+		$this->load->view('admin/theme',$data);
+	}
+
+	public function employees_salary_detail()
+	{
+		$input = $this->input->post();
+		$data['secretcode'] = $input['secretcode'];
+		$data['employees_salary'] = $this->Employees_model->employees_salary($input);
+
+		$strDate = $data['employees_salary'][0]['date_select'];
+			// 2008-08-14 13:42:44
+		$strMonth= date("n",strtotime($strDate));
+		$strMonthCut = Array("","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
+		$strMonthThai=$strMonthCut[$strMonth];
+
+		$data['employees_salary'][0]['value_year'] = substr($strDate,0,-3);
+		$data['employees_salary'][0]['value_month'] = substr($strDate,5);
+
+		$data['employees_salary'][0]['str_month'] = $strMonthThai;
+
+		// $this->debuger->prevalue($data);
+		$data['page'] = "admin/employees_salary";
+		$this->load->view('admin/theme',$data);
+	}
+
+	public function salary_paper()
+	{
+		$input = $this->input->post();
+		$data['secretcode'] = $input['secretcode'];
+		$data['employees_salary'] = $this->Employees_model->employees_salary($input);
+
+		$strDate = $data['employees_salary'][0]['date_select'];
+			// 2008-08-14 13:42:44
+		$strMonth= date("n",strtotime($strDate));
+		$strMonthCut = Array("","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
+		$strMonthThai=$strMonthCut[$strMonth];
+
+		$data['employees_salary'][0]['value_year'] = substr($strDate,0,-3);
+		$data['employees_salary'][0]['value_month'] = substr($strDate,5);
+
+		$data['employees_salary'][0]['str_month'] = $strMonthThai;
+
+		// $this->debuger->prevalue($data);
+		$this->load->view('admin/paper_salary',$data);
+	}
+
+	public function employees_la_detail()
+	{
+		$id = $this->uri->segment(3);
+		$data['la_detail'] = $this->Employees_model->employees_la_detail($id);
+
+		$data['page'] = "admin/employees_la_detail";
+		$this->load->view('admin/theme',$data);
+	}
+
 	public function employees_delete()
 	{
 		$secretcode = $this->uri->segment(3);
@@ -309,11 +379,12 @@ class Admin extends CI_Controller {
 		$data['import_round'] = $this->Product_model->import_round($data['round']);
 		$data['mobile_network'] = $this->Product_model->mobile_network_list();
 		$data['Import'] = $this->Product_model->import_list();
+		$data['agent'] = $this->Agent_model->agent_list();
+		$data['history'] = $this->Product_model->history_list();
 
 		$data['page'] = "admin/product_import";
 		$this->load->view('admin/theme',$data);
 	}
-
 
 	#ประเภทของเบอร์
 	public function product_type_list()

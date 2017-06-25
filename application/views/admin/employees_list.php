@@ -11,6 +11,7 @@
             <th><div align="center">เบอร์ติดต่อ</div></th>
             <th><div align="center">อีเมล์</div></th>
             <th><div align="center">ระดับการใช้งาน</div></th>
+            <th><div align="center">เงินเดือน</div></th>
           </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
             <td><?php echo $employees['employees_tel']?></td>
             <td><?php echo $employees['dmn_user_username']?></td>
             <td><?php echo $employees['dmn_level_name']?></td>
+            <td><a href="<?php echo site_url('Admin/employees_salary')?>/<?php echo $employees['employees_secretcode']?>" class="btn btn-info btn-xs"> เงินเดือน </a></td>
           </tr>
           <?php $i++ ?>
           <?php } ?>

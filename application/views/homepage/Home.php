@@ -155,7 +155,7 @@
 <section id="home-property-listing">
   <header id="product_list" class="section-header home-section-header text-center">
     <div class="container">
-      <h2 class="wow slideInRight">รายการเบอร์มือถือทั้งหมด</h2>
+      <h2 class="wow slideInRight">รายการเบอร์มือถือแนะนำ</h2>
       <p class="wow slideInLeft" style="font-size:20px;">ทุกหมายเลข ได้คัดเลือกมาอย่างดี
         และจำแนกออกเป็นหมายเลขเสริมของแต่ละด้าน</p>
     </div>
@@ -170,7 +170,7 @@
             <?php
              date_default_timezone_set('Asia/Bangkok');
              if (date('Y-m-d') == $row['product_date']): ?>
-            <img src="<?php echo BASE_URL('images/new.gif')?>" style="width:40px">
+            <img src="<?php echo BASE_URL('images/new.png')?>" style="width:40px">
             <?php endif; ?>
           </h3></a></figure>
           <div class="property-contents clearfix">
@@ -183,7 +183,9 @@
                 <span class="property-location"><i class="fa fa-star" aria-hidden="true"></i> ส่งเสริมด้าน <br><?php echo $row['product_type']?></span> </div>
               <button class="btn btn-default btn-price pull-right btn-3d" data-hover="฿<?php echo number_format($row['product_sale'])?>"><strong>฿<?php echo number_format($row['product_sale'])?></strong></button>
             </header>
-            <div class="property-meta clearfix"> <span><i class="fa fa-calculator"></i> ผลรวมของเบอร์ (<?php echo $row['Count_number']?>)</span> <span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> อัพเดทวันที่ <?php echo $row['product_date']?></span> <!--<span><i class="fa fa-bathtub"></i> 3 Baths</span> <span><i class="fa fa-cab"></i> Yes</span>--> </div>
+            <div class="property-meta clearfix">
+              <!-- <span><i class="fa fa-calculator"></i> ผลรวมของเบอร์ (<?php echo $row['Count_number']?>)</span>  -->
+              <span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> อัพเดทวันที่ <?php echo $row['product_date']?></span> <!--<span><i class="fa fa-bathtub"></i> 3 Baths</span> <span><i class="fa fa-cab"></i> Yes</span>--> </div>
             <!-- <div class="contents clearfix">
               <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
             </div> -->

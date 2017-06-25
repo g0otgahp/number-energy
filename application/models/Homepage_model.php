@@ -20,6 +20,7 @@ class Homepage_model extends CI_Model {
 		$data =	$this->db
 		->order_by('product_date','DESC')
 		->where('product_status',1)
+		->where('product_requiment',1)
 		->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network')
 		->get('dmn_product',30)->result_array();
 

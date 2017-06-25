@@ -11,10 +11,10 @@
             <th><div align="center">เครือข่าย</div></th>
             <th><div align="center">เบอร์</div></th>
             <!-- <th><div align="center">ผลรวม</div></th> -->
-            <th><div align="center">ราคาซื้อ</div></th>
             <th><div align="center">ราคาขาย</div></th>
             <th><div align="center">ตัวแทน</div></th>
             <th><div align="center">สถานะ</div></th>
+            <th><div align="center">ตัวเลือก</div></th>
           </tr>
         </thead>
         <tbody>
@@ -31,13 +31,13 @@
             <?php if (date('Y-m-d') == $product['product_date']): ?>
             <td>
               <?php echo $product['product_number']?>
-              <img src="<?php echo BASE_URL('images/new.gif')?>" width="40px">
+              <img src="<?php echo BASE_URL('images/new.png')?>" width="40px">
             </td>
             <?php else: ?>
             <td><?php echo $product['product_number']?></td>
             <?php endif; ?>
             <!-- <td align="center">[<?php echo $product['Count_number']?>]</td> -->
-            <td align="right"><?php echo number_format($product['product_cost'],2)?> บาท</td>
+            <!-- <td align="right"><?php echo number_format($product['product_cost'],2)?> บาท</td> -->
             <td align="right"><?php echo number_format($product['product_sale'],2)?> บาท</td>
             <td><?php echo $product['agent_name']?></td>
             <?php if ($product['product_status'] == 1): ?>
@@ -49,7 +49,14 @@
             <?php else: ?>
               <td style="color:red;">ยกเลิก</td>
             <?php endif; ?>
+            <?php if ($product['product_requiment'] == 0): ?>
+            <td align="center"><a href="<?php echo SITE_URL('Product_process/product_requiment/'.$product['product_id']."/"."1")?>" class="btn btn-default btn-xs">ไม่แนะนำ</a></td>
+            <?php else: ?>
+            <td align="center"><a href="<?php echo SITE_URL('Product_process/product_requiment/'.$product['product_id']."/"."0")?>" class="btn btn-success btn-xs">เบอร์แนะนำ</a></td>
+            <?php endif; ?>
           </tr>
+
+
           <?php $i++ ?>
           <?php } ?>
         </tbody>
@@ -86,7 +93,7 @@
             <?php if (date('Y-m-d') == $row['product_date']): ?>
             <td>
               <?php echo $row['product_number']?>
-              <img src="<?php echo BASE_URL('images/new.gif')?>" width="40px">
+              <img src="<?php echo BASE_URL('images/new.png')?>" width="40px">
             </td>
             <?php else: ?>
             <td><?php echo $row['product_number']?></td>

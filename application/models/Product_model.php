@@ -19,6 +19,31 @@ class Product_model extends CI_Model {
 		$query = $this->db->get('dmn_mobile_network');
 		return $query->result_array();
 	}
+
+	public function history_list()
+	{
+		$data = $this->db
+		->order_by('round_datetime','desc')
+		->join('dmn_agent','dmn_agent.agent_id = dmn_round.round_agent_id')
+		->get('dmn_round')
+		->result_array();
+
+		if ($data !='') {
+			$i=0;
+			foreach ($data as $info) {
+				$query = $this->db
+				->where('import_round',$info['round_round'])
+				->get('dmn_import_tmp')
+				->num_rows();
+				$data[$i]['amount'] = $query;
+				$i++;
+			}
+		}
+
+		// $this->debuger->prevalue($data);
+		return $data;
+	}
+
 	public function mobile_network_insert($input)
 	{
 		$this->db->insert('dmn_mobile_network',$input);
@@ -134,7 +159,7 @@ class Product_model extends CI_Model {
 		->order_by('round_round',"DESC")
 		->get('dmn_round')
 		->result_array();
-	 	return @$query[0]['round_round'];
+		return @$query[0]['round_round'];
 	}
 
 	public function import_round($round)
