@@ -79,8 +79,8 @@
             <?php else: ?>
             <td><?php echo $product['product_number']?></td>
             <?php endif; ?>
-            <td align="right"><?php echo $product['customer_name'] ?></td>
-            <td align="right"><?php echo $product['employees_name'] ?></td>
+            <td align="right"><a href="<?php echo site_url('Admin/customer_update')?>/<?php echo $product['customer_id']?>" target="_blank"><?php echo $product['customer_name'] ?></a></td>
+            <td align="right"><a href="<?php echo site_url('Admin/employees_update')?>/<?php echo $product['employees_secretcode']?>" target="_blank"><?php echo $product['employees_name'] ?></a></td>
             <td align="right"><?php echo number_format($product['product_sale']) ?></td>
           </tr>
           <?php } ?>

@@ -19,6 +19,9 @@ class Agent_process extends CI_Controller {
 			'agent_name' => $this->input->post('agent_name'),
 			'agent_tel' => $this->input->post('agent_tel'),
 			'agent_email' => $this->input->post('agent_email'),
+			'agent_link' => $this->input->post('agent_link'),
+			'agent_data' => $this->input->post('agent_data'),
+			'agent_note' => $this->input->post('agent_note'),
 		);
 		$this->Agent_model->agent_insert($input);
 		redirect('Admin/agent_list');
@@ -31,6 +34,9 @@ class Agent_process extends CI_Controller {
 			'agent_name' => $this->input->post('agent_name'),
 			'agent_tel' => $this->input->post('agent_tel'),
 			'agent_email' => $this->input->post('agent_email'),
+			'agent_link' => $this->input->post('agent_link'),
+			'agent_data' => $this->input->post('agent_data'),
+			'agent_note' => $this->input->post('agent_note'),
 		);
 		$this->Agent_model->agent_update($input);
 		redirect('Admin/agent_list');

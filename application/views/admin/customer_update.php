@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$year = substr($customer[0]['customer_birthday'], 0, 4);
 	$month = substr($customer[0]['customer_birthday'], 5, 2);
 	$day = substr($customer[0]['customer_birthday'], 8, 2);
@@ -14,7 +14,7 @@
 		'09' => "กันยายน",
 		'10' => "ตุลาคม",
 		'11' => "พฤศจิกายน",
-		'12' => "ธันวาคม",					
+		'12' => "ธันวาคม",
 	);
 ?>
 
@@ -38,6 +38,14 @@
               <input name="customer_tel" type="text" class="form-control" id="customer_tel" placeholder="กรอกเบอร์ติดต่อ" required="required" value="<?php echo $customer[0]['customer_tel']?>">
             </div>
           </div>
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label">ติดต่อ/ลิ้งค์</label>
+						</div>
+						<div class="col-md-9">
+							<input name="customer_link" type="text" class="form-control" placeholder="กรอกลิ้งค์ติดต่อ เช่น ลิ้งค์เฟสบุ๊ค" value="<?php echo $customer[0]['customer_link']?>">
+						</div>
+					</div>
           <div class="form-group">
             <div class="col-md-3">
               <label class="control-label">อีเมล์</label>
@@ -121,6 +129,21 @@
           </select>
         </div>
       </div>
+
+			<div class="form-group" style="margin-top:15px;">
+				<label class="col-md-3 control-label">ที่อยู่</label>
+				<div class="col-md-6">
+					<textarea name="customer_address" type="text" class="form-control"><?php echo $customer[0]['customer_address']?></textarea>
+				</div>
+			</div>
+
+			<div class="form-group" style="margin-top:15px;">
+				<label class="col-md-3 control-label">Note/หมายเหตุ</label>
+				<div class="col-md-6">
+					<textarea name="customer_note" type="text" class="form-control"><?php echo $customer[0]['customer_note']?></textarea>
+				</div>
+			</div>
+			
         </div>
       </div>
       <div class="form-footer">

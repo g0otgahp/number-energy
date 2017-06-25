@@ -11,7 +11,7 @@
             <th><div align="center">เบอร์ติดต่อ</div></th>
             <th><div align="center">อีเมล์</div></th>
             <th>เพศ</th>
-            <th><div align="center">วันเดือนปีเกิด</div></th>
+            <th>หมายเหตุ</th>
           </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
             <td><?php echo $customer['customer_tel']?></td>
             <td><?php echo $customer['customer_email']?></td>
             <td><?php echo $customer['customer_sex_name']?></td>
-            <td><?php echo $customer['customer_birthday']?></td>
+            <td><?php echo $customer['customer_note']?></td>
           </tr>
           <?php $i++ ?>
           <?php } ?>

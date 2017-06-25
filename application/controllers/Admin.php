@@ -67,7 +67,7 @@ class Admin extends CI_Controller {
 		$data['relate'] = $this->Customer_model->relate_list();
 
 		$data['page'] = "admin/customer_insert";
-		$this->load->view('admin/theme',$data);
+		$this->load->view('admin/theme_notextarea',$data);
 	}
 	public function customer_update()
 	{
@@ -76,7 +76,7 @@ class Admin extends CI_Controller {
 		$data['relate'] = $this->Customer_model->relate_list();
 
 		$data['page'] = "admin/customer_update";
-		$this->load->view('admin/theme',$data);
+		$this->load->view('admin/theme_notextarea',$data);
 	}
 	public function customer_delete()
 	{
@@ -96,7 +96,7 @@ class Admin extends CI_Controller {
 	public function agent_insert()
 	{
 		$data['page'] = "admin/agent_insert";
-		$this->load->view('admin/theme',$data);
+		$this->load->view('admin/theme_notextarea',$data);
 	}
 	public function agent_update()
 	{
@@ -104,7 +104,7 @@ class Admin extends CI_Controller {
 		$data['agent'] = $this->Agent_model->agent_detail($agent_id);
 
 		$data['page'] = "admin/agent_update";
-		$this->load->view('admin/theme',$data);
+		$this->load->view('admin/theme_notextarea',$data);
 	}
 	public function agent_delete()
 	{

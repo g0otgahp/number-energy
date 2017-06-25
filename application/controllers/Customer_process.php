@@ -28,6 +28,10 @@ class Customer_process extends CI_Controller {
 			'customer_birthday' => $this->input->post('customer_birthday_year')."-".$this->input->post('customer_birthday_month')."-".$customer_birthday_day_new,
 			'customer_job' => $this->input->post('customer_job'),
 			'customer_relate' => $this->input->post('customer_relate'),
+			'customer_link' => $this->input->post('customer_link'),
+			'customer_address' => $this->input->post('customer_address'),
+			'customer_note' => $this->input->post('customer_note'),
+
 		);
 
 		$this->Customer_model->customer_insert($input);
@@ -50,6 +54,9 @@ class Customer_process extends CI_Controller {
 			'customer_birthday' => $this->input->post('customer_birthday_year')."-".$this->input->post('customer_birthday_month')."-".$customer_birthday_day_new,
 			'customer_job' => $this->input->post('customer_job'),
 			'customer_relate' => $this->input->post('customer_relate'),
+			'customer_link' => $this->input->post('customer_link'),
+			'customer_address' => $this->input->post('customer_address'),
+			'customer_note' => $this->input->post('customer_note'),
 		);
 		$this->Customer_model->customer_update($input);
 		redirect('Admin/customer_list');
@@ -58,7 +65,7 @@ class Customer_process extends CI_Controller {
 	{
 
 		$input = array(
-			'customer_type_name' => $this->input->post('customer_type_name'),
+			'relate_name' => $this->input->post('customer_type_name'),
 		);
 		$this->Customer_model->customer_type_insert($input);
 		redirect('Admin/customer_type_list');
@@ -67,8 +74,8 @@ class Customer_process extends CI_Controller {
 	public function customer_type_update()
 	{
 		$input = array(
-			'customer_type_id' => $this->input->post('customer_type_id'),
-			'customer_type_name' => $this->input->post('customer_type_name'),
+			'relate_id' => $this->input->post('customer_type_id'),
+			'relate_name' => $this->input->post('customer_type_name'),
 		);
 		$this->Customer_model->customer_type_update($input);
 		redirect('Admin/customer_type_list');

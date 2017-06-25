@@ -1,4 +1,4 @@
-    
+
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
@@ -36,11 +36,33 @@
           <input name="agent_email" type="text" required="required" class="form-control" id="agent_email" placeholder="กรอกอีเมล์">
         </div>
       </div>
-      
-      
+
+      <div class="form-group">
+        <div class="col-md-3">
+          <label class="control-label">ติดต่อ/ลิ้งค์</label>
+        </div>
+        <div class="col-md-3">
+          <input name="agent_link" type="text" class="form-control" placeholder="กรอกลิ้งค์ติดต่อ เช่น ลิ้งค์เฟสบุ๊ค">
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top:15px;">
+        <label class="col-md-3 control-label">ข้อมูลสำคัญ</label>
+        <div class="col-md-6">
+          <textarea name="agent_data" type="text" class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top:15px;">
+        <label class="col-md-3 control-label">Note/หมายเหตุ</label>
+        <div class="col-md-6">
+          <textarea name="agent_note" type="text" class="form-control"></textarea>
+        </div>
+      </div>
+
     </div>
   </div>
-  
+
   <div class="form-footer">
     <div class="form-group">
       <div class="col-md-9 col-md-offset-3">

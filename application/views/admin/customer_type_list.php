@@ -13,9 +13,9 @@
         <tbody>
         	<?php $i = 1 ?>
           <?php foreach($customer_Type as $row){ ?>
-          <tr style="cursor: pointer;" onclick="document.location = '<?php echo site_url('Admin/customer_type_update')?>/<?php echo $row['customer_type_id']?>';">
+          <tr style="cursor: pointer;" onclick="document.location = '<?php echo site_url('Admin/customer_type_update')?>/<?php echo $row['relate_id']?>';">
             <td align="center"><?php echo $i ?></td>
-            <td align="left"><?php echo $row['customer_type_name']?></td>
+            <td align="left"><?php echo $row['relate_name']?></td>
           </tr>
           <?php $i++ ?>
           <?php } ?>
