@@ -170,7 +170,7 @@
             <?php
              date_default_timezone_set('Asia/Bangkok');
              if (date('Y-m-d') == $row['product_date']): ?>
-            <img src="<?php echo BASE_URL('images/new.png')?>" style="width:40px">
+            <img src="<?php echo BASE_URL('images/new.gif')?>" style="width:40px">
             <?php endif; ?>
           </h3></a></figure>
           <div class="property-contents clearfix">
@@ -180,7 +180,13 @@
                   <img src="<?php echo BASE_URL('images/networklogo/'.$row['mobile_network_pic'])?>" style="height:30px;">
 
                 </h6>
-                <span class="property-location"><i class="fa fa-star" aria-hidden="true"></i> ส่งเสริมด้าน <br><?php echo $row['product_type']?></span> </div>
+                <span class="property-location"><i class="fa fa-star" aria-hidden="true"></i> ส่งเสริมด้าน <br>
+                  <?php if ($row['product_type'] != ''): ?>
+                    <?php echo $row['product_type']?>
+                    <?php else: ?>
+                      ไม่มี
+                  <?php endif; ?>
+                </span> </div>
               <button class="btn btn-default btn-price pull-right btn-3d" data-hover="฿<?php echo number_format($row['product_sale'])?>"><strong>฿<?php echo number_format($row['product_sale'])?></strong></button>
             </header>
             <div class="property-meta clearfix">

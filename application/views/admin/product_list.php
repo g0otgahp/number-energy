@@ -31,7 +31,7 @@
             <?php if (date('Y-m-d') == $product['product_date']): ?>
             <td>
               <?php echo $product['product_number']?>
-              <img src="<?php echo BASE_URL('images/new.png')?>" width="40px">
+              <img src="<?php echo BASE_URL('images/new.gif')?>" width="40px">
             </td>
             <?php else: ?>
             <td><?php echo $product['product_number']?></td>
@@ -93,7 +93,7 @@
             <?php if (date('Y-m-d') == $row['product_date']): ?>
             <td>
               <?php echo $row['product_number']?>
-              <img src="<?php echo BASE_URL('images/new.png')?>" width="40px">
+              <img src="<?php echo BASE_URL('images/new.gif')?>" width="40px">
             </td>
             <?php else: ?>
             <td><?php echo $row['product_number']?></td>

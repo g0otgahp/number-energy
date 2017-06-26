@@ -43,7 +43,7 @@
           <div class="form-group">
             <div class="col-md-9 col-md-offset-3">
               <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
-              <button type="button" class="btn btn-default">ยกเลิก</button>
+              <a href="<?php echo site_url('Admin/account_category_list')?>"><button type="button" class="btn btn-default">ยกเลิก</button></a>
             </div>
           </div>
         </div>

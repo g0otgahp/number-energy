@@ -17,7 +17,7 @@
               <th width="5%"><div align="center" style="font-size:11px;">ลำดับ</div></th>
               <th width="10%"><div align="right" style="font-size:11px;">เครือข่าย</div></th>
               <th><div align="right" style="font-size:11px;">หมายเลข</div></th>
-              <th><div align="right" style="font-size:11px;">รวมเบอร์</div></th>
+              <!-- <th><div align="right" style="font-size:11px;">รวมเบอร์</div></th> -->
               <th><div align="right" style="font-size:11px;">ต้นทุน</div></th>
               <th><div align="right" style="font-size:11px;">ราคาขาย</div></th>
               <th width="10%"><div align="right" style="font-size:9px;">ตัวแทนขาย</div></th>
@@ -33,7 +33,7 @@
                   <td align="center"><?php echo $i ?></td>
                   <td align="right"><?php echo $row['mobile_network_name']?></td>
                   <td align="right"><?php echo $row['import_number']?></td>
-                  <td align="right">[<?php echo $row['Count_number']?>]</td>
+                  <!-- <td align="right">[<?php echo $row['Count_number']?>]</td> -->
                   <td align="right"><?php echo number_format($row['import_cost'])?></td>
                   <td align="right"><span style="color:blue;"><?php echo number_format($row['import_price'])?></span></td>
                   <td align="right"><span style="font-size:11px;"><?php echo $row['agent_name']?></span></td>

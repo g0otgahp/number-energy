@@ -13,14 +13,15 @@
               <input name="story_name" type="text" class="form-control" placeholder="กรอกชื่อบทความ" required="required">
             </div>
           </div>
+
           <div class="form-group">
-            <div class="col-md-3">
-              <label class="control-label">รายละเอียดบทความ</label>
-            </div>
-            <div class="col-md-9">
-              <textarea name="story_detail" class="form-control"></textarea>
+            <div class="col-md-12">
+              <label class="">รายละเอียด</label>
+              <!-- <input name="actipromo_detail" type="text" class="form-control" id="actipromo_detail" placeholder="กรอกย่อหน้าแรก" required="required"> -->
+              <textarea name="story_detail" class="form-control" required="required">กรอกรายละเอียดที่นี่</textarea>
             </div>
           </div>
+
         </div>
       </div>
       <div class="form-footer">

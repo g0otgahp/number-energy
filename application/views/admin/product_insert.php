@@ -55,9 +55,17 @@
             <?php } ?>
           </select>
         </div>
-
-
       </div>
+      
+        <div class="form-group" style="margin-top:15px">
+          <div class="col-md-3">
+            <label class="control-label">Note/รายละเอียด</label>
+          </div>
+          <div class="col-md-4">
+              <textarea name="product_note" rows="5" cols="40" class="form-control" placeholder="หมายเหตุ"></textarea>
+          </div>
+        </div>
+
     </div>
   </div>
 

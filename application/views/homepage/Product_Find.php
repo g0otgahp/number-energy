@@ -126,10 +126,17 @@
                               <h6 class="entry-title">เครือข่าย
                                 <img src="<?php echo BASE_URL('images/networklogo/'.$row['mobile_network_pic'])?>" style="height:30px;">
                               </h6>
-                              <span class="property-location"><i class="fa fa-star" aria-hidden="true"></i> ส่งเสริมด้าน <br><?php echo $row['product_type']?></span> </div>
+                              <span class="property-location"><i class="fa fa-star" aria-hidden="true"></i> ส่งเสริมด้าน <br>
+                                <?php if ($row['product_type'] != ''): ?>
+                                  <?php echo $row['product_type']?>
+                                  <?php else: ?>
+                                    ไม่มี
+                                <?php endif; ?>
+                              </span> </div>
                             <button class="btn btn-default btn-price pull-right btn-3d" data-hover="฿<?php echo number_format($row['product_sale'])?>"><strong>฿<?php echo number_format($row['product_sale'])?></strong></button>
                             </header>
-                            <div class="property-meta clearfix"> <span><i class="fa fa-calculator"></i> ผลรวมของเบอร์ (<?php echo $row['Count_number']?>)</span> <span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> อัพเดทวันที่ <?php echo $row['product_date']?></span>
+                            <div class="property-meta clearfix">
+                            <span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> อัพเดทวันที่ <?php echo $row['product_date']?></span>
                             </div>
                           </div>
                         </article>

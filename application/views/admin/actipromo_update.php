@@ -47,13 +47,13 @@
       <div class="form-group">
         <label class="col-md-3 control-label">วันที่เริ่มต้น</label>
         <div class="col-md-4">
-          <input name="actipromo_date" type="text" class="form-control datepicker"  required="required" value="<?php echo $actipromo[0]['actipromo_date']?>">
+          <input name="actipromo_date" type="text" class="form-control datepicker"  required="required" placeholder="กรอกวันที่เริ่มต้น" value="<?php echo $actipromo[0]['actipromo_date']?>">
         </div>
       </div>
       <div class="form-group">
             <label class="col-md-3 control-label">วันที่สิ้นสุด</label>
             <div class="col-md-4">
-              <input name="actipromo_date_end" type="text" class="form-control datepicker"  required="required" value="<?php echo $actipromo[0]['actipromo_date_end']?>">
+              <input name="actipromo_date_end" type="text" class="form-control datepicker"  required="required" placeholder="กรอกวันที่สิ้นสุด" value="<?php echo $actipromo[0]['actipromo_date_end']?>">
             </div>
       </div>
       <div class="form-group">

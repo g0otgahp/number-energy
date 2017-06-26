@@ -28,7 +28,7 @@
           <label class="control-label">วันที่</label>
         </div>
         <div class="col-md-2">
-          <input name="account_date_day" class="form-control btn btn-default" type="text" id="datepicker" readonly/>
+          <input name="account_date_day" class="form-control btn btn-default datepicker" type="text" placeholder="กรอกวันที่"/>
         </div>
       </div>
       <div class="form-group">

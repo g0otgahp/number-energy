@@ -1,4 +1,4 @@
-    
+
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
@@ -38,7 +38,7 @@
           <input name="dmn_user_password" type="password" required="required" class="form-control" id="dmn_user_password" placeholder="กรอกรหัสผ่าน">
         </div>
       </div>
-      
+
       <div class="form-group">
         <div class="col-md-3">
           <label class="control-label">ระดับการใช้งาน</label>
@@ -51,17 +51,17 @@
             <?php } ?>
           </select>
         </div>
-        
-        
+
+
       </div>
     </div>
   </div>
-  
+
   <div class="form-footer">
     <div class="form-group">
       <div class="col-md-9 col-md-offset-3">
         <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
-        <button type="button" class="btn btn-default">ยกเลิก</button>
+        <a href="<?php echo site_url('Admin/employees_list')?>"><button type="button" class="btn btn-default">ยกเลิก</button></a>
       </div>
     </div>
   </div>

@@ -226,6 +226,7 @@ class Product_process extends CI_Controller {
 			'product_type' => $tmoney.$twork.$tcharm.$tluck.$twisdom,
 			'product_date' => date('Y-m-d'),
 			'product_time' => date('H:i:s'),
+			'product_note' => $this->input->post('product_note'),
 		);
 
 		$TrashNumber = array(

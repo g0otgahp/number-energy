@@ -49,14 +49,14 @@
       <div class="form-group" style="margin-top:15px;">
         <label class="col-md-3 control-label">ข้อมูลสำคัญ</label>
         <div class="col-md-6">
-          <textarea name="agent_data" type="text" class="form-control"><?php echo $agent[0]['agent_data']?></textarea>
+          <textarea name="agent_data" type="text" class="form-control" placeholder="ข้อมูลสำคัญ"><?php echo $agent[0]['agent_data']?></textarea>
         </div>
       </div>
 
       <div class="form-group" style="margin-top:15px;">
         <label class="col-md-3 control-label">Note/หมายเหตุ</label>
         <div class="col-md-6">
-          <textarea name="agent_note" type="text" class="form-control"><?php echo $agent[0]['agent_note']?></textarea>
+          <textarea name="agent_note" type="text" class="form-control" placeholder="หมายเหตุ"><?php echo $agent[0]['agent_note']?></textarea>
         </div>
       </div>
 

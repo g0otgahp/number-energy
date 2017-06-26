@@ -121,14 +121,14 @@
                 <div class="form-group" style="margin-top:15px;">
                   <label class="col-md-3 control-label">ที่อยู่</label>
                   <div class="col-md-6">
-                    <textarea name="customer_address" type="text" class="form-control"></textarea>
+                    <textarea name="customer_address" type="text" class="form-control" placeholder="กรอกที่อยู่"></textarea>
                   </div>
                 </div>
 
                 <div class="form-group" style="margin-top:15px;">
                   <label class="col-md-3 control-label">Note/หมายเหตุ</label>
                   <div class="col-md-6">
-                    <textarea name="customer_note" type="text" class="form-control"></textarea>
+                    <textarea name="customer_note" type="text" class="form-control" placeholder="หมายเหตุ"></textarea>
                   </div>
                 </div>
               </div>

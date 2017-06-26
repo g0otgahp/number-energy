@@ -27,10 +27,12 @@
     <img class="icon" src="<?php echo BASE_URL('images/networklogo/'.$row['mobile_network_pic'])?>"style="width:175px; height:50px;">
     <!-- <i class="icon fa fa-shopping-basket fa-4x"></i> -->
     <div class="content">
-      <div class="title">จำนวนเบอร์ <?php echo $row['mobile_network_name'] ?> ในระบบ</div>
+      <div class="title"><?php echo $row['mobile_network_name'] ?> คงเหลือในระบบ</div>
       <div class="value" style="font-size:30px;">
         <?php
         $this->db->where('product_mobile_network',$row['mobile_network_id']);
+        $this->db->where('product_status',1);
+
         echo number_format($this->db->count_all_results('dmn_product'));
         ?>
         <span class="sign">เบอร์</span></div>

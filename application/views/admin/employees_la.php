@@ -25,7 +25,7 @@
           <label class="control-label">วันที่ลา</label>
         </div>
         <div class="col-md-3">
-          <input name="employees_date_t" type="text" required="required" class="form-control datepicker">
+          <input name="employees_date_t" type="text" required="required" placeholder="กรอกวันที่" class="form-control datepicker">
         </div>
       </div>
       <div class="form-group">
@@ -33,7 +33,7 @@
           <label class="control-label">ถึง</label>
         </div>
         <div class="col-md-3">
-          <input name="employees_date_n" type="text" required="required" class="form-control datepicker">
+          <input name="employees_date_n" type="text" required="required" placeholder="กรอกวันที่" class="form-control datepicker">
         </div>
       </div>
       <div class="form-group">
@@ -41,7 +41,7 @@
           <label class="control-label">เหตุผลการลา</label>
         </div>
         <div class="col-md-6">
-          <input name="log_la_note" type="text" class="form-control">
+          <input name="log_la_note" type="text" placeholder="กรอกเหตุผล" class="form-control">
         </div>
       </div>
     </div>

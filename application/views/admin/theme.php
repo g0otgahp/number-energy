@@ -385,7 +385,6 @@
     });
   </script>
 
-
   <!-- TinyMCE -->
   <script type="text/javascript" src="<?php echo base_url()?>theme/tinymce/tinymce/tinymce.min.js"></script>
   <script>

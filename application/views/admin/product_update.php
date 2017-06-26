@@ -115,7 +115,7 @@
           <label class="control-label">Note/รายละเอียด</label>
         </div>
         <div class="col-md-4">
-            <textarea name="product_note" rows="5" cols="40" class="form-control"><?php echo $product[0]['product_note']?></textarea>
+            <textarea name="product_note" rows="5" cols="40" class="form-control" placeholder="หมายเหตุ"><?php echo $product[0]['product_note']?></textarea>
         </div>
       </div>
 

@@ -49,14 +49,14 @@
       <div class="form-group" style="margin-top:15px;">
         <label class="col-md-3 control-label">ข้อมูลสำคัญ</label>
         <div class="col-md-6">
-          <textarea name="agent_data" type="text" class="form-control"></textarea>
+          <textarea name="agent_data" type="text" class="form-control" placeholder="ข้อมูลสำคัญ"></textarea>
         </div>
       </div>
 
       <div class="form-group" style="margin-top:15px;">
         <label class="col-md-3 control-label">Note/หมายเหตุ</label>
         <div class="col-md-6">
-          <textarea name="agent_note" type="text" class="form-control"></textarea>
+          <textarea name="agent_note" type="text" class="form-control" placeholder="หมายเหตุ"></textarea>
         </div>
       </div>
 
@@ -67,7 +67,7 @@
     <div class="form-group">
       <div class="col-md-9 col-md-offset-3">
         <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
-        <button type="button" class="btn btn-default">ยกเลิก</button>
+        <a href="<?php echo site_url('Admin/agent_list')?>"><button type="button" class="btn btn-default">ยกเลิก</button></a>
       </div>
     </div>
   </div>

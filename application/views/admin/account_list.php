@@ -8,9 +8,10 @@
           <tr>
             <th><div align="center">ลำดับ</div></th>
             <th><div align="center">วันที่</div></th>
-            <th><div align="center">ประเภทบัญชี</div></th>
+            <!-- <th><div align="center">ประเภทบัญชี</div></th> -->
             <th><div align="center">รหัสบัญชี</div></th>
             <th><div align="center">รายการ</div></th>
+            <th><div align="right">รายละเอียด</div></th>
             <th><div align="center">รายรับ</div></th>
             <th><div align="center">รายจ่าย</div></th>
           </tr>
@@ -31,8 +32,9 @@
             <td align="center"><?php echo $i ?></td>
             <td><?php echo $account['account_date']?></td>
             <td><?php echo $account['account_type_name']?></td>
-            <td><?php echo $account['account_category_code']?></td>
+            <!-- <td><?php echo $account['account_category_code']?></td> -->
             <td><?php echo $account['account_category_list']?></td>
+            <td><?php echo $account['account_detail']?></td>
             <td align="right"><?php echo number_format($quantity1,2) ?> บาท</td>
             <td align="right"><?php echo number_format($quantity2,2) ?> บาท</td>
           </tr>

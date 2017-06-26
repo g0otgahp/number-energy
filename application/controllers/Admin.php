@@ -326,7 +326,7 @@ class Admin extends CI_Controller {
 		$data['agent'] = $this->Agent_model->agent_list();
 
 		$data['page'] = "admin/product_insert";
-		$this->load->view('admin/theme',$data);
+		$this->load->view('admin/theme_notextarea',$data);
 	}
 	public function product_update()
 	{

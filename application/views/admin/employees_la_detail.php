@@ -9,6 +9,12 @@
   <div class="section">
     <div class="section-body">
       <div class="form-group">
+        <label class="col-md-3 control-label"></label>
+        <div class="col-md-3">
+          <span style="color:red;">ลาเรียบร้อยแล้ว</span>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:15px;">
         <label class="col-md-3 control-label">รหัสพนักงาน</label>
         <div class="col-md-3">
           <input type="text" required="required" class="form-control" value="EN - <?php echo $la_detail[0]['employees_id']?>" readonly="readonly">
@@ -56,6 +62,15 @@
         </div>
         <div class="col-md-6">
           <input name="log_la_note" type="text" class="form-control"value="<?php echo $la_detail[0]['log_la_note']?>" readonly="readonly">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-3">
+          <label class="control-label"></label>
+        </div>
+        <div class="col-md-6">
+          <a href="<?php echo site_url('Admin/employees_update/'.$la_detail[0]['employees_sc'])?>"><button type="button" class="btn btn-primary">ย้อนกลับ</button></a>
         </div>
       </div>
 

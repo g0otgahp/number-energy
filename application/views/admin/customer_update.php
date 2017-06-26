@@ -133,17 +133,17 @@
 			<div class="form-group" style="margin-top:15px;">
 				<label class="col-md-3 control-label">ที่อยู่</label>
 				<div class="col-md-6">
-					<textarea name="customer_address" type="text" class="form-control"><?php echo $customer[0]['customer_address']?></textarea>
+					<textarea name="customer_address" type="text" class="form-control" placeholder="กรอกที่อยู่"><?php echo $customer[0]['customer_address']?></textarea>
 				</div>
 			</div>
 
 			<div class="form-group" style="margin-top:15px;">
 				<label class="col-md-3 control-label">Note/หมายเหตุ</label>
 				<div class="col-md-6">
-					<textarea name="customer_note" type="text" class="form-control"><?php echo $customer[0]['customer_note']?></textarea>
+					<textarea name="customer_note" type="text" class="form-control" placeholder="หมายเหตุ"><?php echo $customer[0]['customer_note']?></textarea>
 				</div>
 			</div>
-			
+
         </div>
       </div>
       <div class="form-footer">

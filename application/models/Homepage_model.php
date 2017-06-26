@@ -23,9 +23,7 @@ class Homepage_model extends CI_Model {
 		->where('product_requiment',1)
 		->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network')
 		->get('dmn_product',30)->result_array();
-
-		$info = $this->Count_number($data);
-		return $info;
+		return $data;
 	}
 
 	public function Product_by_Network($id)
@@ -36,8 +34,7 @@ class Homepage_model extends CI_Model {
 		->where('mobile_network_id', $id)
 		->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network')
 		->get('dmn_product')->result_array();
-		$info = $this->Count_number($data);
-		return $info;
+		return $data;
 	}
 
 	public function Product_Find($input)
@@ -86,8 +83,7 @@ class Homepage_model extends CI_Model {
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$data = $this->db->get('dmn_product')->result_array();
 
-		$info = $this->Count_number($data);
-		return $info;
+		return $data;
 	}
 
 

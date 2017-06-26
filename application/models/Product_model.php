@@ -73,8 +73,7 @@ class Product_model extends CI_Model {
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
 		$query = $this->db->get('dmn_product',300)->result_array();
-		$info = $this->Homepage_model->Count_number($query);
-		return $info;
+		return $query;
 	}
 
 	public function product_list_saled()
@@ -84,8 +83,7 @@ class Product_model extends CI_Model {
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
 		$query = $this->db->get('dmn_product',300)->result_array();
-		$info = $this->Homepage_model->Count_number($query);
-		return $info;
+		return $query;
 	}
 
 	public function product_trash_list()
@@ -95,8 +93,7 @@ class Product_model extends CI_Model {
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
 		$query = $this->db->get('dmn_product',300)->result_array();
-		$info = $this->Homepage_model->Count_number($query);
-		return $info;
+		return $query;
 	}
 	public function product_insert($input)
 	{
@@ -113,8 +110,7 @@ class Product_model extends CI_Model {
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
 		$query = $this->db->get('dmn_product')->result_array();
-		$info = $this->Homepage_model->Count_number($query);
-		return $info;
+		return $query;
 	}
 	public function product_book_detail($product_id)
 	{
@@ -126,9 +122,8 @@ class Product_model extends CI_Model {
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
 		$query = $this->db->get('dmn_log')->result_array();
-		$info = $this->Homepage_model->Count_number($query);
 		// $this->debuger->prevalue($info);
-		return $info;
+		return $query;
 	}
 
 	public function product_log()
@@ -224,9 +219,7 @@ class Product_model extends CI_Model {
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_import_tmp.import_network_id');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_import_tmp.import_agent_id');
 		$query = $this->db->get('dmn_import_tmp')->result_array();
-
-		$info = $this->Count_number_import($query);
-		return $info;
+		return $query;
 	}
 
 	public function Count_number_import($data)
