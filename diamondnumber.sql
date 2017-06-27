@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2017 at 09:21 PM
+-- Generation Time: Jun 27, 2017 at 11:52 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -185,17 +185,18 @@ CREATE TABLE `dmn_agent` (
   `agent_email` varchar(200) NOT NULL,
   `agent_link` varchar(100) NOT NULL,
   `agent_data` varchar(255) NOT NULL,
-  `agent_note` varchar(255) NOT NULL
+  `agent_note` varchar(255) NOT NULL,
+  `agent_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `dmn_agent`
 --
 
-INSERT INTO `dmn_agent` (`agent_id`, `agent_code`, `agent_name`, `agent_tel`, `agent_email`, `agent_link`, `agent_data`, `agent_note`) VALUES
-(1, '001', 'สมชาย', '0802929291', 'dfdfo@ad.com', '', '', ''),
-(4, '12', 'sdasda', 'dasda', 'sdasfsa', '', '', ''),
-(5, '005', 'สมควร', '0886665412', 'somkua@gmail.com', '', '', '');
+INSERT INTO `dmn_agent` (`agent_id`, `agent_code`, `agent_name`, `agent_tel`, `agent_email`, `agent_link`, `agent_data`, `agent_note`, `agent_status`) VALUES
+(1, '001', 'สมชาย', '0802929291', 'dfdfo@ad.com', '', '', '', 1),
+(4, '12', 'sdasda', 'dasda', 'sdasfsa', '', '', '', 1),
+(5, '005', 'สมควร', '0886665412', 'somkua@gmail.com', '', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -214,15 +215,16 @@ CREATE TABLE `dmn_customer` (
   `customer_relate` int(11) NOT NULL,
   `customer_link` varchar(100) NOT NULL,
   `customer_address` varchar(255) NOT NULL,
-  `customer_note` varchar(255) NOT NULL
+  `customer_note` varchar(255) NOT NULL,
+  `customer_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `dmn_customer`
 --
 
-INSERT INTO `dmn_customer` (`customer_id`, `customer_name`, `customer_tel`, `customer_email`, `customer_sex`, `customer_birthday`, `customer_job`, `customer_relate`, `customer_link`, `customer_address`, `customer_note`) VALUES
-(1, 'ชัยวัฒน์ ชยพาณิชย์สกุล', '0845081615', 'amoolras@gmail.com', 1, '1989-12-26', 'นักวิเคราะห์', 1, '', '', 'จองเบอร์ 080 889xxx');
+INSERT INTO `dmn_customer` (`customer_id`, `customer_name`, `customer_tel`, `customer_email`, `customer_sex`, `customer_birthday`, `customer_job`, `customer_relate`, `customer_link`, `customer_address`, `customer_note`, `customer_status`) VALUES
+(1, 'ชัยวัฒน์ ชยพาณิชย์สกุล', '0845081615', 'amoolras@gmail.com', 1, '1989-12-26', 'นักวิเคราะห์', 1, '', '', 'จองเบอร์ 080 889xxx', 1);
 
 -- --------------------------------------------------------
 
@@ -272,16 +274,19 @@ CREATE TABLE `dmn_employees` (
   `employees_id` int(11) NOT NULL,
   `employees_name` varchar(300) NOT NULL,
   `employees_tel` varchar(20) NOT NULL,
-  `employees_secretcode` varchar(100) NOT NULL
+  `employees_secretcode` varchar(100) NOT NULL,
+  `employees_salary_type` int(11) NOT NULL,
+  `employees_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `dmn_employees`
 --
 
-INSERT INTO `dmn_employees` (`employees_id`, `employees_name`, `employees_tel`, `employees_secretcode`) VALUES
-(1, 'ชัยวัฒน์', '0856081615', '4dff58e4ce631fa98e850c91e903a0d4'),
-(2, 'พนักงานสต๊อกกลาง', '0856081615', '595d84c413b3df61c84603be140b2830');
+INSERT INTO `dmn_employees` (`employees_id`, `employees_name`, `employees_tel`, `employees_secretcode`, `employees_salary_type`, `employees_status`) VALUES
+(1, 'ชัยวัฒน์', '0856081615', '4dff58e4ce631fa98e850c91e903a0d4', 1, 1),
+(2, 'พนักงานสต๊อกกลาง', '0856081615', '595d84c413b3df61c84603be140b2830', 2, 1),
+(3, 'ธีรเดช บุญนภา', '0804805243', '58d22c69acb583ee2fcbcd88a7778d19', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -332,7 +337,8 @@ INSERT INTO `dmn_import_tmp` (`import_id`, `import_round`, `import_network_id`, 
 (3, 1, 1, '0928321229', 1200, 2900, 1, 'การเงิน เสน่ห์ โชคลาภ ', 1),
 (4, 1, 2, '0804805243', 1250, 3000, 1, 'การเงิน เสน่ห์ ', 1),
 (5, 1, 3, '0821551290', 11000, 20000, 1, 'การเงิน เสน่ห์ โชคลาภ ปัญญา', 1),
-(6, 1, 2, '0801551289', 11500, 21000, 1, 'การเงิน การงาน เสน่ห์ โชคลาภ ปัญญา', 1);
+(6, 1, 2, '0801551289', 11500, 21000, 1, 'การเงิน การงาน เสน่ห์ โชคลาภ ปัญญา', 1),
+(7, 2, 1, '0809999999', 500, 1800, 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -343,16 +349,17 @@ INSERT INTO `dmn_import_tmp` (`import_id`, `import_round`, `import_network_id`, 
 CREATE TABLE `dmn_level` (
   `dmn_level_id` int(11) NOT NULL,
   `dmn_level_name` varchar(100) NOT NULL,
-  `dmn_level_salary` int(11) NOT NULL
+  `dmn_level_salary` int(11) NOT NULL,
+  `dmn_level_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `dmn_level`
 --
 
-INSERT INTO `dmn_level` (`dmn_level_id`, `dmn_level_name`, `dmn_level_salary`) VALUES
-(1, 'ผู้ดูแลระบบ', 15000),
-(2, 'พนักงานขาย', 9000);
+INSERT INTO `dmn_level` (`dmn_level_id`, `dmn_level_name`, `dmn_level_salary`, `dmn_level_status`) VALUES
+(1, 'ผู้ดูแลระบบ', 15000, 1),
+(2, 'พนักงานขาย', 9000, 1);
 
 -- --------------------------------------------------------
 
@@ -409,7 +416,9 @@ CREATE TABLE `dmn_log_la` (
 
 INSERT INTO `dmn_log_la` (`log_la_id`, `employees_sc`, `log_la_date_start`, `log_la_date_end`, `log_la_day`, `log_la_hour`, `log_la_note`) VALUES
 (1, '595d84c413b3df61c84603be140b2830', '2017-06-23 19:00:00', '2017-06-23 20:00:00', 0, 1, 'ป่วย'),
-(2, '595d84c413b3df61c84603be140b2830', '2017-06-23 19:00:00', '2017-06-23 23:00:00', 0, 4, 'ซื้อของเข้าบ้าน');
+(2, '595d84c413b3df61c84603be140b2830', '2017-06-23 19:00:00', '2017-06-23 23:00:00', 0, 4, 'ซื้อของเข้าบ้าน'),
+(3, '595d84c413b3df61c84603be140b2830', '2017-06-05 17:51:00', '2017-06-07 17:51:00', 2, 0, '555'),
+(4, '595d84c413b3df61c84603be140b2830', '2017-06-01 15:47:00', '2017-06-02 15:47:00', 1, 0, 'เอื้ออ');
 
 -- --------------------------------------------------------
 
@@ -421,17 +430,18 @@ CREATE TABLE `dmn_mobile_network` (
   `mobile_network_id` int(11) NOT NULL,
   `mobile_network_code` varchar(100) NOT NULL,
   `mobile_network_name` varchar(200) NOT NULL,
-  `mobile_network_pic` varchar(20) NOT NULL DEFAULT 'no_pic.png'
+  `mobile_network_pic` varchar(20) NOT NULL DEFAULT 'no_pic.png',
+  `mobile_network_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `dmn_mobile_network`
 --
 
-INSERT INTO `dmn_mobile_network` (`mobile_network_id`, `mobile_network_code`, `mobile_network_name`, `mobile_network_pic`) VALUES
-(1, '001', 'AIS', '20170512092821.jpg'),
-(2, '002', 'Dtac', '20170512092825.jpg'),
-(3, '003', 'TRUE', '20170512092828.jpg');
+INSERT INTO `dmn_mobile_network` (`mobile_network_id`, `mobile_network_code`, `mobile_network_name`, `mobile_network_pic`, `mobile_network_status`) VALUES
+(1, '001', 'AIS', '20170512092821.jpg', 1),
+(2, '002', 'Dtac', '20170512092825.jpg', 1),
+(3, '003', 'TRUE', '20170512092828.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -466,8 +476,9 @@ INSERT INTO `dmn_product` (`product_id`, `product_round`, `product_mobile_networ
 (2, 1, 2, '0829191919', '0000-00-00', 550, 1900, 1, '2017-05-26', '05:48:49', '0000-00-00', 'การเงิน การงาน เสน่ห์ โชคลาภ ', 1, 0, ''),
 (7, 0, 1, '0811919191', '0000-00-00', 500, 1800, 1, '2017-05-26', '05:59:41', '0000-00-00', 'การเงิน การงาน เสน่ห์ โชคลาภ ', 1, 0, 'facebook 555+'),
 (8, 0, 1, '0889551935', '0000-00-00', 5000, 8900, 1, '2017-06-19', '20:16:01', '0000-00-00', 'การเงิน การงาน เสน่ห์ โชคลาภ ปัญญา', 1, 0, '65456456'),
-(9, 0, 1, '0809999999', '0000-00-00', 2000, 15000, 1, '2017-06-20', '16:10:17', '2017-06-21', 'โชคลาภ ', 1, 1, 'facebook : 456'),
-(10, 0, 2, '0808888888', '0000-00-00', 5000, 8900, 5, '2017-06-20', '16:48:00', '0000-00-00', '', 2, 0, '');
+(9, 0, 1, '0809999999', '0000-00-00', 2000, 15000, 1, '2017-06-20', '16:10:17', '2017-06-21', '', 1, 1, 'facebook : 456'),
+(10, 0, 2, '0808888888', '0000-00-00', 5000, 8900, 5, '2017-06-20', '16:48:00', '0000-00-00', '', 2, 0, ''),
+(11, 2, 1, '0809999999', '0000-00-00', 500, 1800, 1, '2017-06-26', '16:40:42', '0000-00-00', '', 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -499,18 +510,19 @@ INSERT INTO `dmn_product_type` (`product_type_id`, `product_type_name`) VALUES
 
 CREATE TABLE `dmn_relate` (
   `relate_id` int(11) NOT NULL,
-  `relate_name` varchar(300) NOT NULL
+  `relate_name` varchar(300) NOT NULL,
+  `relate_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `dmn_relate`
 --
 
-INSERT INTO `dmn_relate` (`relate_id`, `relate_name`) VALUES
-(1, 'ผู้มีปฏิสัมพันธ์ที่ดี'),
-(2, 'ผู้ตอบรับ กิจกรรม/โปรโมชั่น/แนะนำสินค้า'),
-(3, 'ลูกค้าทั่วไป'),
-(4, 'ลูกค้าคนสำคัญ');
+INSERT INTO `dmn_relate` (`relate_id`, `relate_name`, `relate_status`) VALUES
+(1, 'ผู้มีปฏิสัมพันธ์ที่ดี', 1),
+(2, 'ผู้ตอบรับ กิจกรรม/โปรโมชั่น/แนะนำสินค้า', 1),
+(3, 'ลูกค้าทั่วไป', 1),
+(4, 'ลูกค้าคนสำคัญ', 1);
 
 -- --------------------------------------------------------
 
@@ -530,7 +542,28 @@ CREATE TABLE `dmn_round` (
 --
 
 INSERT INTO `dmn_round` (`round_id`, `round_round`, `round_agent_id`, `round_datetime`) VALUES
-(2, 1, 1, '2017-05-26 05:48:44');
+(2, 1, 1, '2017-05-26 05:48:44'),
+(3, 2, 0, '2017-06-26 16:33:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dmn_salary`
+--
+
+CREATE TABLE `dmn_salary` (
+  `dmn_salary_id` int(11) NOT NULL,
+  `dmn_salary_day` int(11) NOT NULL,
+  `dmn_salary_time` int(11) NOT NULL,
+  `dmn_salary_comission` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `dmn_salary`
+--
+
+INSERT INTO `dmn_salary` (`dmn_salary_id`, `dmn_salary_day`, `dmn_salary_time`, `dmn_salary_comission`) VALUES
+(1, 310, 35, 100);
 
 -- --------------------------------------------------------
 
@@ -582,7 +615,8 @@ CREATE TABLE `dmn_user` (
 INSERT INTO `dmn_user` (`dmn_user_id`, `dmn_user_username`, `dmn_user_password`, `dmn_user_level`, `dmn_user_secretcode`, `dmn_user_status`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'd0f8ba36753dadc3020dd3392f838e95', 1),
 (2, 'amoolras@gmail.com', '97db1846570837fce6ff62a408f1c26a', 2, '4dff58e4ce631fa98e850c91e903a0d4', 1),
-(3, 'info@esanstudio.com', 'asdasd', 1, '595d84c413b3df61c84603be140b2830', 1);
+(3, 'info@esanstudio.com', 'asdasd', 1, '595d84c413b3df61c84603be140b2830', 1),
+(4, 'tuna_sang@hotmail.com', '16ab909a2d5d874ffb6f0a27158ed536', 1, '58d22c69acb583ee2fcbcd88a7778d19', 1);
 
 --
 -- Indexes for dumped tables
@@ -715,6 +749,12 @@ ALTER TABLE `dmn_round`
   ADD PRIMARY KEY (`round_id`);
 
 --
+-- Indexes for table `dmn_salary`
+--
+ALTER TABLE `dmn_salary`
+  ADD PRIMARY KEY (`dmn_salary_id`);
+
+--
 -- Indexes for table `dmn_story`
 --
 ALTER TABLE `dmn_story`
@@ -754,7 +794,7 @@ ALTER TABLE `dmn_account_type`
 -- AUTO_INCREMENT for table `dmn_actipromo`
 --
 ALTER TABLE `dmn_actipromo`
-  MODIFY `actipromo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `actipromo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `dmn_actipromo_type`
 --
@@ -784,7 +824,7 @@ ALTER TABLE `dmn_customer_type`
 -- AUTO_INCREMENT for table `dmn_employees`
 --
 ALTER TABLE `dmn_employees`
-  MODIFY `employees_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `employees_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `dmn_general_config`
 --
@@ -794,7 +834,7 @@ ALTER TABLE `dmn_general_config`
 -- AUTO_INCREMENT for table `dmn_import_tmp`
 --
 ALTER TABLE `dmn_import_tmp`
-  MODIFY `import_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `import_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `dmn_level`
 --
@@ -809,7 +849,7 @@ ALTER TABLE `dmn_log`
 -- AUTO_INCREMENT for table `dmn_log_la`
 --
 ALTER TABLE `dmn_log_la`
-  MODIFY `log_la_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `log_la_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `dmn_mobile_network`
 --
@@ -819,7 +859,7 @@ ALTER TABLE `dmn_mobile_network`
 -- AUTO_INCREMENT for table `dmn_product`
 --
 ALTER TABLE `dmn_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `dmn_product_type`
 --
@@ -829,12 +869,17 @@ ALTER TABLE `dmn_product_type`
 -- AUTO_INCREMENT for table `dmn_relate`
 --
 ALTER TABLE `dmn_relate`
-  MODIFY `relate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `relate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `dmn_round`
 --
 ALTER TABLE `dmn_round`
-  MODIFY `round_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `round_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `dmn_salary`
+--
+ALTER TABLE `dmn_salary`
+  MODIFY `dmn_salary_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `dmn_story`
 --
@@ -844,7 +889,7 @@ ALTER TABLE `dmn_story`
 -- AUTO_INCREMENT for table `dmn_user`
 --
 ALTER TABLE `dmn_user`
-  MODIFY `dmn_user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `dmn_user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
