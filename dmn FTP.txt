@@ -1,6 +1,8 @@
-150.107.29.179
-
+119.59.120.23:2002
 pokemon@number-energy.com
+md5password
 
-md5(password)
-5f4dcc3b5aa765d61d8327deb882cf99
+www.number-energy.com/phpmyadmin
+
+User : esanstud_numberenergy
+Pwd : 1q2w3e4r5t

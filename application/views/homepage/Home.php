@@ -11,7 +11,7 @@
         <div class="contents clearfix">
           <p style="font-size:20px;"><?php echo $Config[0]['general_config_txt_bot']?></p>
         </div>
-        <a class="btn btn-warning btn-lg btn-3d" data-hover="สินค้าทั้งหมด" href="#product_list" role="button">สินค้าทั้งหมด</a> <a class="btn btn-default btn-border btn-lg" href="<?php echo SITE_URL('service')?>" role="button">ปรึกษาเรา</a> </div>
+        <a class="btn btn-warning btn-lg btn-3d" data-hover="สินค้าแนะนำ" href="#product_list" role="button">สินค้าแนะนำ</a> <a class="btn btn-default btn-border btn-lg" href="<?php echo SITE_URL('service')?>" role="button">ปรึกษาเรา</a> </div>
     </div>
   </div>
 </div>
@@ -37,7 +37,7 @@
 
         </select>
         <select name="product_type">
-          <option value=" ">--- เลือกด้านที่ส่งเสริม ---</option>
+          <option value="">--- เลือกด้านที่ส่งเสริม ---</option>
           <?php foreach ($Product_Type as $row): ?>
               <option value="<?php echo $row['product_type_name']?>"><?php echo $row['product_type_name']?></option>
           <?php endforeach; ?>

@@ -57,9 +57,8 @@
               <select name="product_requiment" id="property-sub-location">
                 <?php if ($filter['product_requiment'] !=''): ?>
                 <option value="<?php echo $filter['product_requiment']?>"><?php echo $filter['product_requiment']?></option>
-                <?php else: ?>
-                <option value="">-- เลขแนะนำ --</option>
                 <?php endif; ?>
+                <option value="">ทั้งหมด</option>
                 <option value="789" >789</option>
                 <option value="289" >289</option>
                 <option value="456" >456</option>
@@ -73,14 +72,14 @@
               <select name="product_price">
                 <?php if (@$filter['product_price'] != ''): ?>
 
-                <?php if ($filter['product_price'] == ASC): ?>
+                  <?php if ($filter['product_price'] == ASC): ?>
                   <option value="$filter['product_price']">ต่ำ - สูง</option>
-                <?php elseif($filter['product_price'] == DESC): ?>
+                  <?php elseif($filter['product_price'] == DESC): ?>
                   <option value="$filter['product_price']">สูง - ต่ำ</option>
-                <?php endif; ?>
-                <option value="">-- เรียงราคา --</option>
+                  <?php endif; ?>
+                  <option value="">ไม่เรียงราคา</option>
                 <?php else: ?>
-                <option value="">-- เรียงราคา --</option>
+                <option value="">ไม่เรียงราคา</option>
                 <?php endif; ?>
                 <option value="ASC" >ต่ำ - สูง</option>
                 <option value="DESC" >สูง - ต่ำ</option>
