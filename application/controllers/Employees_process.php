@@ -24,8 +24,10 @@ class Employees_process extends CI_Controller {
 		$employees = array(
 			'employees_name' => $this->input->post('employees_name'),
 			'employees_tel' => $this->input->post('employees_tel'),
-			'employees_secretcode' => $secretcode
+			'employees_salary_type' => $this->input->post('employees_salary_type'),
+			'employees_secretcode' => $secretcode,
 		);
+
 		$this->Employees_model->user_insert($user);
 		$this->Employees_model->employees_insert($employees);
 		redirect('Admin/employees_list');
@@ -53,6 +55,7 @@ class Employees_process extends CI_Controller {
 			'employees_name' => $this->input->post('employees_name'),
 			'employees_tel' => $this->input->post('employees_tel'),
 			'employees_secretcode' => $this->input->post('secretcode'),
+			'employees_salary_type' => $this->input->post('employees_salary_type'),
 		);
 		$this->Employees_model->employees_update($employees);
 		$this->Employees_model->user_update($user);

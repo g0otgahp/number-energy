@@ -113,7 +113,7 @@ $month =  array(
 			<td height="30" align="right"><?php echo @number_format($employees_salary[0]['dmn_level_salary'],2)?> บาท</td>
     </tr>
 
-		<?php $comission = $employees_salary[0]['comission']*100?>
+		<?php $comission = $employees_salary[0]['comission']*$salary[0]['dmn_salary_comission']?>
 		<tr>
 			<td height="30" align="center">2</td>
 			<td height="30" style="padding-left:1%;">ค่านายหน้า</td>
@@ -121,7 +121,7 @@ $month =  array(
 			<td height="30" align="right"><?php echo @number_format($comission,2)?> บาท</td>
 		</tr>
 
-		<?php $day = $employees_salary[0]['day']*300?>
+		<?php $day = $employees_salary[0]['day']*$salary[0]['dmn_salary_day'] ?>
 		<tr>
       <td height="30" align="center">3</td>
       <td height="30" style="padding-left:1%;">หักวันลางาน / วัน</td>
@@ -129,7 +129,8 @@ $month =  array(
 			<td height="30" align="right"><?php echo @number_format($day,2)?> บาท</td>
     </tr>
 
-		<?php $time = $employees_salary[0]['time']*12.5?>
+		<?php $time = $employees_salary[0]['time']*$salary[0]['dmn_salary_time']?>
+		<?php $total_la = $day+$time?>
 		<tr>
 			<td height="30" align="center">4</td>
 			<td height="30" style="padding-left:1%;">หักวันลางาน / ชั่วโมง</td>
@@ -137,14 +138,13 @@ $month =  array(
 			<td height="30" align="right"><?php echo @number_format($time,2)?> บาท</td>
 		</tr>
 
-		<?php $total = $employees_salary[0]['dmn_level_salary']+$comission-$day-$time;?>
+		<?php $total = $employees_salary[0]['dmn_level_salary']+$comission-$total_la ?>
     <tr>
 			<td height="30" colspan="2" bgcolor="#CCCCCC" align="center">&nbsp;</td>
 			<td height="30" bgcolor="#CCCCCC" align="center">รวมเงิน</td>
 		  <td height="30" bgcolor="#CCCCCC" align="right"><b><?php echo number_format($total,2)?> บาท</b></td>
 		</tr>
   </table>
-
 
   <table border="0" style="font-size:0.7em;">
 		<tr>

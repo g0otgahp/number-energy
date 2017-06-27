@@ -75,7 +75,12 @@ class Admin extends CI_Controller {
 		$data['customer'] = $this->Customer_model->customer_detail($customer_id);
 		$data['relate'] = $this->Customer_model->relate_list();
 
-		$data['page'] = "admin/customer_update";
+		if (count($data['customer']) >0) {
+			$data['page'] = "admin/customer_update";
+		} else {
+			$data['page'] = "admin/customer_empty";
+		}
+
 		$this->load->view('admin/theme_notextarea',$data);
 	}
 	public function customer_delete()
@@ -136,7 +141,11 @@ class Admin extends CI_Controller {
 		$data['log_la'] = $this->Employees_model->employees_la_by_id($secretcode);
 		$data['level'] = $this->Employees_model->level_list();
 
-		$data['page'] = "admin/employees_update";
+		if (count($data['employees']) >0) {
+			$data['page'] = "admin/employees_update";
+		} else {
+			$data['page'] = "admin/employees_empty";
+		}
 		$this->load->view('admin/theme',$data);
 	}
 	public function employees_la()
@@ -160,6 +169,7 @@ class Admin extends CI_Controller {
 	{
 		$input = $this->input->post();
 		$data['secretcode'] = $input['secretcode'];
+		$data['salary'] = $this->Homepage_model->salary_config();
 		$data['employees_salary'] = $this->Employees_model->employees_salary($input);
 
 		$strDate = $data['employees_salary'][0]['date_select'];
@@ -182,6 +192,7 @@ class Admin extends CI_Controller {
 	{
 		$input = $this->input->post();
 		$data['secretcode'] = $input['secretcode'];
+		$data['salary'] = $this->Homepage_model->salary_config();
 		$data['employees_salary'] = $this->Employees_model->employees_salary($input);
 
 		$strDate = $data['employees_salary'][0]['date_select'];
@@ -419,6 +430,14 @@ class Admin extends CI_Controller {
 	{
 		$data['Config'] = $this->Homepage_model->General_config();
 		$data['page'] = "admin/general_config";
+		$this->load->view('admin/theme',$data);
+	}
+
+	#ตั้งค่าเงินเดือน
+	public function salary_config()
+	{
+		$data['salary'] = $this->Homepage_model->salary_config();
+		$data['page'] = "admin/salary_config";
 		$this->load->view('admin/theme',$data);
 	}
 

@@ -11,7 +11,7 @@
       <div class="form-group">
         <label class="col-md-3 control-label"></label>
         <div class="col-md-3">
-          <span style="color:red;">ลาเรียบร้อยแล้ว</span>
+          <span style="color:green;">ลาเรียบร้อยแล้ว</span>
         </div>
       </div>
       <div class="form-group" style="margin-top:15px;">

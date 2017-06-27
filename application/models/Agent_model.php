@@ -7,6 +7,7 @@ class Agent_model extends CI_Model {
 	public function agent_list()
 	{
 		$this->db->order_by('agent_code','asc');
+		$this->db->where('agent_status',1);
 		$query = $this->db->get('dmn_agent');
 		return $query->result_array();
 	}
@@ -28,8 +29,9 @@ class Agent_model extends CI_Model {
 	}
 	public function agent_delete($agent_id)
 	{
+		$delete = array('agent_status' => 0 );
 		$this->db->where('agent_id',$agent_id);
-		$this->db->delete('dmn_agent');
+		$this->db->update('dmn_agent',$delete);
 	}
 
 }

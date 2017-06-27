@@ -59,6 +59,34 @@
         </div>
       </div>
 
+      <div class="form-group" style="margin-top:15px;">
+        <label class="col-md-3 control-label">ประเภทเงินเดือน</label>
+        <div class="col-md-9">
+          <div class="radio radio-inline">
+            <?php if ($employees[0]['employees_salary_type'] == 1): ?>
+              <input type="radio" name="employees_salary_type" id="radio10" value="1" checked required="required">
+            <?php else: ?>
+              <input type="radio" name="employees_salary_type" id="radio10" value="1" required="required">
+          <?php endif; ?>
+              <label for="radio10">
+                รายเดือน
+              </label>
+          </div>
+          <div class="radio radio-inline">
+            <?php if ($employees[0]['employees_salary_type'] == 2): ?>
+              <input type="radio" name="employees_salary_type" id="radio11" value="2" checked>
+              <?php else: ?>
+              <input type="radio" name="employees_salary_type" id="radio11" value="2" >
+            <?php endif; ?>
+              <label for="radio11">
+                รายวัน
+              </label>
+          </div>
+        </div>
+      </div>
+
+      <?php if ($employees[0]['employees_salary_type'] == 1): ?>
+
         <div class="form-group" style="margin-top:15px;">
           <div class="col-md-3">
             <label class="control-label">เงินเดือน</label>
@@ -67,6 +95,9 @@
             <input type="text" class="form-control" value="<?php echo number_format($employees[0]['dmn_level_salary'])?> บาท" readonly="readonly">
           </div>
         </div>
+
+      <?php endif; ?>
+
     </div>
   </div>
 

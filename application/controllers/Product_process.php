@@ -363,6 +363,11 @@ class Product_process extends CI_Controller {
 	{
 		date_default_timezone_set('Asia/Bangkok');
 		$pathinfo = pathinfo($_FILES["product_data_upload"]["name"],PATHINFO_EXTENSION);
+		if ($pathinfo != ".csv") {
+			echo "<script>alert('ไฟล์สกุลไม่ถูกต้อง')</script>";
+			echo "<meta http-equiv='refresh' content='0; url=../admin/product_import' />";
+			exit();
+		}
 		$new_file = date('YmdHis').".".$pathinfo;
 		move_uploaded_file($_FILES["product_data_upload"]["tmp_name"],"file/csv/".$new_file); // Copy/Upload CSV
 
@@ -391,7 +396,7 @@ class Product_process extends CI_Controller {
 					'32' => 98, '33' => 19,'34' => 91,
 				);
 
-					$number = substr($this->input->post('product_number'),3);
+					$number = substr($objArr[1],3);
 
 					foreach ($money as $chk => $value) {
 						if (preg_match("/($value)/", $number, $matches)) {
@@ -405,7 +410,7 @@ class Product_process extends CI_Controller {
 						'8' => 89, '9' => 98, '10' => 19, '11' => 91,
 					);
 
-						$number = substr($this->input->post('product_number'),3);
+						$number = substr($objArr[1],3);
 
 						foreach ($work as $chk => $value) {
 							if (preg_match("/($value)/", $number, $matches)) {
@@ -421,7 +426,7 @@ class Product_process extends CI_Controller {
 							'16' => 99,
 						);
 
-							$number = substr($this->input->post('product_number'),3);
+							$number = substr($objArr[1],3);
 
 							foreach ($luck as $chk => $value) {
 								if (preg_match("/($value)/", $number, $matches)) {
@@ -439,7 +444,7 @@ class Product_process extends CI_Controller {
 								'23' => 87,
 							);
 
-								$number = substr($this->input->post('product_number'),3);
+								$number = substr($objArr[1],3);
 
 								foreach ($charm as $chk => $value) {
 									if (preg_match("/($value)/", $number, $matches)) {
@@ -455,7 +460,7 @@ class Product_process extends CI_Controller {
 									'16' => 87,
 								);
 
-									$number = substr($this->input->post('product_number'),3);
+									$number = substr($objArr[1],3);
 
 									foreach ($wisdom as $chk => $value) {
 										if (preg_match("/($value)/", $number, $matches)) {
@@ -701,35 +706,16 @@ class Product_process extends CI_Controller {
 		redirect('Admin/product_type_list');
 	}
 
-	public function general_config_update()
+	public function salary_config_update()
 	{
-		if (!empty($_FILES["general_config_pic"]["name"])) {
-			$pathinfo = pathinfo($_FILES["general_config_pic"]["name"],PATHINFO_EXTENSION);
-			$new_file = date('YmdHis').".".$pathinfo;
-			move_uploaded_file($_FILES["general_config_pic"]["tmp_name"],"images/bg/".$new_file); // Copy/Upload รูปถาพ
-		} else {
-			$new_file = $this->input->post('general_config_pic');
-		}
-
-		if (!empty($_FILES["admin_pic"]["name"])) {
-			$pathinfo = pathinfo($_FILES["admin_pic"]["name"],PATHINFO_EXTENSION);
-			$admin_file = date('YmdHis').".".$pathinfo;
-			move_uploaded_file($_FILES["admin_pic"]["tmp_name"],"theme/assets/images/".$admin_file); // Copy/Upload รูปถาพ
-		}  else {
-			$admin_file = $this->input->post('admin_pic');
-		}
-
 		$input = array(
-			'general_config_id' => $this->input->post('general_config_id'),
-			'general_config_txt_top' => $this->input->post('general_config_txt_top'),
-			'general_config_txt_bot' => $this->input->post('general_config_txt_bot'),
-			'general_config_pic' => $new_file,
-			'general_config_admin_pic' => $admin_file,
-
+			'dmn_salary_id' => $this->input->post('dmn_salary_id'),
+			'dmn_salary_day' => $this->input->post('dmn_salary_day'),
+			'dmn_salary_time' => $this->input->post('dmn_salary_time'),
+			'dmn_salary_comission' => $this->input->post('dmn_salary_comission'),
 		);
-		$this->Homepage_model->General_config_update($input);
-		echo "<script>alert('แก้ไขข้อมูลเรียบร้อยแล้ว')</script>";
-		redirect('Admin/general_config');
+		$this->Homepage_model->salary_config_update($input);
+		redirect('Admin/salary_config');
 	}
 
 	public function contents_insert()

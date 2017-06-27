@@ -82,7 +82,7 @@ class Product_model extends CI_Model {
 		$this->db->where('product_status',0);
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
-		$query = $this->db->get('dmn_product',300)->result_array();
+		$query = $this->db->get('dmn_product')->result_array();
 		return $query;
 	}
 
@@ -92,7 +92,7 @@ class Product_model extends CI_Model {
 		$this->db->where('product_status',2);
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
-		$query = $this->db->get('dmn_product',300)->result_array();
+		$query = $this->db->get('dmn_product')->result_array();
 		return $query;
 	}
 	public function product_insert($input)

@@ -7,6 +7,7 @@ class Employees_model extends CI_Model {
 	public function employees_list()
 	{
 		$this->db->order_by('dmn_employees.employees_name','desc');
+		$this->db->where('employees_status',1);
 		$this->db->join('dmn_user','dmn_user.dmn_user_secretcode = dmn_employees.employees_secretcode');
 		$this->db->join('dmn_level','dmn_level.dmn_level_id = dmn_user.dmn_user_level');
 		$query = $this->db->get('dmn_employees');
@@ -15,6 +16,7 @@ class Employees_model extends CI_Model {
 	public function employees_detail($secretcode)
 	{
 		$this->db->where('dmn_employees.employees_secretcode',$secretcode);
+		$this->db->where('employees_status',1);
 		$this->db->join('dmn_user','dmn_user.dmn_user_secretcode = dmn_employees.employees_secretcode');
 		$this->db->join('dmn_level','dmn_level.dmn_level_id = dmn_user.dmn_user_level');
 		$query = $this->db->get('dmn_employees');
@@ -119,17 +121,20 @@ class Employees_model extends CI_Model {
 	}
 	public function employees_delete($secretcode)
 	{
+		$delete = array('employees_status' => 0);
 		$this->db->where('employees_secretcode',$secretcode);
-		$this->db->delete('dmn_employees');
+		$this->db->update('dmn_employees',$delete);
 	}
 	public function user_delete($secretcode)
 	{
+		$delete = array('dmn_user_status' => 0);
 		$this->db->where('dmn_user_secretcode',$secretcode);
-		$this->db->delete('dmn_user');
+		$this->db->update('dmn_user',$delete);
 	}
 	public function level_list()
 	{
 		$this->db->order_by('dmn_level_name','asc');
+		$this->db->where('dmn_level_status',1);
 		$query = $this->db->get('dmn_level');
 		return $query->result_array();
 	}

@@ -186,10 +186,22 @@ class Homepage_model extends CI_Model {
 		return $data;
 	}
 
+	public function salary_config()
+	{
+		$data = $this->db->get('dmn_salary')->result_array();
+		return $data;
+	}
+
 	public function General_config_update($input)
 	{
 		$this->db->where('general_config_id',$input['general_config_id']);
 		$this->db->update('dmn_general_config',$input);
+	}
+
+	public function salary_config_update($input)
+	{
+		$this->db->where('dmn_salary_id',$input['dmn_salary_id']);
+		$this->db->update('dmn_salary',$input);
 	}
 
 

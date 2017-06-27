@@ -51,9 +51,26 @@
             <?php } ?>
           </select>
         </div>
-
-
       </div>
+
+      <div class="form-group" style="margin-top:15px;">
+        <label class="col-md-3 control-label">ประเภทเงินเดือน</label>
+        <div class="col-md-9">
+          <div class="radio radio-inline">
+              <input type="radio" name="employees_salary_type" id="radio10" value="1" required="required">
+              <label for="radio10">
+                รายเดือน
+              </label>
+          </div>
+          <div class="radio radio-inline">
+              <input type="radio" name="employees_salary_type" id="radio11" value="2" >
+              <label for="radio11">
+                รายวัน
+              </label>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </div>
 

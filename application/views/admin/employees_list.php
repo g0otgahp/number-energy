@@ -23,7 +23,13 @@
             <td><?php echo $employees['employees_tel']?></td>
             <td><?php echo $employees['dmn_user_username']?></td>
             <td><?php echo $employees['dmn_level_name']?></td>
-            <td><a href="<?php echo site_url('Admin/employees_salary')?>/<?php echo $employees['employees_secretcode']?>" class="btn btn-info btn-xs"> เงินเดือน </a></td>
+            <td>
+              <?php if ($employees['employees_salary_type'] == 1): ?>
+                <a href="<?php echo site_url('Admin/employees_salary')?>/<?php echo $employees['employees_secretcode']?>" target="_blank" class="btn btn-info btn-xs"> เงินเดือน </a>
+                <?php else: ?>
+                  รายวัน
+              <?php endif; ?>
+            </td>
           </tr>
           <?php $i++ ?>
           <?php } ?>

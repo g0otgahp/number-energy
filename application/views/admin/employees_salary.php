@@ -60,7 +60,7 @@
 
       <div class="form-group">
         <label class="col-md-3 control-label">ชื่อ-สกุล</label>
-        <div class="col-md-6">
+        <div class="col-md-3">
           <input name="employees_name" type="text" required="required" class="form-control" id="employees_name" placeholder="กรอกชื่อ-สกุล" value="<?php echo $employees_salary[0]['employees_name']?>" readonly="readonly">
         </div>
       </div>
@@ -71,6 +71,10 @@
         </div>
         <div class="col-md-3">
           <input type="text" required="required" class="form-control" value="<?php echo $employees_salary[0]['comission']?> เบอร์" readonly="readonly">
+        </div>
+        <?php $comission = $employees_salary[0]['comission']*$salary[0]['dmn_salary_comission']?>
+        <div class="col-md-3">
+           <input  type="text" required="required" class="form-control" value="บวก <?php echo number_format($comission)?> บาท" readonly="readonly">
         </div>
       </div>
 
@@ -85,6 +89,14 @@
             <input  type="text" required="required" class="form-control" value="<?php echo $employees_salary[0]['time']?> ชั่วโมง" readonly="readonly">
           <?php endif; ?>
         </div>
+        <?php $day = $employees_salary[0]['day']*$salary[0]['dmn_salary_day'] ?>
+        <?php $time = $employees_salary[0]['time']*$salary[0]['dmn_salary_time']?>
+        <?php $la_total = $day+$time?>
+        <div class="col-md-3">
+             <input  type="text" required="required" class="form-control" value="หัก <?php echo number_format($la_total)?> บาท" readonly="readonly">
+        </div>
+      </div>
+
       </div>
 
       <div class="form-group">
@@ -105,12 +117,14 @@
         </div>
       </div>
 
+      <?php $total = $employees_salary[0]['dmn_level_salary']+$comission-$la_total?>
+
       <div class="form-group">
         <div class="col-md-3">
           <label class="control-label">เงินเดือนคงเหลือ</label>
         </div>
         <div class="col-md-3">
-          <input name="log_la_note" type="text" class="form-control"value="15,000" readonly="readonly">
+          <input name="log_la_note" type="text" class="form-control"value="<?php echo number_format($total)?>" readonly="readonly">
         </div>
       </div>
 

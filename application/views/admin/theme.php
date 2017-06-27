@@ -94,7 +94,7 @@
         </a>
       </li>
 
-      <li <?php if($this->uri->segment(2)=="employees_list"||$this->uri->segment(2)=="employees_insert"||$this->uri->segment(2)=="employees_update"){ ?>class="active"<?php } ?>>
+      <li <?php if($this->uri->segment(2)=="employees_la_detail"||$this->uri->segment(2)=="employees_la"||$this->uri->segment(2)=="employees_salary_detail"||$this->uri->segment(2)=="employees_salary"||$this->uri->segment(2)=="employees_list"||$this->uri->segment(2)=="employees_insert"||$this->uri->segment(2)=="employees_update"){ ?>class="active"<?php } ?>>
         <a href="<?php echo site_url('Admin/employees_list')?>">
           <div class="icon">
             <i class="fa fa-users" aria-hidden="true"></i>
@@ -102,7 +102,7 @@
           <div class="title">พนักงาน</div>
         </a>
       </li>
-      <li class="dropdown <?php if($this->uri->segment(2)=="account_category_list"||$this->uri->segment(2)=="account_category_insert"||$this->uri->segment(2)=="account_category_update"||$this->uri->segment(2)=="mobile_network_list"||$this->uri->segment(2)=="mobile_network_insert"||$this->uri->segment(2)=="mobile_network_update"){ ?>active<?php } ?>">
+      <li class="dropdown <?php if($this->uri->segment(2)=="customer_type_list"||$this->uri->segment(2)=="contents_list"||$this->uri->segment(2)=="abountus_config"||$this->uri->segment(2)=="salary_config"||$this->uri->segment(2)=="general_config"||$this->uri->segment(2)=="account_category_list"||$this->uri->segment(2)=="account_category_insert"||$this->uri->segment(2)=="account_category_update"||$this->uri->segment(2)=="mobile_network_list"||$this->uri->segment(2)=="mobile_network_insert"||$this->uri->segment(2)=="mobile_network_update"){ ?>active<?php } ?>">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           <div class="icon">
             <i class="fa fa-cog" aria-hidden="true"></i>
@@ -113,6 +113,7 @@
           <ul>
             <li class="section"><i class="fa fa-cog" aria-hidden="true"></i> ตั้งค่าระบบ</li>
             <li><a href="<?php echo site_url('Admin/general_config')?>">ตั้งค่าทั่วไป</a></li>
+            <li><a href="<?php echo site_url('Admin/salary_config')?>">ตั้งค่าเงินเดือน</a></li>
             <li><a href="<?php echo site_url('Admin/abountus_config')?>">ข้อมูลเกี่ยวกับเรา</a></li>
             <li><a href="<?php echo site_url('Admin/contents_list')?>">บทความ</a></li>
             <!-- <li><a href="<?php echo site_url('Admin/mobile_network_list')?>">เครือข่ายมือถือ</a></li> -->
