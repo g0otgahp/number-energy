@@ -363,7 +363,7 @@ class Product_process extends CI_Controller {
 	{
 		date_default_timezone_set('Asia/Bangkok');
 		$pathinfo = pathinfo($_FILES["product_data_upload"]["name"],PATHINFO_EXTENSION);
-		if ($pathinfo != ".csv") {
+		if ($pathinfo != "csv") {
 			echo "<script>alert('ไฟล์สกุลไม่ถูกต้อง')</script>";
 			echo "<meta http-equiv='refresh' content='0; url=../admin/product_import' />";
 			exit();
