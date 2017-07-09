@@ -62,83 +62,6 @@
           <?php echo form_open('product/product_find'); ?>
           <div id="adv-search-form" class="clearfix">
             <fieldset>
-              <!-- <select name="product_mobile_network" id="main-location">
-                <?php //if (@$filter['product_mobile_network'][0]['mobile_network_id'] != ''): ?>
-                <option value="<?php echo $filter['product_mobile_network'][0]['mobile_network_id']?>"><?php echo $filter['product_mobile_network'][0]['mobile_network_name']?></option>
-                <option value="">ทั้งหมด</option>
-                <?php //else: ?>
-                <option value="">ทั้งหมด</option>
-                <?php //endif; ?>
-                <?php //foreach ($Product_Network as $row): ?>
-                  <option value="<?php echo $row['mobile_network_id']?>"><?php echo $row['mobile_network_name']?></option>
-                <?php //endforeach; ?>
-              </select>
-              <select name="product_sale" id="property-sub-location">
-                <?php //if (@$filter['product_sale'] != ''): ?>
-
-                <?php //if ($filter['product_sale'] == 1): ?>
-                  <option value="$filter['product_sale']"> ต่ำกว่า 1,500</option>
-                <?php //elseif($filter['product_sale'] == 2): ?>
-                  <option value="$filter['product_sale']"> 1,500 - 3,000</option>
-                <?php //elseif($filter['product_sale'] == 3): ?>
-                  <option value="$filter['product_sale']"> 3,100 - 5,000</option>
-                <?php //elseif($filter['product_sale'] == 4): ?>
-                  <option value="$filter['product_sale']"> 5,100 - 10,000</option>
-                <?php //elseif($filter['product_sale'] == 5): ?>
-                  <option value="$filter['product_sale']"> มากกว่า 10,000</option>
-                <?php //endif; ?>
-                <option value="">ทุกราคา</option>
-                <?php //else: ?>
-                <option value="">ทุกราคา</option>
-                <?php //endif; ?>
-                <option value="1" > ต่ำกว่า 1,500</option>
-                <option value="2" > 1,500 - 3,000</option>
-                <option value="3" > 3,100 - 5,000</option>
-                <option value="4" > 5,100 - 10,000</option>
-                <option value="5" > มากกว่า 10,000</option> -->
-
-              </select>
-              <!-- <select id="property-status" name="product_type">
-                <?php //if ($filter['product_type'][0]['product_type_name'] != ''): ?>
-                <option value="<?php echo $filter['product_type'][0]['product_type_name']?>"><?php echo $filter['product_type'][0]['product_type_name']?></option>
-                <option value=" ">ทั้งหมด</option>
-                <?php //else: ?>
-                <option value=" ">ทั้งหมด</option>
-                <?php //endif; ?>
-
-                <?php //foreach ($Product_Type as $row): ?>
-                  <option value="<?php echo $row['product_type_name']?>"><?php echo $row['product_type_name']?></option>
-                <?php //endforeach; ?>
-              </select> -->
-
-
-              <!-- <select name="product_requiment" id="property-sub-location">
-                <option value="">ทั้งหมด</option>
-                <option value="789" >789</option>
-                <option value="289" >289</option>
-                <option value="456" >456</option>
-                <option value="879" >879</option>
-                <option value="365" >365</option>
-                <option value="99" >99</option>
-                <option value="56" >56</option>
-                <option value="65" >65</option>
-              </select> -->
-
-              <!-- <select name="product_price">
-                <?php //if (@$filter['product_price'] != ''): ?>
-
-                  <?php //if ($filter['product_price'] == ASC): ?>
-                  <option value="$filter['product_price']">ต่ำ - สูง</option>
-                  <?php //elseif($filter['product_price'] == DESC): ?>
-                  <option value="$filter['product_price']">สูง - ต่ำ</option>
-                  <?php //endif; ?>
-                  <option value="">ไม่เรียงราคา</option>
-                <?php //else: ?>
-                <option value="">ไม่เรียงราคา</option>
-                <?php //endif; ?>
-                <option value="ASC" >ต่ำ - สูง</option>
-                <option value="DESC" >สูง - ต่ำ</option>
-              </select> -->
 
               <select name="product_mobile_network" id="main-location">
                 <option value="">--- เลือกเครือข่าย ---</option>
@@ -212,20 +135,20 @@
               </div>
             </header>
 
-            <div style='margin-bottom:30px;' id='results'><!-- content will be loaded here --></div>
+            <!-- <div style='margin-bottom:30px;' id='results'><!-- content will be loaded here --></div> -->
 
 
-            <!-- <div class="container">
+            <div class="container">
               <div class="row">
-                  <?php //foreach ($Product_List as $row): ?>
+                  <?php foreach ($Product_List as $row): ?>
                     <div class="col-lg-4 col-sm-6 layout-item-wrap">
                       <article class="property layout-item clearfix">
                         <h4 style="font-size:18px;" align="center" ><?php echo substr($row['product_number'],0,-7)?>-<?php echo substr($row['product_number'],3)?>
                           <?php
                            date_default_timezone_set('Asia/Bangkok');
-                           //if (date('Y-m-d') == $row['product_date']): ?>
+                           if (date('Y-m-d') == $row['product_date']): ?>
                           <img src="<?php echo BASE_URL('images/new.gif')?>" style="width:40px">
-                          <?php //endif; ?>
+                          <?php endif; ?>
                         </h4>
                         <div class="property-contents clearfix">
                           <header class="property-header clearfix">
@@ -237,11 +160,11 @@
                                  ส่งเสริมด้าน
                                  <img src="<?php echo BASE_URL('images/arrow_right.gif')?>" style="height:30px;">
 
-                                <?php //if ($row['product_type'] != ''): ?>
+                                <?php if ($row['product_type'] != ''): ?>
                                   <span style="color:black;"><?php echo $row['product_type']?></span>
-                                  <?php //else: ?>
+                                  <?php else: ?>
                                     <span style="color:black;">ไม่มี</span>
-                                <?php //endif; ?>
+                                <?php endif; ?>
                               </span> </div>
                             <button class="btn btn-default btn-price pull-right btn-3d btn-xs" data-hover="฿<?php echo number_format($row['product_sale'])?>"><strong>฿<?php echo number_format($row['product_sale'])?></strong></button>
                           </header>
@@ -250,11 +173,43 @@
                         </div>
                       </article>
                     </div>
-                    <?php //endforeach; ?>
+                    <?php endforeach; ?>
+
+                    <?php if (count($Product_List) >= 50): ?>
+
+                    <div class="col-lg-4 col-sm-6 layout-item-wrap">
+                      <article class="property layout-item clearfix">
+                        <h4 style="font-size:18px;" align="center" >
+                          <?php if ($filter['amount'] == 50): ?>
+                            <?php echo form_open('product/product_find/100'); ?>
+                          <?php elseif($filter['amount'] == 100): ?>
+                            <?php echo form_open('product/product_find/150'); ?>
+                          <?php elseif($filter['amount'] == 150): ?>
+                            <?php echo form_open('product/product_find/200'); ?>
+                          <?php elseif($filter['amount'] == 200): ?>
+                            <?php echo form_open('product/product_find/250'); ?>
+                          <?php elseif($filter['amount'] == 250): ?>
+                            <?php echo form_open('product/product_find/300'); ?>
+                          <?php elseif($filter['amount'] == 300): ?>
+                          <?php echo form_open('product/product_find/350'); ?>
+                          <?php else: ?>
+                            <?php echo form_open('product/product_find/50'); ?>
+                          <?php endif; ?>
+
+                          <input type="hidden" name="product_mobile_network" value="<?php echo $filter['product_mobile_network']?>">
+                          <input type="hidden" name="product_sale" value="<?php echo $filter['product_sale']?>">
+                          <input type="hidden" name="product_requiment" value="<?php echo $filter['product_requiment']?>">
+                          <input type="hidden" name="product_price" value="<?php echo $filter['product_price']?>">
+                          <input type="submit" class="" value="หน้าต่อไป">
+                          <?php echo form_close();?>
+                        </h4>
+                      </article>
+                    </div>
+
+                  <?php endif; ?>
+
+
+
                   </div>
-                </div> -->
-
-
-
-
+                </div>
               </section>

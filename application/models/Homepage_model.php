@@ -50,7 +50,6 @@ class Homepage_model extends CI_Model {
 	{
 		if ($input['product_mobile_network'] != '') {
 			$this->db->where('product_mobile_network',$input['product_mobile_network']);
-			$a = 'product_mobile_network = '.$input['product_mobile_network'];
 		}
 
 		// if ($input['product_type'] != '') {
@@ -59,28 +58,22 @@ class Homepage_model extends CI_Model {
 
 		if ($input['product_requiment'] != '') {
 			$this->db->where('product_number LIKE',"%".$input['product_requiment']."%");
-			$b = 'product_number LIKE'." %".$input['product_requiment']."%";
 		}
 
 		if ($input['product_sale'] != '') {
 			if ($input['product_sale'] == 1) {
 				$this->db->where('product_sale <=',1500);
-				$c = 'product_sale <= 1500';
 			} elseif ($input['product_sale'] == 2) {
 				$this->db->where('product_sale >=',1500);
 				$this->db->where('product_sale <=',3000);
-				$c = 'product_sale <= 1500 AND product_sale <= 3000';
 			} elseif ($input['product_sale'] == 3) {
 				$this->db->where('product_sale >=',3100);
 				$this->db->where('product_sale <=',5000);
-				$c = 'product_sale <= 3100 AND product_sale <= 5000';
 			} elseif ($input['product_sale'] == 4) {
 				$this->db->where('product_sale >=',5100);
 				$this->db->where('product_sale <=',10000);
-				$c = 'product_sale <= 5100 AND product_sale <= 10000';
 			} else {
 				$this->db->where('product_sale >=',10000);
-				$c = 'product_sale >= 10000';
 			}
 		}
 
@@ -94,20 +87,14 @@ class Homepage_model extends CI_Model {
 		// $order_by = $input['product_price'];
 
 		$this->db->where('product_status',1);
-			$e = 'product_status = 1';
 		$this->db->where('product_disable',0);
 
 		if ($input['product_price'] != '') {
 			$this->db->order_by('product_sale',$input['product_price']);
-			$d = 'product_sale = '.$input['product_price'];
 		}
 
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
-		$data = $this->db->get('dmn_product')->result_array();
-
-		// $data['SQL'] = "Select * FROM dmn_product JOIN dmn_mobile_network ON dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network"
-		//
-		// .$a." AND ".$b." AND ".$c." AND ".$d." AND ".$e;
+		$data = $this->db->get('dmn_product',50,$input['amount'])->result_array();
 
 		// $this->debuger->prevalue($data);
 		return $data;
@@ -119,7 +106,7 @@ class Homepage_model extends CI_Model {
 		$this->db->where('product_status',1);
 		$this->db->where('product_disable',0);
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
-		$data = $this->db->get('dmn_product')->result_array();
+		$data = $this->db->get('dmn_product',50)->result_array();
 		return $data;
 	}
 
@@ -364,12 +351,11 @@ class Homepage_model extends CI_Model {
 	public function filter_find($input)
 	{
 		$data = array();
-		$data['product_mobile_network'] = $this->db->where('mobile_network_id',$input['product_mobile_network'])->get('dmn_mobile_network')->result_array();
-
-		$data['product_type'] = $this->db->where('dmn_product_type.product_type_name LIKE',"%".$input['product_type']."%")->get('dmn_product_type')->result_array();
+		$data['product_mobile_network'] = $input['product_mobile_network'];
 		$data['product_sale'] = $input['product_sale'];
 		$data['product_requiment'] = $input['product_requiment'];
 		$data['product_price'] = $input['product_price'];
+		$data['amount'] = $input['amount'];
 		return $data;
 	}
 }

@@ -13,6 +13,11 @@ if(isset($_POST) && isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SER
 	}else{
 		$page_number = 1; //if there's no page number, set it to 1
 	}
+$url = $_SERVER['REQUEST_URI'];
+	$query_str = parse_url($url, PHP_URL_QUERY);
+parse_str($query_str, $query_params);
+// print_r($query_params);
+
 
 	//get total number of records from database for pagination
 	$results = $mysqli->query("SELECT COUNT(*) FROM dmn_actipromo");

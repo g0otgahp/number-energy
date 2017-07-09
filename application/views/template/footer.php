@@ -77,9 +77,12 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- Pagination -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function() {
-  $("#results" ).load( "<?php echo BASE_URL('')?>/theme/pagination/fetch_pages.php"); //load initial records
+  var network = <?php echo $this->uri->segment(3);?>;
+  // var network = 10;
+  console.log(network);
+  $("#results" ).load( "<?php echo BASE_URL('')?>/theme/pagination/fetch_pages.php?network="+network); //load initial records
 
   //executes code below when user click on pagination links
   $("#results").on( "click", ".pagination a", function (e){
@@ -92,6 +95,6 @@ $(document).ready(function() {
 
   });
 });
-</script>
+</script> -->
 </body>
 </html>

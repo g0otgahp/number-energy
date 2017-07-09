@@ -14,6 +14,7 @@ class Customer_process extends CI_Controller {
 	}
 	public function customer_insert()
 	{
+		date_default_timezone_set('Asia/Bangkok');
 		$customer_birthday_day = $this->input->post('customer_birthday_day');
 		if($customer_birthday_day<10){
 			$customer_birthday_day_new = "0".$customer_birthday_day;
@@ -31,7 +32,7 @@ class Customer_process extends CI_Controller {
 			'customer_link' => $this->input->post('customer_link'),
 			'customer_address' => $this->input->post('customer_address'),
 			'customer_note' => $this->input->post('customer_note'),
-
+			'customer_date' => date('Y-m-d'),
 		);
 
 		$this->Customer_model->customer_insert($input);

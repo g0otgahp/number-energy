@@ -45,7 +45,6 @@ class Admin extends CI_Controller {
 		$actipromo_id = $this->uri->segment(3);
 		$data['actipromo'] = $this->Actipromo_model->actipromo_detail($actipromo_id);
 		$data['employees'] = $this->Employees_model->employees_list();
-
 		$data['page'] = "admin/actipromo_update";
 		$this->load->view('admin/theme',$data);
 	}

@@ -366,7 +366,7 @@
   </div>
 </nav>
 
-  <div class="row" style="height:1000px;">
+<div class="row" style="height:1100px;">
 
 <?php $this->load->view($page)?>
 

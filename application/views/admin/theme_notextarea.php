@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="<?php echo base_url()?>theme/js/jQueryCalendarThai/jquery.datetimepicker.css" />
 
   <!-- select2 -->
-  <link rel="stylesheet" href="<?php echo base_url()?>theme/select/select1.css" />
   <link rel="stylesheet" href="<?php echo base_url()?>theme/select/select2.css" />
 
   <!-- Icon Font -->
@@ -328,7 +327,7 @@
          </li>-->
          <?php echo $_SESSION['employees_name']?>
          <li class="dropdown profile">
-           <a href="/html/pages/profile.html" class="dropdown-toggle"  data-toggle="dropdown">
+           <a href="#" class="dropdown-toggle"  data-toggle="dropdown">
              <img class="profile-img" src="<?php echo base_url('theme/assets/images/'.$Config[0]['general_config_admin_pic'])?>">
              <div class="title">ข้อมูลส่วนตัวผู้ใช้งาน</div>
            </a>
@@ -366,7 +365,7 @@
    </div>
  </nav>
 
-   <div class="row" style="height:1000px;">
+   <div class="row" style="height:1100px;">
 
  <?php $this->load->view($page)?>
 

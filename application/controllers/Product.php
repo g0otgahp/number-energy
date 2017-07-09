@@ -66,6 +66,9 @@ class product extends CI_Controller {
 	public function product_find()
 	{
 		$input = $this->input->post();
+		$input['amount'] = $this->uri->segment(3);
+		// $this->debuger->prevalue($input);
+
 		$Config = $this->Homepage_model->General_config();
 		$Product_List = $this->Homepage_model->Product_Find($input);
 		$Product_Network = $this->Homepage_model->Product_Network();
@@ -75,7 +78,7 @@ class product extends CI_Controller {
 		$PromotionTop = $this->Homepage_model->PromotionTop();
 		$EventTop = $this->Homepage_model->EventTop();
 
-		// $filter = $this->Homepage_model->filter_find($input);
+		$filter = $this->Homepage_model->filter_find($input);
 
 		$value = array(
 			'Result' => array(
@@ -83,7 +86,7 @@ class product extends CI_Controller {
 				'Product_List' => $Product_List,
 				'Product_Network' => $Product_Network,
 				'Product_Type' => $Product_Type,
-				// 'filter' => $filter,
+				'filter' => $filter,
 				'Story' => $Story,
 				'Abountus' => $Abountus,
 				'EventTop' => $EventTop,

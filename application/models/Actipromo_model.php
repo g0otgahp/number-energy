@@ -14,7 +14,7 @@ class Actipromo_model extends CI_Model {
 	public function actipromo_detail($actipromo_id)
 	{
 		$this->db->where('actipromo_id',$actipromo_id);
-		$this->db->join('dmn_employees','dmn_employees.employees_id = dmn_actipromo.actipromo_employees');
+		$this->db->join('dmn_employees','dmn_employees.employees_id = dmn_actipromo.actipromo_employees','left');
 		$query = $this->db->get('dmn_actipromo');
 		return $query->result_array();
 	}

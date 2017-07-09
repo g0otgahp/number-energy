@@ -157,13 +157,12 @@ class Product_model extends CI_Model {
 
 	public function product_log()
 	{
-		$this->db->order_by('log_date','DESC');
+		$this->db->order_by('log_id','DESC');
 		$this->db->join('dmn_product','dmn_log.log_product_id = dmn_product.product_id');
 		$this->db->join('dmn_employees','dmn_log.log_employee_id = dmn_employees.employees_id');
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
-		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent');
+		$this->db->join('dmn_agent','dmn_agent.agent_id = dmn_product.product_agent','left');
 		$query = $this->db->get('dmn_log',10)->result_array();
-		// $this->debuger->prevalue($query);
 		return $query;
 	}
 
