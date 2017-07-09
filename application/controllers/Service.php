@@ -18,7 +18,7 @@ class service extends CI_Controller {
 		$Abountus = $this->Homepage_model->Abountus();
 		$PromotionTop = $this->Homepage_model->PromotionTop();
 		$EventTop = $this->Homepage_model->EventTop();
-
+		$service = $this->Homepage_model->Service();
 
 		$value = array(
 			'Result' => array(
@@ -28,7 +28,7 @@ class service extends CI_Controller {
 				'Abountus' => $Abountus,
 				'EventTop' => $EventTop,
 				'PromotionTop' => $PromotionTop,
-
+				'Service' => $service,
 			),
 			'View' => 'homepage/Service',
 		);

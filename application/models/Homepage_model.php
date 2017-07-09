@@ -15,11 +15,19 @@ class Homepage_model extends CI_Model {
 		return $data;
 	}
 
+	public function history_list()
+	{
+		$this->db->order_by('history_id','DESC');
+		$data =	$this->db->get('dmn_history')->result_array();
+		return $data;
+	}
+
 	public function Product_List()
 	{
 		$data =	$this->db
 		->order_by('product_date','DESC')
 		->where('product_status',1)
+		->where('product_disable',0)
 		->where('product_requiment',1)
 		->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network')
 		->get('dmn_product',30)->result_array();
@@ -31,6 +39,7 @@ class Homepage_model extends CI_Model {
 		$data =	$this->db
 		->order_by('product_date','DESC')
 		->where('product_status',1)
+		->where('product_disable',0)
 		->where('mobile_network_id', $id)
 		->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network')
 		->get('dmn_product')->result_array();
@@ -41,30 +50,37 @@ class Homepage_model extends CI_Model {
 	{
 		if ($input['product_mobile_network'] != '') {
 			$this->db->where('product_mobile_network',$input['product_mobile_network']);
+			$a = 'product_mobile_network = '.$input['product_mobile_network'];
 		}
 
-		if ($input['product_type'] != '') {
-			$this->db->where('product_type LIKE',"%".$input['product_type']."%");
-		}
+		// if ($input['product_type'] != '') {
+		// 	$this->db->where('product_type LIKE',"%".$input['product_type']."%");
+		// }
 
 		if ($input['product_requiment'] != '') {
 			$this->db->where('product_number LIKE',"%".$input['product_requiment']."%");
+			$b = 'product_number LIKE'." %".$input['product_requiment']."%";
 		}
 
 		if ($input['product_sale'] != '') {
 			if ($input['product_sale'] == 1) {
 				$this->db->where('product_sale <=',1500);
+				$c = 'product_sale <= 1500';
 			} elseif ($input['product_sale'] == 2) {
 				$this->db->where('product_sale >=',1500);
 				$this->db->where('product_sale <=',3000);
+				$c = 'product_sale <= 1500 AND product_sale <= 3000';
 			} elseif ($input['product_sale'] == 3) {
 				$this->db->where('product_sale >=',3100);
 				$this->db->where('product_sale <=',5000);
+				$c = 'product_sale <= 3100 AND product_sale <= 5000';
 			} elseif ($input['product_sale'] == 4) {
 				$this->db->where('product_sale >=',5100);
 				$this->db->where('product_sale <=',10000);
+				$c = 'product_sale <= 5100 AND product_sale <= 10000';
 			} else {
 				$this->db->where('product_sale >=',10000);
+				$c = 'product_sale >= 10000';
 			}
 		}
 
@@ -78,14 +94,32 @@ class Homepage_model extends CI_Model {
 		// $order_by = $input['product_price'];
 
 		$this->db->where('product_status',1);
+			$e = 'product_status = 1';
+		$this->db->where('product_disable',0);
 
 		if ($input['product_price'] != '') {
 			$this->db->order_by('product_sale',$input['product_price']);
+			$d = 'product_sale = '.$input['product_price'];
 		}
 
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
 		$data = $this->db->get('dmn_product')->result_array();
 
+		// $data['SQL'] = "Select * FROM dmn_product JOIN dmn_mobile_network ON dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network"
+		//
+		// .$a." AND ".$b." AND ".$c." AND ".$d." AND ".$e;
+
+		// $this->debuger->prevalue($data);
+		return $data;
+	}
+
+	public function Product_search($input)
+	{
+		$this->db->where('product_number LIKE',"%".$input['number']."%");
+		$this->db->where('product_status',1);
+		$this->db->where('product_disable',0);
+		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
+		$data = $this->db->get('dmn_product')->result_array();
 		return $data;
 	}
 
@@ -189,6 +223,18 @@ class Homepage_model extends CI_Model {
 		return $data;
 	}
 
+	public function service()
+	{
+		$data = $this->db->get('dmn_service')->result_array();
+		return $data;
+	}
+
+	public function service_update($input)
+	{
+		$this->db->where('service_id',$input['service_id']);
+		$this->db->update('dmn_service',$input);
+	}
+
 	public function salary_config()
 	{
 		$data = $this->db->get('dmn_salary')->result_array();
@@ -273,7 +319,7 @@ class Homepage_model extends CI_Model {
 	{
 		$data =	$this->db
 		->order_by('actipromo_id','DESC')
-		->where('actipromo_id',$id)
+		->where('actipromo_code LIKE',$id)
 		->get('dmn_actipromo')
 		->result_array();
 		return $data;

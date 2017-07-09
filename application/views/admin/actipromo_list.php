@@ -7,9 +7,10 @@
         <thead>
           <tr>
             <th><div align="center">ลำดับ</div></th>
+            <th><div align="center">วันที่</div></th>
             <th><div align="center">กิจกรรมและโปรโมชั่น</div></th>
-            <th><div align="center">ประเภท</div></th>
-            <th><div align="center">วันที่โพส</div></th>
+            <th><div align="center">กลุ่มเป้าหมาย</div></th>
+            <th><div align="center">วันทีเริ่มต้น - สิ้นสุด</div></th>
           </tr>
         </thead>
         <tbody>
@@ -17,9 +18,10 @@
           <?php foreach($actipromo as $actipromo){ ?>
           <tr style="cursor: pointer;" onclick="document.location = '<?php echo site_url('Admin/actipromo_update')?>/<?php echo $actipromo['actipromo_id']?>';">
             <td align="center"><?php echo $i ?></td>
+            <td><?php echo $actipromo['actipromo_date']?></td>
             <td><?php echo $actipromo['actipromo_name']?></td>
-            <td><?php echo $actipromo['actipromo_type_name']?></td>
-            <td align="center"><?php echo $actipromo['actipromo_date']?></td>
+            <td><?php echo $actipromo['actipromo_target']?></td>
+            <td align="center"><?php echo $actipromo['actipromo_date']?> ถึง <?php echo $actipromo['actipromo_date_end']?></td>
           </tr>
           <?php $i++ ?>
           <?php } ?>

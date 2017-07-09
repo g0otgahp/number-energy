@@ -84,6 +84,7 @@
                     <p></p>
                   </div>
                 </div>
+
                 <!-- <div class="form-group">
                 <div class="col-md-3">
                 <label class="control-label">อัพเดทข้อมูลวันที่</label>
@@ -93,20 +94,20 @@
             </div>
           </div> -->
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <div class="col-md-3">
               <label class="control-label">ตัวแทน</label>
             </div>
             <div class="col-md-3">
               <select name="agent" class="form-control" id="product_agent" required="required">
                 <option value="">--- เลือกตัวแทน ---</option>
-                <?php foreach($agent as $agent){ ?>
+                <?php //foreach($agent as $agent){ ?>
                   <option value="<?php echo $agent['agent_id']?>"><?php echo $agent['agent_name']?></option>
-                  <?php } ?>
+                  <?php //} ?>
                 </select>
               </div>
+            </div> -->
 
-            </div>
             <div class="form-group" style="margin-top:20px;">
               <div class="col-md-3">
                 <label class="control-label">อัพโหลดไฟล์</label>
@@ -131,7 +132,7 @@
     </div>
 
 
-      <div class="card">
+      <!-- <div class="card">
         <div class="card-header">
             บันทึกการเพิ่มสินค้า
         </div>
@@ -146,20 +147,21 @@
           </tr>
         </thead>
         <tbody>
-          <?php $i=1; foreach ($history as $info): ?>
+          <?php $i=1; //foreach ($history as $info): ?>
           <tr>
             <td align="center"><?php echo $i ?></td>
             <td><?php echo $info['round_datetime']?></td>
             <td><?php echo $info['agent_name']?></td>
             <td align="right"><?php echo $info['amount']?></td>
           </tr>
-        <?php $i++; endforeach; ?>
+        <?php $i++; //endforeach; ?>
         </tbody>
-      </table>
+      </table>-->
 
     <?php endif; ?>
 
-  </div>
-</div>
+  <!-- </div>
+</div>  -->
+
 </div>
 </div>

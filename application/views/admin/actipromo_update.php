@@ -17,13 +17,19 @@
       <div class="form-group">
         <label class="col-md-3 control-label">ที่อยู่</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" readonly value="<?php echo BASE_URL('/news/detail/'.$actipromo[0]['actipromo_id'])?>" >
+          <input type="text" class="form-control" readonly value="<?php echo BASE_URL('/news/detail/'.$actipromo[0]['actipromo_code']) ?>" >
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-3 control-label">ชื่อกิจกรรมและโปรโมชั่น</label>
         <div class="col-md-9">
           <input name="actipromo_name" type="text" class="form-control" id="actipromo_name" placeholder="กรอกชื่อกิจกรรมหรือโปรโมชั่น" required="required" value="<?php echo $actipromo[0]['actipromo_name']?>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">รหัส</label>
+        <div class="col-md-9">
+          <input name="actipromo_code" type="text" class="form-control" placeholder="กรอกรหัส" required="required" value="<?php echo $actipromo[0]['actipromo_code']?>">
         </div>
       </div>
       <div class="form-group">
@@ -39,6 +45,31 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="col-md-3 control-label">กลุ่มเป้าหมาย</label>
+        <div class="col-md-9">
+          <input name="actipromo_target" type="text" class="form-control" placeholder="กรอกกลุ่มเป้าหมาย" required="required" value="<?php echo $actipromo[0]['actipromo_target']?>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">ผลลัพท์</label>
+        <div class="col-md-9">
+          <input name="actipromo_result" type="text" class="form-control" placeholder="กรอกผลลัพท์" required="required" value="<?php echo $actipromo[0]['actipromo_result']?>">
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:15px;">
+        <div class="col-md-3">
+          <label class="control-label">ผู้ดูแล</label>
+        </div>
+        <div class="col-md-3">
+          <select name="actipromo_employees" class="form-control" required="required">
+            <option value="<?php echo $actipromo[0]['employees_id']?>"><?php echo $actipromo[0]['employees_name']?></option>
+            <?php foreach($employees as $info_employees){ ?>
+              <option value="<?php echo $info_employees['employees_id']?>"><?php echo $info_employees['employees_name']?></option>
+              <?php } ?>
+            </select>
+          </div>
+        </div>
+      <div class="form-group" style="margin-top:15px;">
         <label class="col-md-3 control-label">รูปภาพประกอบ</label>
         <div class="col-md-4">
           <input name="actipromo_image" type="file" class="form-control" id="actipromo_image">

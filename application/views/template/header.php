@@ -127,14 +127,14 @@
           <li><a href="<?php echo SITE_URL('Home')?>">หน้าแรก</a></li>
           <li><a href="<?php echo SITE_URL('abountus')?>">เกี่ยวกับเรา</a></li>
           <li> <a href="<?php echo SITE_URL('service')?>">บริการของเรา</a>
-            <ul>
-            <li><a href="<?php echo SITE_URL('howtopay')?>">ติดต่อสั่งซื้อเบอร์</a></li>
-            <!-- <li><a href="#">บริการที่ 2</a></li>
-            <li><a href="#">บริการที่ 3</a></li> -->
-          </ul>
+            <!-- <ul>
+             <li><a href="#">บริการที่ 2</a></li>
+            <li><a href="#">บริการที่ 3</a></li>
+          </ul> -->
         </li>
         <li> <a href="<?php echo SITE_URL('product')?>">สินค้าของเรา</a>
           <ul>
+            <li><a href="<?php echo SITE_URL('howtopay')?>">ติดต่อสั่งซื้อเบอร์</a></li>
             <?php foreach ($Product_Network as $row): ?>
               <li><a href="<?php echo SITE_URL('product/product_list/'.$row['mobile_network_id'])?>">
                 <?php echo $row['mobile_network_name']?></a></li>

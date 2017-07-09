@@ -46,6 +46,11 @@ class Actipromo_process extends CI_Controller {
 			'actipromo_detail' => $this->input->post('actipromo_detail'),
 			'actipromo_date' => $this->input->post('actipromo_date'),
 			'actipromo_date_end' => $this->input->post('actipromo_date_end'),
+			'actipromo_code' => $this->input->post('actipromo_code'),
+			'actipromo_target' => $this->input->post('actipromo_target'),
+			'actipromo_result' => $this->input->post('actipromo_result'),
+			'actipromo_employees' => $this->input->post('actipromo_employees'),
+
 		);
 
 		$this->Actipromo_model->actipromo_insert($input);
@@ -85,6 +90,10 @@ class Actipromo_process extends CI_Controller {
 				'actipromo_detail' => $this->input->post('actipromo_detail'),
 				'actipromo_date' => $this->input->post('actipromo_date'),
 				'actipromo_date_end' => $this->input->post('actipromo_date_end'),
+				'actipromo_code' => $this->input->post('actipromo_code'),
+				'actipromo_target' => $this->input->post('actipromo_target'),
+				'actipromo_result' => $this->input->post('actipromo_result'),
+				'actipromo_employees' => $this->input->post('actipromo_employees'),
 			);
 		}else{
 			$input = array(
@@ -96,6 +105,10 @@ class Actipromo_process extends CI_Controller {
 				'actipromo_detail' => $this->input->post('actipromo_detail'),
 				'actipromo_date' => $this->input->post('actipromo_date'),
 				'actipromo_date_end' => $this->input->post('actipromo_date_end'),
+				'actipromo_code' => $this->input->post('actipromo_code'),
+				'actipromo_target' => $this->input->post('actipromo_target'),
+				'actipromo_result' => $this->input->post('actipromo_result'),
+				'actipromo_employees' => $this->input->post('actipromo_employees'),
 			);
 		}
 		$this->Actipromo_model->actipromo_update($input);

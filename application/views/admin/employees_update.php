@@ -117,7 +117,7 @@
       </div>
     </div>
 
-
+    <?php if ($employees[0]['employees_salary_type'] == 1): ?>
     <div class="col-xs-12">
       <div class="card">
         <div class="card-header"> บันทึกการลางาน </div>
@@ -129,6 +129,7 @@
                 <th width="20%"><div align="center">ลาเมื่อวันที่</div></th>
                 <th width="20%"><div align="center">ถึง</div></th>
                 <th width="50%"><div align="center">หมายเหตุ</div></th>
+                <th width="50%"><div align="center">ตัวเลือก</div></th>
               </tr>
             </thead>
             <tbody>
@@ -139,6 +140,7 @@
                 <td><?php echo $info['log_la_date_start']?></td>
                 <td><?php echo $info['log_la_date_end']?></td>
                 <td><?php echo $info['log_la_note']?></td>
+                <td><a href="<?php echo site_url('Admin/employees_la_delete')?>/<?php echo $info['log_la_id']?>/<?php echo $employees[0]['employees_secretcode']?>" class="btn btn-danger btn-xs" onclick="return confirm('ต้องการลบข้อมูล?')"> ยกเลิก </a></td>
               </tr>
               <?php $i++ ?>
               <?php } ?>
@@ -147,3 +149,4 @@
         </div>
       </div>
     </div>
+  <?php endif; ?>

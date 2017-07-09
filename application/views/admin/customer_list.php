@@ -7,11 +7,10 @@
         <thead>
           <tr>
             <th><div align="center">ลำดับ</div></th>
-            <th><div align="center">รายชื่อลูกค้า</div></th>
-            <th><div align="center">เบอร์ติดต่อ</div></th>
-            <th><div align="center">อีเมล์</div></th>
-            <th>เพศ</th>
-            <th>หมายเหตุ</th>
+            <th width="15%"><div align="center">วันที่</div></th>
+            <th width="20%"><div align="center">รายชื่อลูกค้า</div></th>
+            <th width="15%"><div align="center">เบอร์ติดต่อ</div></th>
+            <th width="50%">หมายเหตุ</th>
           </tr>
         </thead>
         <tbody>
@@ -19,10 +18,9 @@
           <?php foreach($customer as $customer){ ?>
           <tr style="cursor: pointer;" onclick="document.location = '<?php echo site_url('Admin/customer_update')?>/<?php echo $customer['customer_id']?>';">
             <td align="center"><?php echo $i ?></td>
+            <td><?php echo $customer['customer_date']?></td>
             <td><?php echo $customer['customer_name']?></td>
             <td><?php echo $customer['customer_tel']?></td>
-            <td><?php echo $customer['customer_email']?></td>
-            <td><?php echo $customer['customer_sex_name']?></td>
             <td><?php echo $customer['customer_note']?></td>
           </tr>
           <?php $i++ ?>

@@ -32,15 +32,20 @@
         <input name="product_number" type="text" class="form-control" id="product_number" placeholder="กรอกหมายเลขมือถือ" required="required" value="<?php echo $product[0]['product_number']?>"  readonly="readonly">
       </div>
     </div>
-    <div class="form-group">
+
+    <div class="form-group" style="margin-bottom:15px;">
       <div class="col-md-3">
-        <label class="control-label">แหล่งซื้อ</label>
+        <label class="control-label">ตัวแทน</label>
       </div>
       <div class="col-md-3">
-        <input name="product_agent" type="text" class="form-control" placeholder="กรอกหมายเลขมือถือ" required="required" value="<?php echo $product[0]['agent_name']?>"  readonly="readonly">
+        <select name="product_agent" class="form-control" id="product_agent" required="required">
+          <option value="<?php echo $product[0]['agent_id']?>"><?php echo $product[0]['agent_name']?></option>
+          <?php foreach($agent as $agent){ ?>
+          <option value="<?php echo $agent['agent_id']?>"><?php echo $agent['agent_name']?></option>
+          <?php } ?>
+        </select>
       </div>
     </div>
-
 
     <?php if ($product[0]['product_status'] == 2 || $product[0]['product_status'] == 99): ?>
       <div class="form-group">

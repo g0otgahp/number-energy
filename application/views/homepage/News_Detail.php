@@ -23,11 +23,13 @@
           </div>
         </div>
         <hr>
-        <div class="row">
+
+        <!-- <div class="row">
           <div class="panel col-lg-12 col-sm-12">
             <div class="fb-comments" data-href="<?php echo BASE_URL('news/detail/'.$News[0]['actipromo_id'])?>" data-width="100%" data-numposts="10"></div>
           </div>
-        </div>
+        </div> -->
+
       </div>
 
       <div class='row'>
@@ -58,6 +60,7 @@
               <hr>
             </div>
           </div>
+
         </div>
       </div>
 

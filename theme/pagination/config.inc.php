@@ -15,7 +15,7 @@ $db_host 			= 'localhost'; //hostname or IP
 // $db_host 			= 'localhost'; //hostname or IP
 
 
-$item_per_page 		= 4; //item to display per page
+$item_per_page 		= 6; //item to display per page
 
 $mysqli = new mysqli($db_host, $db_username, $db_password, $db_name);
 //Output any connection error

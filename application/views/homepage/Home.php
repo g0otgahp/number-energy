@@ -36,15 +36,16 @@
           <option value="5" > มากกว่า 10,000</option>
 
         </select>
-        <select name="product_type">
+
+        <!-- <select name="product_type">
           <option value="">--- เลือกด้านที่ส่งเสริม ---</option>
-          <?php foreach ($Product_Type as $row): ?>
+          <?php //foreach ($Product_Type as $row): ?>
               <option value="<?php echo $row['product_type_name']?>"><?php echo $row['product_type_name']?></option>
-          <?php endforeach; ?>
-        </select>
+          <?php //endforeach; ?>
+        </select> -->
 
         <select name="product_requiment">
-          <option value="">-- เลขแนะนำ --</option>
+          <option value="">-- เลขนิยม --</option>
           <option value="789" >789</option>
           <option value="289" >289</option>
           <option value="456" >456</option>
@@ -61,90 +62,6 @@
           <option value="DESC" >สูง - ต่ำ</option>
         </select>
 
-        <!--<select id="property-type" name="type" >
-          <option value="">All Types</option>
-          <option value="apartment"> Apartment</option>
-          <option value="condo"> Condo</option>
-          <option value="farm"> Farm</option>
-          <option value="loft"> Loft</option>
-          <option value="lot"> Lot</option>
-          <option value="multi-family-home"> Multi Family Home</option>
-          <option value="single-family-home"> Single Family Home</option>
-          <option value="townhouse"> Townhouse</option>
-          <option value="villa"> Villa</option>
-        </select>
-        <select name="bedrooms" id="property-beds">
-          <option value="">Beds</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="any">Any</option>
-        </select>
-        <select name="bathrooms" id="property-baths">
-          <option value="">Bathrooms</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="any">Any</option>
-        </select>
-        <input type="text" name="min-area" id="property-min-area" placeholder="Min Area (sqft)">
-        <input type="text" name="max-area" id="property-max-area" placeholder="Max Area (sqft)">
-        <select name="min-price" id="property-min-price">
-          <option value="any" selected="selected">Min Price</option>
-          <option value="1000">$1000</option>
-          <option value="5000">$5000</option>
-          <option value="10000">$10000</option>
-          <option value="50000">$50000</option>
-          <option value="100000">$100000</option>
-          <option value="200000">$200000</option>
-          <option value="300000">$300000</option>
-          <option value="400000">$400000</option>
-          <option value="500000">$500000</option>
-          <option value="600000">$600000</option>
-          <option value="700000">$700000</option>
-          <option value="800000">$800000</option>
-          <option value="900000">$900000</option>
-          <option value="1000000">$1000000</option>
-          <option value="1500000">$1500000</option>
-          <option value="2000000">$2000000</option>
-          <option value="2500000">$2500000</option>
-          <option value="5000000">$5000000</option>
-        </select>
-        <select name="max-price" id="property-max-price" >
-          <option value="any" selected="selected">Max Price</option>
-          <option value="5000">$5000</option>
-          <option value="10000">$10000</option>
-          <option value="50000">$50000</option>
-          <option value="100000">$100000</option>
-          <option value="200000">$200000</option>
-          <option value="300000">$300000</option>
-          <option value="400000">$400000</option>
-          <option value="500000">$500000</option>
-          <option value="600000">$600000</option>
-          <option value="700000">$700000</option>
-          <option value="800000">$800000</option>
-          <option value="900000">$900000</option>
-          <option value="1000000">$1000000</option>
-          <option value="1500000">$1500000</option>
-          <option value="2000000">$2000000</option>
-          <option value="2500000">$2500000</option>
-          <option value="5000000">$5000000</option>
-          <option value="10000000">$10000000</option>
-        </select>-->
       </fieldset>
       <button type="submit" class="btn btn-default btn-lg text-center">ค้นหา <br class="hidden-sm hidden-xs">
       เบอร์สวย</button>
@@ -152,6 +69,17 @@
     <?php echo form_close();?>
   </div>
 </div>
+
+<header class="section-header home-section-header text-center" style="margin-top:80px;">
+  <div class="container">
+    <h2 class="wow slideInRight">ค้นหาหมายเลข</h2>
+      <?php echo form_open('product/product_search') ?>
+        <input style="width: 300px; text-align: center;" name="number" class="" placeholder="กรอกหมายเลขที่ต้องการค้นหา">
+        <input style="width: 100px; text-align: center;" type="submit" class="form-control btn btn-primary" style="margin-top:10px;" value="ค้นหา">
+      <?php echo form_close() ?>
+  </div>
+</header>
+
 <section id="home-property-listing">
   <header id="product_list" class="section-header home-section-header text-center">
     <div class="container">
@@ -166,32 +94,35 @@
       <?php foreach ($Product_List as $row): ?>
       <div class="col-lg-4 col-sm-6 layout-item-wrap">
         <article class="property layout-item clearfix">
-          <figure class="feature-image"> <a class="clearfix zoom" href="#"><h3 align="center"><?php echo $row['product_number']?>
+          <h4 style="font-size:18px;" align="center" ><?php echo substr($row['product_number'],0,-7)?>-<?php echo substr($row['product_number'],3)?>
             <?php
              date_default_timezone_set('Asia/Bangkok');
              if (date('Y-m-d') == $row['product_date']): ?>
             <img src="<?php echo BASE_URL('images/new.gif')?>" style="width:40px">
             <?php endif; ?>
-          </h3></a></figure>
+          </h4>
           <div class="property-contents clearfix">
             <header class="property-header clearfix">
               <div class="pull-left">
-                <h6 class="entry-title">เครือข่าย
+                <h6 style="font-size:12px;" class="entry-title">เครือข่าย
                   <img src="<?php echo BASE_URL('images/networklogo/'.$row['mobile_network_pic'])?>" style="height:30px;">
-
                 </h6>
-                <span class="property-location"><i class="fa fa-star" aria-hidden="true"></i> ส่งเสริมด้าน <br>
+                <span style="font-size:11px;" class="property-location">
+                  <!-- <i class="fa fa-star" aria-hidden="true"></i> -->
+                   ส่งเสริมด้าน
+                   <img src="<?php echo BASE_URL('images/arrow_right.gif')?>" style="height:20px;">
+
                   <?php if ($row['product_type'] != ''): ?>
-                    <?php echo $row['product_type']?>
+                    <span style="color:black;"><?php echo $row['product_type']?></span>
                     <?php else: ?>
-                      ไม่มี
+                      <span style="color:black;">ไม่มี</span>
                   <?php endif; ?>
                 </span> </div>
-              <button class="btn btn-default btn-price pull-right btn-3d" data-hover="฿<?php echo number_format($row['product_sale'])?>"><strong>฿<?php echo number_format($row['product_sale'])?></strong></button>
+              <button class="btn btn-default btn-price pull-right btn-3d btn-xs" data-hover="฿<?php echo number_format($row['product_sale'])?>"><a href="<?php echo SITE_URL('abountus')?>" target="_blank"><strong style="color:white;">฿<?php echo number_format($row['product_sale'])?></a></strong></button>
             </header>
             <div class="property-meta clearfix">
               <!-- <span><i class="fa fa-calculator"></i> ผลรวมของเบอร์ (<?php echo $row['Count_number']?>)</span>  -->
-              <span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> อัพเดทวันที่ <?php echo $row['product_date']?></span> <!--<span><i class="fa fa-bathtub"></i> 3 Baths</span> <span><i class="fa fa-cab"></i> Yes</span>--> </div>
+              <span style="font-size:9px;"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> อัพเดทวันที่ <?php echo $row['product_date']?></span> <!--<span><i class="fa fa-bathtub"></i> 3 Baths</span> <span><i class="fa fa-cab"></i> Yes</span>--> </div>
             <!-- <div class="contents clearfix">
               <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
             </div> -->

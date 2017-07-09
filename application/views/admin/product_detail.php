@@ -36,7 +36,7 @@
               <label class="control-label">แหล่งซื้อ</label>
             </div>
             <div class="col-md-8">
-              <input name="product_agent" type="text" class="form-control" placeholder="กรอกหมายเลขมือถือ" required="required" value="<?php echo $product[0]['agent_name']?>"  readonly="readonly">
+              <input name="product_agent" type="text" class="form-control" placeholder="ไม่ได้ระบุ" required="required" value="<?php echo $product[0]['agent_name']?>"  readonly="readonly">
             </div>
           </div>
             <div class="form-group">
@@ -119,14 +119,22 @@
                 </div>
               </div>
 
+              <?php echo form_open('Product_process/product_change_name')?>
               <div class="form-group" style="margin-top:15px;">
                 <div class="col-md-12">
                   <label class="control-label">ผู้สั่งจอง</label>
                 </div>
                 <div class="col-md-12">
-                  <input name="product_type" type="text" class="form-control" required="required" value="<?php echo $product[0]['customer_name']?>" readonly="readonly">
+                  <input name="log_id" type="hidden" value="<?php echo $product[0]['log_id']?>" >
+                  <input name="product_id" type="hidden" value="<?php echo $product[0]['product_id']?>" >
+                  <?php if ($product[0]['log_status'] != 4): ?>
+                    <input name="log_customer_name" type="text" class="form-control" required="required" placeholder="กรุณากรอกชื่อผู้สั่งจอง" value="<?php echo $product[0]['log_customer_name']?>" onchange="this.form.submit()" >
+                    <?php else: ?>
+                    <input name="log_customer_name" type="text" class="form-control" required="required" placeholder="กรุณากรอกชื่อผู้สั่งจอง" value="<?php echo $product[0]['log_customer_name']?>" readonly>
+                  <?php endif; ?>
                 </div>
               </div>
+              <?php echo form_close()?>
 
               <div class="form-group" style="margin-top:15px;">
                 <div class="col-md-12">
@@ -161,9 +169,10 @@
                     <input name="product_id" type="hidden" value="<?php echo $product[0]['log_product_id']?>" />
                     <input name="customer_id" type="hidden" value="<?php echo $product[0]['log_customer_id']?>" />
                     <input name="employee_id" type="hidden" value="<?php echo $product[0]['log_employee_id']?>" />
+                    <input name="log_customer_name" type="hidden" value="<?php echo $product[0]['log_customer_name']?>" />
                     <input name="product_sale" type="hidden" value="<?php echo $product[0]['product_sale']?>" />
                     <button type="submit" class="btn btn-success" onclick="return confirm('ยินยันการชำระเงิน')">ชำระเงิน</button>
-                    <a href="<?php echo site_url('Product_process/product_cancle/'.$product[0]['log_product_id']."/".$product[0]['log_customer_id']."/".$product[0]['log_employee_id'])?>" onclick="return confirm('ต้องการยกเลิกรายการนี้?')"><button type="button" class="btn btn-danger">ยกเลิกรายการ</button></a>
+                    <a href="<?php echo site_url('Product_process/product_cancle/'.$product[0]['log_product_id']."/".$product[0]['log_customer_id']."/".$product[0]['log_employee_id']."/".$product[0]['log_customer_name'])?>" onclick="return confirm('ต้องการยกเลิกรายการนี้?')"><button type="button" class="btn btn-danger">ยกเลิกรายการ</button></a>
                     <?php echo form_close()?>
                   <?php elseif ($product[0]['product_status'] == 4): ?>
                     <a href="<?php echo site_url('Admin/product_paper/'.$product[0]['log_product_id'])?>" target="_blank"><button type="button" class="btn btn-info">พิมพ์ใบเสร็จ</button></a>

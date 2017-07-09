@@ -1,23 +1,23 @@
 
-  <!-- <div class="col-xs-12">
-    <div class="card card-banner card-chart card-green no-br">
-      <div class="card-header">
-        <div class="card-title">
-          <div class="title">รายการขายประจำเดือน </div>
-        </div>
-        <ul class="card-action">
-          <li>
-            <a href="/">
-              <i class="fa fa-refresh"></i>
-            </a>
-          </li>
-        </ul>
+<div class="col-xs-12">
+  <div class="card card-banner card-chart card-green no-br">
+    <div class="card-header">
+      <div class="card-title">
+        <div class="title">รายการขายประจำเดือน </div>
       </div>
-      <div class="card-body">
-        <div class="ct-chart-sale"></div>
-      </div>
+      <ul class="card-action">
+        <li>
+          <a href="/">
+            <i class="fa fa-refresh"></i>
+          </a>
+        </li>
+      </ul>
     </div>
-  </div> -->
+    <div class="card-body">
+      <div class="ct-chart-sale"></div>
+    </div>
+  </div>
+</div>
 
 <?php foreach ($mobile_network as $row): ?>
 
@@ -44,7 +44,36 @@
 
 <div class="col-xs-12">
   <div class="card">
-    <div class="card-header"> <h3>บันทึกกิจการขาย</h3> </div>
+    <div class="card-header"> <h3>บันทึกกิจกรรม <a href="<?php echo SITE_URL('admin/history_insert')?>" class="btn btn-success btn-xs">เพิ่มบันทึก</a></h3> </div>
+    <div class="card-body no-padding">
+      <table class="table table-hover primary" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th width="2%"><div align="center">ลบ</div></th>
+            <!-- <th width="10%"><div align="center">ลำดับ</div></th> -->
+            <th width="20%"><div align="center">วันที่ - เวลา</div></th>
+            <th width="78%"><div align="center">หมายเหตุ</div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php date_default_timezone_set('Asia/Bangkok');?>
+          <?php $i=1; foreach($history as $history){ ?>
+              <tr>
+          <td align="center"><a href="<?php echo SITE_URL('admin/history_delete/'.$history['history_id']);?>" class="btn btn-danger btn-xs">X</a></td>
+            <!-- <td align="center"><?php echo $i ?></td> -->
+            <td align="right"><?php echo $history['history_date'] ?></td>
+            <td align="left"><?php echo $history['history_note'] ?></td>
+          </tr>
+          <?php $i++; } ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header"> <h3>บันทึกกิจกรรมการขาย</h3> </div>
     <div class="card-body no-padding">
       <table class="table table-hover primary" cellspacing="0" width="100%">
         <thead>
@@ -81,7 +110,7 @@
             <?php else: ?>
             <td><?php echo $product['product_number']?></td>
             <?php endif; ?>
-            <td align="right"><a href="<?php echo site_url('Admin/customer_update')?>/<?php echo $product['customer_id']?>" target="_blank"><?php echo $product['customer_name'] ?></a></td>
+            <td align="right"><?php echo $product['log_customer_name'] ?></td>
             <td align="right"><a href="<?php echo site_url('Admin/employees_update')?>/<?php echo $product['employees_secretcode']?>" target="_blank"><?php echo $product['employees_name'] ?></a></td>
             <td align="right"><?php echo number_format($product['product_sale']) ?></td>
           </tr>

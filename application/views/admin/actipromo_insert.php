@@ -15,6 +15,12 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="col-md-3 control-label">รหัส</label>
+        <div class="col-md-9">
+          <input name="actipromo_code" type="text" class="form-control" placeholder="กรอกรหัส" required="required">
+        </div>
+      </div>
+      <div class="form-group">
         <label class="col-md-3 control-label">หัวข้อ (Title)</label>
         <div class="col-md-9">
           <input name="actipromo_title" type="text" class="form-control" id="" placeholder="กรอกหัวข้อ" required="required">
@@ -28,6 +34,31 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="col-md-3 control-label">กลุ่มเป้าหมาย</label>
+        <div class="col-md-9">
+          <input name="actipromo_target" type="text" class="form-control" placeholder="กรอกกลุ่มเป้าหมาย" required="required">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">ผลลัพท์</label>
+        <div class="col-md-9">
+          <input name="actipromo_result" type="text" class="form-control" placeholder="กรอกผลลัพท์" required="required">
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:15px;">
+        <div class="col-md-3">
+          <label class="control-label">ผู้ดูแล</label>
+        </div>
+        <div class="col-md-3">
+          <select name="actipromo_employees" class="form-control" required="required">
+            <option value="">--เลือกผู้ดูแล--</option>
+            <?php foreach($employees as $info_employees){ ?>
+              <option value="<?php echo $info_employees['employees_id']?>"><?php echo $info_employees['employees_name']?></option>
+              <?php } ?>
+            </select>
+          </div>
+        </div>
+      <div class="form-group" style="margin-top:15px;">
         <label class="col-md-3 control-label">รูปภาพประกอบ</label>
         <div class="col-md-4">
           <input name="actipromo_image" type="file" class="form-control" id="actipromo_image" required="required" >

@@ -140,7 +140,7 @@
 			<div class="form-group" style="margin-top:15px;">
 				<label class="col-md-3 control-label">Note/หมายเหตุ</label>
 				<div class="col-md-6">
-					<textarea name="customer_note" type="text" class="form-control" placeholder="หมายเหตุ"><?php echo $customer[0]['customer_note']?></textarea>
+					<textarea name="customer_note" type="text" class="form-control" placeholder="หมายเหตุ" rows="12" cols="50"><?php echo $customer[0]['customer_note']?></textarea>
 				</div>
 			</div>
 
@@ -160,4 +160,46 @@
       </div>
       <?php echo form_close()?> </div>
   </div>
+</div>
+
+<div class="col-xs-12">
+	<div class="card">
+		<div class="card-header"> ประวัติการสั่งซื้อ </div>
+		<div class="card-body no-padding">
+			<table class="datatable table table-hover primary" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th><div align="center">ลำดับ</div></th>
+						<th width="20%"><div align="center">วันที่</div></th>
+						<th width="20%"><div align="center">เบอร์</div></th>
+						<th width="15%"><div align="right">ราคา</div></th>
+						<th width="35%"><div align="center">พนักงานขาย</div></th>
+						<th width="10%"><div align="center">สถานะ</div></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $i = 1 ?>
+					<?php foreach($history as $info){ ?>
+					<tr>
+						<td align="center"><?php echo $i ?></td>
+						<td><?php echo $info['log_date']?></td>
+						<td><?php echo substr($info['product_number'],0,-7)?>-<?php echo substr($info['product_number'],3)?></td>
+						<td align="right"><?php echo number_format($info['product_sale'])?></td>
+						<td align="right"><a href="<?php echo site_url('Admin/employees_update')?>/<?php echo $info['employees_secretcode']?>" target="_blank"><?php echo $info['employees_name'] ?></a></td>
+						<?php if ($info['log_status'] == 1): ?>
+              <td style="color:gray;">กำลังขาย</td>
+            <?php elseif ($info['log_status'] == 3): ?>
+              <td style="color:orange;">จองแล้ว</td>
+            <?php elseif ($info['log_status'] == 4): ?>
+              <td style="color:green;">ขายแล้ว</td>
+            <?php else: ?>
+              <td style="color:red;">ยกเลิก</td>
+            <?php endif; ?>
+					</tr>
+					<?php $i++ ?>
+					<?php } ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>

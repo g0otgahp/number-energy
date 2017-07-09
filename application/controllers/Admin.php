@@ -14,13 +14,14 @@ class Admin extends CI_Controller {
 	}
 	public function index()
 	{
-		// $data['CountToday'] = $this->Account_model->account_count_today();
-		// $data['CountOrder'] = $this->Account_model->account_count_order();
-		// $data['CountMember'] = $this->Account_model->account_count_member();
+		$data['CountToday'] = $this->Account_model->account_count_today();
+		$data['CountOrder'] = $this->Account_model->account_count_order();
+		$data['CountMember'] = $this->Account_model->account_count_member();
 		$data['MaxDay'] = $this->Account_model->MaxDay();
 		$data['SaleOrder'] = $this->Account_model->account_count_saleorder();
 		$data['mobile_network'] = $this->Product_model->mobile_network_list();
 		$data['product'] = $this->Product_model->product_log();
+		$data['history'] = $this->Homepage_model->history_list();
 
 		$data['page'] = "admin/index";
 		$this->load->view('admin/theme',$data);
@@ -35,6 +36,7 @@ class Admin extends CI_Controller {
 	}
 	public function actipromo_insert()
 	{
+		$data['employees'] = $this->Employees_model->employees_list();
 		$data['page'] = "admin/actipromo_insert";
 		$this->load->view('admin/theme',$data);
 	}
@@ -42,6 +44,7 @@ class Admin extends CI_Controller {
 	{
 		$actipromo_id = $this->uri->segment(3);
 		$data['actipromo'] = $this->Actipromo_model->actipromo_detail($actipromo_id);
+		$data['employees'] = $this->Employees_model->employees_list();
 
 		$data['page'] = "admin/actipromo_update";
 		$this->load->view('admin/theme',$data);
@@ -52,6 +55,35 @@ class Admin extends CI_Controller {
 		$this->Actipromo_model->actipromo_delete($actipromo_id);
 		echo "<script>alert('ทำรายการลบข้อมูลเรียบร้อยแล้ว')</script>";
 		echo "<meta http-equiv='refresh' content='0; url=../actipromo_list' />";
+	}
+
+	public function history_delete()
+	{
+		$history_id = $this->uri->segment(3);
+
+		$this->db->where('history_id',$history_id);
+		$this->db->delete('dmn_history');
+
+		echo "<script>alert('ทำรายการลบข้อมูลเรียบร้อยแล้ว')</script>";
+		echo "<meta http-equiv='refresh' content='0; url=../index' />";
+	}
+
+	public function history_insert()
+	{
+		$data['page'] = "admin/history_insert";
+		$this->load->view('admin/theme_notextarea',$data);
+	}
+
+	public function history_save()
+	{
+		date_default_timezone_set('Asia/Bangkok');
+		$input = array(
+			'history_date' => $this->input->post('history_date'),
+			'history_note' => $this->input->post('history_note'),
+		);
+		$this->db->insert('dmn_history',$input);
+		echo "<script>alert('ทำรายการลบข้อมูลเรียบร้อยแล้ว')</script>";
+		echo "<meta http-equiv='refresh' content='0; url=../admin/index' />";
 	}
 
 	#ลูกค้า
@@ -74,6 +106,7 @@ class Admin extends CI_Controller {
 		$customer_id = $this->uri->segment(3);
 		$data['customer'] = $this->Customer_model->customer_detail($customer_id);
 		$data['relate'] = $this->Customer_model->relate_list();
+		$data['history'] = $this->Product_model->product_log_by_id($customer_id);
 
 		if (count($data['customer']) >0) {
 			$data['page'] = "admin/customer_update";
@@ -158,6 +191,17 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/theme',$data);
 	}
 
+	public function employees_la_delete()
+	{
+		$log_id = $this->uri->segment(3);
+		$secretcode = $this->uri->segment(4);
+
+		$this->Employees_model->employees_la_delete($log_id);
+
+		$data['page'] = "admin/employees_la";
+		redirect('Admin/employees_update/'.$secretcode);
+	}
+
 	public function employees_salary()
 	{
 		$data['secretcode'] = $this->uri->segment(3);
@@ -194,6 +238,7 @@ class Admin extends CI_Controller {
 		$data['secretcode'] = $input['secretcode'];
 		$data['salary'] = $this->Homepage_model->salary_config();
 		$data['employees_salary'] = $this->Employees_model->employees_salary($input);
+		$data['Abountus'] = $this->Homepage_model->Abountus();
 
 		$strDate = $data['employees_salary'][0]['date_select'];
 			// 2008-08-14 13:42:44
@@ -322,6 +367,33 @@ class Admin extends CI_Controller {
 		echo "<meta http-equiv='refresh' content='0; url=../mobile_network_list' />";
 	}
 
+	#จัดหาเบอร์
+	public function find_number()
+	{
+		$data['find'] = $this->Product_model->order_list();
+		$data['page'] = "admin/find_number";
+		$this->load->view('admin/theme',$data);
+	}
+
+	public function find_number_insert()
+	{
+		$data['mobile_network'] = $this->Product_model->mobile_network_list();
+		$data['employees'] = $this->Employees_model->employees_list();
+
+		$data['page'] = "admin/find_number_insert";
+		$this->load->view('admin/theme_notextarea',$data);
+	}
+	public function find_number_update()
+	{
+		$order_id = $this->uri->segment(3);
+		$data['find'] = $this->Product_model->order_by_id($order_id);
+		$data['mobile_network'] = $this->Product_model->mobile_network_list();
+		$data['employees'] = $this->Employees_model->employees_list();
+
+		$data['page'] = "admin/find_number_update";
+		$this->load->view('admin/theme_notextarea',$data);
+	}
+
 	#สินค้า
 	public function product_list()
 	{
@@ -344,6 +416,7 @@ class Admin extends CI_Controller {
 		$product_id = $this->uri->segment(3);
 		$data['product'] = $this->Product_model->product_detail($product_id);
 		$data['mobile_network'] = $this->Product_model->mobile_network_list();
+		$data['agent'] = $this->Agent_model->agent_list();
 
 		$data['page'] = "admin/product_update";
 		$this->load->view('admin/theme_notextarea',$data);
@@ -364,7 +437,6 @@ class Admin extends CI_Controller {
 	{
 		$product_id = $this->uri->segment(3);
 		$data['product'] = $this->Product_model->product_book_detail($product_id);
-		// $this->debuger->prevalue($data);
 		$data['page'] = "admin/product_detail";
 		$this->load->view('admin/theme_notextarea',$data);
 	}
@@ -373,8 +445,25 @@ class Admin extends CI_Controller {
 	{
 	$product_id = $this->uri->segment(3);
 	$data['product'] = $this->Product_model->product_book_detail($product_id);
+	$data['Abountus'] = $this->Homepage_model->Abountus();
+
 	// $this->debuger->prevalue($data);
 	$this->load->view('admin/paper',$data);
+	}
+
+	public function product_all()
+	{
+	$chk = $this->uri->segment(3);
+		if ($chk =='sale') {
+			$input = 1;
+		} elseif ($chk =='trash') {
+			$input = 2;
+		} else {
+			echo "<script>alert('เกิดข้อผิดพลาดที่ url')</script>";
+		}
+	$data['product'] = $this->Product_model->product_all($input);
+	// $this->debuger->prevalue($data);
+	$this->load->view('admin/paper_all',$data);
 	}
 
 	public function product_delete()
@@ -391,7 +480,7 @@ class Admin extends CI_Controller {
 		$data['mobile_network'] = $this->Product_model->mobile_network_list();
 		$data['Import'] = $this->Product_model->import_list();
 		$data['agent'] = $this->Agent_model->agent_list();
-		$data['history'] = $this->Product_model->history_list();
+		// $data['history'] = $this->Product_model->history_list();
 
 		$data['page'] = "admin/product_import";
 		$this->load->view('admin/theme',$data);
@@ -449,6 +538,14 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/theme',$data);
 	}
 
+	#ตั้งค่าบริการของเรา
+	public function service_config()
+	{
+		$data['service'] = $this->Homepage_model->Service();
+		$data['page'] = "admin/service_config";
+		$this->load->view('admin/theme',$data);
+	}
+
 	#การจัดการบทความ
 	public function contents_list()
 	{
@@ -476,6 +573,13 @@ class Admin extends CI_Controller {
 		$this->Product_model->contents_delete($id);
 		echo "<script>alert('ทำรายการลบข้อมูลเรียบร้อยแล้ว')</script>";
 		echo "<meta http-equiv='refresh' content='0; url=../contents_list' />";
+	}
+
+	public function contents_delete_img()
+	{
+		$id = $this->uri->segment(3);
+		$this->Product_model->contents_delete_img($id);
+		redirect('Admin/contents_update/'.$id);
 	}
 
 	#ประเภทของลูกค้า

@@ -80,8 +80,8 @@ $month =  array(
   <div style="float:center; width:70%;">
 		<strong style="font-size:1.35em;">ใบเสร็จ</strong> <br>
     <strong style="font-size:0.8em;">เพรชพลังเลข Number Energy</strong> <br>
-    <strong style="font-size:0.8em;">42 / 167 อาคารเพชรเจริญ ถนน นวมินทร์ 161 แขวงนวลจันทร์ เขต บึงกุ่ม กรุงเทพฯ 10230</strong><br>
-		<strong style="font-size:0.8em;">ติดต่อ 094-6393945</strong>
+    <strong style="font-size:0.8em;"><?php echo $Abountus[0]['abountus_address']?></strong><br>
+		<strong style="font-size:0.8em;">ติดต่อ <?php echo $Abountus[0]['abountus_phone']?></strong>
 	</div>
 	</center>
 	<p style="clear:both;"></p>
@@ -89,7 +89,7 @@ $month =  array(
 
   <table width="100%" border="0" style="font-size:0.7em;">
 		<tr>
-			<td colspan="2"><strong>นามลูกค้า: <?php echo $product[0]['customer_name']?></strong></td>
+			<td colspan="2"><strong>นามลูกค้า: <?php echo $product[0]['log_customer_name']?></strong></td>
 			<td colspan="2"><strong>วันที่ <?php echo (date('d')+0)." ".$month[date('m')]." ".(date('Y')+543) ?></strong></td>
 		</tr>
 		<!-- <tr>

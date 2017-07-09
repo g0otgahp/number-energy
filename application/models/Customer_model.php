@@ -12,6 +12,7 @@ class Customer_model extends CI_Model {
 		$query = $this->db->get('dmn_customer');
 		return $query->result_array();
 	}
+
 	public function customer_detail($customer_id)
 	{
 		$this->db->where('dmn_customer.customer_id',$customer_id);
@@ -20,6 +21,7 @@ class Customer_model extends CI_Model {
 		$query = $this->db->get('dmn_customer');
 		return $query->result_array();
 	}
+
 	public function customer_insert($input)
 	{
 		$this->db->insert('dmn_customer',$input);

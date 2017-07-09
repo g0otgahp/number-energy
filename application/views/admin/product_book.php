@@ -61,10 +61,11 @@
         <label class="control-label">ลูกค้า</label>
       </div>
       <div class="col-md-3">
-        <select name="customer_id" class="form-control" id="product_mobile_network" required="required">
+        <select name="customer_id" class="selectpicker" data-live-search="true" required>
           <option value="">--เลือกลูกค้า--</option>
+          <option value="0">(ไม่ใช่ลูกค้าในระบบ)</option>
           <?php foreach($customer as $info_customer){ ?>
-            <option value="<?php echo $info_customer['customer_id']?>"><?php echo $info_customer['customer_name']?></option>
+            <option data-tokens="<?php echo $info_customer['customer_id']?>" value="<?php echo $info_customer['customer_id']?>"><?php echo $info_customer['customer_name']?></option>
             <?php } ?>
           </select>
         </div>
@@ -74,10 +75,10 @@
           <label class="control-label">พนักงานขาย</label>
         </div>
         <div class="col-md-3">
-          <select name="employee_id" class="form-control" id="product_mobile_network" required="required">
+          <select name="employee_id" class="selectpicker" data-live-search="true" required>
             <option value="">--เลือกพนักงานขาย--</option>
             <?php foreach($employees as $info_employees){ ?>
-              <option value="<?php echo $info_employees['employees_id']?>"><?php echo $info_employees['employees_name']?></option>
+              <option data-tokens="<?php echo $info_employees['employees_id']?>" value="<?php echo $info_employees['employees_id']?>"><?php echo $info_employees['employees_name']?></option>
               <?php } ?>
             </select>
           </div>

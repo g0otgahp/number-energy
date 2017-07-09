@@ -5,7 +5,7 @@
       เพิ่มข้อมูลลูกค้า
     </div>
     <div class="card-body">
-      <?php echo form_open('Customer_process/customer_insert','class="form form-horizontal"')?>
+      <?php echo form_open_multipart('Customer_process/customer_insert','class="form form-horizontal"')?>
       <div class="section">
         <div class="section-body">
           <div class="form-group">

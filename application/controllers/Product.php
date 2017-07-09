@@ -75,7 +75,7 @@ class product extends CI_Controller {
 		$PromotionTop = $this->Homepage_model->PromotionTop();
 		$EventTop = $this->Homepage_model->EventTop();
 
-		$filter = $this->Homepage_model->filter_find($input);
+		// $filter = $this->Homepage_model->filter_find($input);
 
 		$value = array(
 			'Result' => array(
@@ -83,7 +83,7 @@ class product extends CI_Controller {
 				'Product_List' => $Product_List,
 				'Product_Network' => $Product_Network,
 				'Product_Type' => $Product_Type,
-				'filter' => $filter,
+				// 'filter' => $filter,
 				'Story' => $Story,
 				'Abountus' => $Abountus,
 				'EventTop' => $EventTop,
@@ -91,6 +91,38 @@ class product extends CI_Controller {
 
 			),
 			'View' => 'homepage/Product_Find',
+		);
+		$this->LoadPage($value);
+	}
+
+	public function product_search()
+	{
+		$input = $this->input->post();
+		$Config = $this->Homepage_model->General_config();
+		$Product_List = $this->Homepage_model->Product_search($input);
+		$Product_Network = $this->Homepage_model->Product_Network();
+		$Product_Type = $this->Homepage_model->Product_Type();
+		$Story = $this->Homepage_model->Story();
+		$Abountus = $this->Homepage_model->Abountus();
+		$PromotionTop = $this->Homepage_model->PromotionTop();
+		$EventTop = $this->Homepage_model->EventTop();
+
+		// $filter = $this->Homepage_model->filter_find($input);
+
+		$value = array(
+			'Result' => array(
+				'Config' => $Config,
+				'Product_List' => $Product_List,
+				'Product_Network' => $Product_Network,
+				'Product_Type' => $Product_Type,
+				// 'filter' => $filter,
+				'Story' => $Story,
+				'Abountus' => $Abountus,
+				'EventTop' => $EventTop,
+				'PromotionTop' => $PromotionTop,
+
+			),
+			'View' => 'homepage/Product_search',
 		);
 		$this->LoadPage($value);
 	}

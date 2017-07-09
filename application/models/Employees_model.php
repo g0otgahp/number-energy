@@ -125,6 +125,12 @@ class Employees_model extends CI_Model {
 		$this->db->where('employees_secretcode',$secretcode);
 		$this->db->update('dmn_employees',$delete);
 	}
+
+	public function employees_la_delete($log_id)
+	{
+		$this->db->where('log_la_id',$log_id);
+		$this->db->delete('dmn_log_la');
+	}
 	public function user_delete($secretcode)
 	{
 		$delete = array('dmn_user_status' => 0);

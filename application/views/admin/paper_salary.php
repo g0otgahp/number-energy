@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ใบเสร็จรับเงิน</title>
+<title>สลิปเงินเดือน</title>
 </head>
 <style>
 body {
@@ -78,10 +78,10 @@ $month =  array(
 <page size="A5" layout="portrait">
 	<center>
   <div style="float:center; width:70%;">
-		<strong style="font-size:1.35em;">ใบเสร็จรับเงินเดือน</strong> <br>
+		<strong style="font-size:1.35em;">สลิปเงินเดือน</strong> <br>
     <strong style="font-size:0.8em;">เพรชพลังเลข Number Energy</strong> <br>
-    <strong style="font-size:0.8em;">42 / 167 อาคารเพชรเจริญ ถนน นวมินทร์ 161 แขวงนวลจันทร์ เขต บึงกุ่ม กรุงเทพฯ 10230</strong><br>
-		<strong style="font-size:0.8em;">ติดต่อ 094-6393945</strong>
+		<strong style="font-size:0.8em;"><?php echo $Abountus[0]['abountus_address']?></strong><br>
+		<strong style="font-size:0.8em;">ติดต่อ <?php echo $Abountus[0]['abountus_phone']?></strong>
 	</div>
 	</center>
 	<p style="clear:both;"></p>

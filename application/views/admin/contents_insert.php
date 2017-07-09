@@ -2,7 +2,7 @@
 <div class="col-md-12">
   <div class="card">
     <div class="card-header"> เพิ่มบทความ </div>
-    <div class="card-body"> <?php echo form_open('Product_process/contents_insert','class="form form-horizontal"')?>
+    <div class="card-body"> <?php echo form_open_multipart('Product_process/contents_insert','class="form form-horizontal"')?>
       <div class="section">
         <div class="section-body">
           <div class="form-group">
@@ -11,6 +11,13 @@
             </div>
             <div class="col-md-9">
               <input name="story_name" type="text" class="form-control" placeholder="กรอกชื่อบทความ" required="required">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label">รูปภาพประกอบ</label>
+            <div class="col-md-4">
+              <input name="story_img" type="file" class="form-control" >
             </div>
           </div>
 

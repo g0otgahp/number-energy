@@ -1,7 +1,7 @@
 
 <div class="col-xs-12">
   <div class="card">
-    <div class="card-header"> <h3>เบอร์ที่กำลังขาย</h3> </div>
+    <div class="card-header"> <h3>เบอร์ที่กำลังขาย <a href="<?php echo SITE_URL('admin/product_all/sale')?>" style="font-size:12px;" target="_blank">ดูทั้งหมด</a></h3> </div>
     <div class="card-body no-padding">
       <table class="datatable table table-hover primary" cellspacing="0" width="100%">
         <thead>
@@ -30,11 +30,11 @@
             <td align="center"><?php echo $product['mobile_network_name']?></td>
             <?php if (date('Y-m-d') == $product['product_date']): ?>
             <td>
-              <?php echo $product['product_number']?>
+              <?php echo substr($product['product_number'],0,-7)?>-<?php echo substr($product['product_number'],3)?>
               <img src="<?php echo BASE_URL('images/new.gif')?>" width="40px">
             </td>
             <?php else: ?>
-            <td><?php echo $product['product_number']?></td>
+            <td><?php echo substr($product['product_number'],0,-7)?>-<?php echo substr($product['product_number'],3)?></td>
             <?php endif; ?>
             <!-- <td align="center">[<?php echo $product['Count_number']?>]</td> -->
             <!-- <td align="right"><?php echo number_format($product['product_cost'],2)?> บาท</td> -->
@@ -67,7 +67,7 @@
 
 <div class="col-xs-12">
   <div class="card">
-    <div class="card-header"> <h3>เบอร์เสีย</h3> </div>
+    <div class="card-header"> <h3>เบอร์เสีย  <a href="<?php echo SITE_URL('admin/product_all/trash')?>" style="font-size:12px;" target="_blank">ดูทั้งหมด</a> </h3> </div>
     <div class="card-body no-padding">
       <table class="datatable table table-hover primary" cellspacing="0" width="100%">
         <thead>
@@ -96,7 +96,7 @@
               <img src="<?php echo BASE_URL('images/new.gif')?>" width="40px">
             </td>
             <?php else: ?>
-            <td><?php echo $row['product_number']?></td>
+            <td><?php echo substr($product['product_number'],0,-7)?>-<?php echo substr($product['product_number'],3)?></td>
             <?php endif; ?>
             <!-- <td align="center">[<?php echo $row['Count_number']?>]</td> -->
             <td align="right"><?php echo number_format($row['product_cost'],2)?> บาท</td>

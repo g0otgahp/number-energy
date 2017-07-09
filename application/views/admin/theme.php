@@ -5,6 +5,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>theme/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>theme/bootstrap/css/bootstrap-theme.min.css">
+
+
   <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>theme/assets/css/vendor.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>theme/assets/css/flat-admin.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>theme/font-awesome/css/font-awesome.min.css">
@@ -17,6 +21,9 @@
 
   <!-- DatePicker -->
   <link rel="stylesheet" href="<?php echo base_url()?>theme/js/jQueryCalendarThai/jquery.datetimepicker.css" />
+
+  <!-- select2 -->
+  <link rel="stylesheet" href="<?php echo base_url()?>theme/select/select2.css" />
 
   <!-- Icon Font -->
   <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
@@ -37,7 +44,7 @@
   </div>
   <div class="sidebar-menu">
     <ul class="sidebar-nav">
-      <li <?php if($this->uri->segment(2)=="index"){ ?>class="active"<?php } ?>>
+      <li <?php if($this->uri->segment(2)=="index"||$this->uri->segment(2)=="history_insert"){ ?>class="active"<?php } ?>>
         <a href="<?php echo site_url('Admin/index')?>">
           <div class="icon">
             <i class="fa fa-tasks" aria-hidden="true"></i>
@@ -51,6 +58,14 @@
             <i class="fa fa-cubes" aria-hidden="true"></i>
           </div>
           <div class="title">Import สินค้า</div>
+        </a>
+      </li>
+      <li <?php if($this->uri->segment(2)=="find_number"||$this->uri->segment(2)=="find_number_insert"||$this->uri->segment(2)=="find_number_update"||$this->uri->segment(2)=="find_number_detail"){ ?>class="active"<?php } ?>>
+        <a href="<?php echo site_url('Admin/find_number')?>">
+          <div class="icon">
+            <i class="fa fa-comments" aria-hidden="true"></i>
+          </div>
+          <div class="title">จัดการเบอร์</div>
         </a>
       </li>
       <li <?php if($this->uri->segment(2)=="product_list"||$this->uri->segment(2)=="product_insert"||$this->uri->segment(2)=="product_update"||$this->uri->segment(2)=="product_detail"){ ?>class="active"<?php } ?>>
@@ -115,6 +130,7 @@
             <li><a href="<?php echo site_url('Admin/general_config')?>">ตั้งค่าทั่วไป</a></li>
             <li><a href="<?php echo site_url('Admin/salary_config')?>">ตั้งค่าเงินเดือน</a></li>
             <li><a href="<?php echo site_url('Admin/abountus_config')?>">ข้อมูลเกี่ยวกับเรา</a></li>
+            <li><a href="<?php echo site_url('Admin/service_config')?>">บริการของเรา</a></li>
             <li><a href="<?php echo site_url('Admin/contents_list')?>">บทความ</a></li>
             <!-- <li><a href="<?php echo site_url('Admin/mobile_network_list')?>">เครือข่ายมือถือ</a></li> -->
             <!-- <li><a href="<?php echo site_url('Admin/product_type_list')?>">ประเภทเบอร์</a></li> -->
@@ -370,7 +386,14 @@
 </footer>
 </div>
   </div>
-  <!-- <script type="text/javascript" src="<?php echo base_url()?>theme/js/jquery.min.js"></script> -->
+
+  <script type="text/javascript">
+    var setLabels = <?php echo json_encode($MaxDay); ?>;
+    var setSeries = <?php echo json_encode($SaleOrder); ?>;
+  </script>
+  <script type="text/javascript" src="<?php echo base_url()?>theme/bootstrap/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="<?php echo base_url()?>theme/js/jquery.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url()?>theme/assets/js/vendor.js"></script>
   <script type="text/javascript" src="<?php echo base_url()?>theme/assets/js/app.js"></script>
 
@@ -418,7 +441,6 @@
  });
   </script>
 
-  <!-- Chrat-Sale -->
   <script>
 
 function copyToClipboard(field)
@@ -434,6 +456,7 @@ function copyToClipboard(field)
 
   </script>
 
+  <script type="text/javascript" src="<?php echo base_url()?>theme/select/select2.min.js"></script>
 
 
 
