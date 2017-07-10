@@ -7,7 +7,25 @@
             <?php if (count($Product_List) == 0): ?>
               <h2 class="wow slideInRight">ไม่พบรายการนี้หรือเบอร์มือถือหมดแล้ว</h2>
             <?php else: ?>
-              <h2 class="wow slideInRight">รายการเบอร์มือถือ <?php echo $Product_List[0]['mobile_network_name']?></h2>
+              <h2 class="wow slideInRight">รายการเบอร์มือถือ <?php echo $Product_List[0]['mobile_network_name']?> ทั้งหมด
+
+                <?php echo number_format($Product_Total)?> เบอร์
+                <?php
+                $page_num = 50;
+                 ?>
+                 <?php if ($filter['amount'] >=50):
+                   $result_num1 = $filter['amount']+1;
+                   $result_num2 = $filter['amount']+$page_num;
+                   ?>
+                  <?php else:
+                    $result_num1 = 1;
+                    $result_num2 = 50;
+                    ?>
+                 <?php endif;
+                 echo "<span style='font-size:15px;'>(".$result_num1." - ".$result_num2.")</span>";
+                 ?>
+
+              </h2>
               <p class="wow slideInLeft" style="font-size:20px;">ทุกหมายเลข ได้คัดเลือกมาอย่างดี
                 และจำแนกออกเป็นหมายเลขเสริมของแต่ละด้าน</p>
             <?php endif; ?>
@@ -57,15 +75,51 @@
                 </article>
               </div>
           <?php endforeach; ?>
+
+        <!-- โค้ดแบ่งหน้า -->
+
+        <?php if (count($Product_List) == 0): ?>
+          <?php else: ?>
+        <?php if ($filter['amount'] >=50): ?>
+          <div class="col-lg-4 col-sm-6 layout-item-wrap">
+            <article class="property layout-item clearfix">
+              <h4 style="font-size:18px;" align="center" >
+
+
+                <?php
+                $page = 50;
+                $result = $filter['amount']-$page;
+                if ($result ==0) {
+                  $result = '';
+                }
+                echo form_open('product/product_list/'.$filter['id']."/".$result);
+                ?>
+                <input type="submit" class="" value="ย้อนกลับ">
+                <?php echo form_close();?>
+
+              </h4>
+            </article>
           </div>
-        </div>
+        <?php endif; ?>
 
+      <?php endif; ?>
 
+        <?php if (count($Product_List) == 50): ?>
+          <div class="col-lg-4 col-sm-6 layout-item-wrap">
+            <article class="property layout-item clearfix">
+              <h4 style="font-size:18px;" align="center" >
+                <?php
+                $page = 50;
+                $result = $filter['amount']+$page;
+                echo form_open('product/product_list/'.$filter['id']."/".$result);
+                ?>
+                <input type="submit" class="" value="หน้าต่อไป">
+                <?php echo form_close();?>
+              </h4>
+            </article>
+          </div>
+        <?php endif; ?>
 
-
-
-
-      </section>
+      </div>
     </div>
-  </div>
-</div>
+  </section>

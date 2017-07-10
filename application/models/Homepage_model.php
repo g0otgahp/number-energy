@@ -34,17 +34,30 @@ class Homepage_model extends CI_Model {
 		return $data;
 	}
 
-	public function Product_by_Network($id)
+	public function Product_by_Network($input)
 	{
 		$data =	$this->db
 		->order_by('product_date','DESC')
 		->where('product_status',1)
 		->where('product_disable',0)
-		->where('mobile_network_id', $id)
+		->where('mobile_network_id', $input['id'])
 		->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network')
-		->get('dmn_product')->result_array();
+		->get('dmn_product',50,$input['amount'])->result_array();
 		return $data;
 	}
+
+	public function Product_by_Network_total($input)
+	{
+		$data =	$this->db
+		->order_by('product_date','DESC')
+		->where('product_status',1)
+		->where('product_disable',0)
+		->where('mobile_network_id', $input['id'])
+		->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network')
+		->get('dmn_product')->num_rows();
+		return $data;
+	}
+
 
 	public function Product_Find($input)
 	{
@@ -100,93 +113,80 @@ class Homepage_model extends CI_Model {
 		return $data;
 	}
 
+	public function Product_Find_Total($input)
+	{
+		if ($input['product_mobile_network'] != '') {
+			$this->db->where('product_mobile_network',$input['product_mobile_network']);
+		}
+
+		// if ($input['product_type'] != '') {
+		// 	$this->db->where('product_type LIKE',"%".$input['product_type']."%");
+		// }
+
+		if ($input['product_requiment'] != '') {
+			$this->db->where('product_number LIKE',"%".$input['product_requiment']."%");
+		}
+
+		if ($input['product_sale'] != '') {
+			if ($input['product_sale'] == 1) {
+				$this->db->where('product_sale <=',1500);
+			} elseif ($input['product_sale'] == 2) {
+				$this->db->where('product_sale >=',1500);
+				$this->db->where('product_sale <=',3000);
+			} elseif ($input['product_sale'] == 3) {
+				$this->db->where('product_sale >=',3100);
+				$this->db->where('product_sale <=',5000);
+			} elseif ($input['product_sale'] == 4) {
+				$this->db->where('product_sale >=',5100);
+				$this->db->where('product_sale <=',10000);
+			} else {
+				$this->db->where('product_sale >=',10000);
+			}
+		}
+
+		// if ($input['product_price'] != '') {
+		// 	if ($input['product_price'] == 1) {
+		// 		$this->db->order_by('product_sale','ASC');
+		// 	} elseif ($input['product_price'] == 2) {
+		// 		$this->db->order_by('product_sale','DESC');
+		// 	}
+		// }
+		// $order_by = $input['product_price'];
+
+		$this->db->where('product_status',1);
+		$this->db->where('product_disable',0);
+
+		if ($input['product_price'] != '') {
+			$this->db->order_by('product_sale',$input['product_price']);
+		}
+
+		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
+		$data = $this->db->get('dmn_product')->num_rows();
+
+		// $this->debuger->prevalue($data);
+		return $data;
+	}
+
 	public function Product_search($input)
 	{
 		$this->db->where('product_number LIKE',"%".$input['number']."%");
 		$this->db->where('product_status',1);
 		$this->db->where('product_disable',0);
 		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
-		$data = $this->db->get('dmn_product',50)->result_array();
+		$data = $this->db->get('dmn_product',50,$input['amount'])->result_array();
 		return $data;
 	}
 
+	public function Product_search_total($input)
+	{
+		$this->db->where('product_number LIKE',"%".$input['number']."%");
+		$this->db->where('product_status',1);
+		$this->db->where('product_disable',0);
+		$this->db->join('dmn_mobile_network','dmn_mobile_network.mobile_network_id = dmn_product.product_mobile_network');
+		$data = $this->db->get('dmn_product')->num_rows();
+		return $data;
+	}
 
-	// public function true_number($data)
-	// {
-	// 	$Ignore_number = array(
-			// '0' => 0, '1' => 11, '2' => 12, '3' => 21,
-			// '4' => 13,'5' => 31, '6' => 17, '7' => 71,
-			// '8' => 18, '9' => 81, '10' => 25, '11' => 52,
-			// '12' => 27, '13' => 72, '14' => 33, '15' => 34,
-			// '16' => 43, '17' => 37, '18' => 73, '19' => 38,
-			// '20' => 83, '21' => 48, '22' => 84, '23' => 57,
-			// '24' => 75, '25' => 58, '26' => 85, '27' => 67,
-			// '28' => 76, '29' => 68, '30' => 86,'31' => 88,
-	// 	);
-	// 	$i = 0;
-	// 	$n = 0;
-	// 	foreach ($data as $row) {
-	// 		$number = substr($row['product_number'],3);
-	//
-	// 		foreach ($Ignore_number as $chk => $value) {
-	// 			if (preg_match("/($value)/", $number, $matches)) {
-	// 				unset($data[$i]);
-	// 			}
-	// 			$n++;
-	// 		} //inforeach
-	// 		$i++;
-	// 	} //outforeach
-	//
-	// 	//เรียงอาร์เรย์ใหม่
-	// 	$result = array();
-	// 	$r = 0;
-	// 	foreach ($data as $row => $value) {
-	// 		$result[$r] = $value;
-	// 		$r++;
-	// 	}
-	//
-	// 	return $result;
-	// }
-	//
-	// public function trash_number($data)
-	// {
-	// 	$Ignore_number = array(
-	// 		'0' => 0, '1' => 11, '2' => 12, '3' => 21,
-	// 		'4' => 13,'5' => 31, '6' => 17, '7' => 71,
-	// 		'8' => 18, '9' => 81, '10' => 25, '11' => 52,
-	// 		'12' => 27, '13' => 72, '14' => 33, '15' => 34,
-	// 		'16' => 43, '17' => 37, '18' => 73, '19' => 38,
-	// 		'20' => 83, '21' => 48, '22' => 84, '23' => 57,
-	// 		'24' => 75, '25' => 58, '26' => 85, '27' => 67,
-	// 		'28' => 76, '29' => 68, '30' => 86,'31' => 88,
-	// 	);
-	// 	$data = $this->db->get('dmn_product')->result_array();
-	// 	$i = 0;
-	// 	$n = 0;
-	// 	foreach ($data as $row) {
-	// 		$number = substr($row['product_number'],3);
-	//
-	// 		foreach ($Ignore_number as $chk => $value) {
-	// 			if (preg_match("/($value)/", $number, $matches)) {
-	// 					if ($matches =='') {
-	// 						unset($data[$i]);
-	// 					}
-	// 			}
-	// 			$n++;
-	// 		} //inforeach
-	// 		$i++;
-	// 	} //outforeach
-	//
-	// 	//เรียงอาร์เรย์ใหม่
-	// 	$result = array();
-	// 	$r = 0;
-	// 	foreach ($data as $row => $value) {
-	// 		$result[$r] = $value;
-	// 		$r++;
-	// 	}
-	//
-	// 	return $result;
-	// }
 
 	public function Count_number($data)
 	{
@@ -355,6 +355,22 @@ class Homepage_model extends CI_Model {
 		$data['product_sale'] = $input['product_sale'];
 		$data['product_requiment'] = $input['product_requiment'];
 		$data['product_price'] = $input['product_price'];
+		$data['amount'] = $input['amount'];
+		return $data;
+	}
+
+	public function filter_search($input)
+	{
+		$data = array();
+		$data['number'] = $input['number'];
+		$data['amount'] = $input['amount'];
+		return $data;
+	}
+
+	public function filter_list($input)
+	{
+		$data = array();
+		$data['id'] = $input['id'];
 		$data['amount'] = $input['amount'];
 		return $data;
 	}
