@@ -1055,4 +1055,11 @@ class Product_process extends CI_Controller {
 		redirect('Admin/product_list');
 	}
 
+	public function delete_product_all()
+	{
+		$this->db->empty_table('dmn_product');
+		redirect('Admin/product_list');
+	}
+
+
 }

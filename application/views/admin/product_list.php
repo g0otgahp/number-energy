@@ -1,6 +1,6 @@
-
 <div class="col-xs-12">
   <div class="card">
+    <a href="<?php echo SITE_URL('Product_process/delete_product_all/')?>" style="font-size:12px; color:red;" class="btn" onclick="return confirm('คุณแน่ใจว่าต้องการลบสินค้าทั้งหมด?')">ลบสินค้าทั้งหมด</a>
     <div class="card-header"> <h3>เบอร์ที่กำลังขาย <a href="<?php echo SITE_URL('admin/product_all/sale')?>" style="font-size:12px;" target="_blank">ดูทั้งหมด</a></h3> </div>
     <div class="card-body no-padding">
       <table class="datatable table table-hover primary" cellspacing="0" width="100%">
